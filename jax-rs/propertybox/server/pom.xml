@@ -25,9 +25,24 @@
 	</licenses>
 
 	<dependencies>
+
+		<!-- Holon JAX-RS server -->
 		<dependency>
 			<groupId>com.holon-platform.jaxrs</groupId>
 			<artifactId>holon-jaxrs-server</artifactId>
+		</dependency>
+
+		<!-- Holon JSON support using Jackson -->
+		<dependency>
+			<groupId>com.holon-platform.json</groupId>
+			<artifactId>holon-jackson-jaxrs</artifactId>
+		</dependency>
+
+		<!-- Jersey Grizzly server -->
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-grizzly2-servlet</artifactId>
+			<version>2.25.1</version>
 		</dependency>
 	</dependencies>
 
