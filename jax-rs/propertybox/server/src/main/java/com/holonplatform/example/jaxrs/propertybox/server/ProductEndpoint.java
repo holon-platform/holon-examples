@@ -40,14 +40,14 @@ public class ProductEndpoint {
 	@Path("/products")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<PropertyBox> getProducts() {
-		return ProductStore.INSTANCE.getAll();
+		return getProductStore().getAll();
 	}
 
 	@GET
 	@Path("/products/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getProduct(@PathParam("id") Long id) {
-		return ProductStore.INSTANCE.get(id).map(p -> Response.ok(p).build())
+		return getProductStore().get(id).map(p -> Response.ok(p).build())
 				.orElse(Response.status(Status.NOT_FOUND).build());
 	}
 
@@ -59,9 +59,9 @@ public class ProductEndpoint {
 			return Response.status(Status.BAD_REQUEST).entity("Missing product").build();
 		}
 		// set id
-		long nextId = ProductStore.INSTANCE.nextId();
+		long nextId = getProductStore().nextId();
 		product.setValue(MProduct.ID, nextId);
-		ProductStore.INSTANCE.put(product);
+		getProductStore().put(product);
 		return Response.created(URI.create("/products/" + nextId)).build();
 	}
 
@@ -75,8 +75,8 @@ public class ProductEndpoint {
 		if (!product.getValueIfPresent(MProduct.ID).isPresent()) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing product id").build();
 		}
-		return ProductStore.INSTANCE.get(product.getValue(MProduct.ID)).map(p -> {
-			ProductStore.INSTANCE.put(product);
+		return getProductStore().get(product.getValue(MProduct.ID)).map(p -> {
+			getProductStore().put(product);
 			return Response.noContent().build();
 		}).orElse(Response.status(Status.NOT_FOUND).build());
 	}
@@ -91,8 +91,12 @@ public class ProductEndpoint {
 		if (!product.getValueIfPresent(MProduct.ID).isPresent()) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing product id").build();
 		}
-		ProductStore.INSTANCE.remove(product.getValue(MProduct.ID));
+		getProductStore().remove(product.getValue(MProduct.ID));
 		return Response.noContent().build();
+	}
+
+	private static ProductStore getProductStore() {
+		return ProductStore.INSTANCE;
 	}
 
 }
