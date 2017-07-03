@@ -2,8 +2,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.holon-platform.core</groupId>
-	<artifactId>holon-root</artifactId>
+	<groupId>com.holon-platform.examples</groupId>
+	<artifactId>holon-examples-root</artifactId>
 	<version>5.0.0-SNAPSHOT</version>
 
 	<packaging>pom</packaging>
@@ -11,6 +11,7 @@
 	<name>${project.groupId}:${project.artifactId}</name>
 
 	<description>Holon Platform Examples</description>
+
 	<url>https://holon-platform.com</url>
 
 	<organization>
@@ -51,9 +52,14 @@
 
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+
+		<holon.platform.version>5.0.0-SNAPSHOT</holon.platform.version>
 	</properties>
-	
-	
+
+	<modules>
+		<module>jax-rs/propertybox</module>
+	</modules>
+
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -71,5 +77,18 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Holon Platform BOM -->
+			<dependency>
+				<groupId>com.holon-platform</groupId>
+				<artifactId>bom</artifactId>
+				<version>${holon.platform.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 </project>
