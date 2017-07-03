@@ -27,7 +27,7 @@ public class Server {
 	public static void main(String[] args) throws IOException {
 
 		// register the endpoint resource
-		final ResourceConfig config = new ResourceConfig().register(PropertyBoxJsonEndpoint.class);
+		final ResourceConfig config = new ResourceConfig().register(ProductEndpoint.class);
 
 		// create and start Grizzly server
 		final HttpServer grizzlyServer = GrizzlyHttpServerFactory
