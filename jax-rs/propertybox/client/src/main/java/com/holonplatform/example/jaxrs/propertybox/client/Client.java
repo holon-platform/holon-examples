@@ -17,12 +17,14 @@ package com.holonplatform.example.jaxrs.propertybox.client;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.holonplatform.core.property.PropertyBox;
 import com.holonplatform.example.model.MProduct;
+import com.holonplatform.http.HttpStatus;
 import com.holonplatform.http.exceptions.UnsuccessfulResponseException;
 import com.holonplatform.http.rest.RequestEntity;
+import com.holonplatform.http.rest.ResponseEntity;
 import com.holonplatform.http.rest.RestClient;
 import com.holonplatform.jaxrs.client.JaxrsRestClient;
 
@@ -34,20 +36,73 @@ public class Client {
 
 		try {
 
-			PropertyBox value = client.request().path("products/{id}").resolve("id", 0).propertySet(MProduct.PRODUCT)
-					.getForEntity(PropertyBox.class).orElse(null);
-
-			List<PropertyBox> values = client.request().path("products").propertySet(MProduct.PRODUCT)
-					.getAsList(PropertyBox.class);
-
+			// Product PropertyBox
 			PropertyBox product = PropertyBox.builder(MProduct.PRODUCT).set(MProduct.DESCRIPTION, "Product 1")
 					.set(MProduct.SKU, "abc-123-xyz").set(MProduct.UNIT_PRICE, 9.99).build();
 
-			// Add a product
+			// add using POST
+			URI location = client.request().path("products").postForLocation(RequestEntity.json(product))
+					.orElseThrow(() -> new RuntimeException("Missing URI"));
 
-			Optional<URI> location = client.request().path("products").propertySet(MProduct.PRODUCT)
-					.postForLocation(RequestEntity.json(product));
-			System.out.println("Created: " + location.orElse(null));
+			System.out.println("Created URI: " + location);
+
+			// get the product
+			PropertyBox created = client.request().target(location).propertySet(MProduct.PRODUCT)
+					.getForEntity(PropertyBox.class).orElseThrow(() -> new RuntimeException("Missing product"));
+
+			System.out.println("Created id: " + created.getValue(MProduct.ID));
+
+			// update product
+			created.setValue(MProduct.DESCRIPTION, "Updated");
+
+			ResponseEntity<Void> response = client.request().path("products/{id}")
+					.resolve("id", created.getValue(MProduct.ID)).put(RequestEntity.json(created));
+
+			// check response
+			if (response.getStatus() != HttpStatus.NO_CONTENT) {
+				throw new RuntimeException("Unexpected status: " + response.getStatus());
+			}
+
+			// read again
+			PropertyBox updated = client.request().path("products/{id}").resolve("id", created.getValue(MProduct.ID))
+					.propertySet(MProduct.PRODUCT).getForEntity(PropertyBox.class)
+					.orElseThrow(() -> new RuntimeException("Missing product"));
+
+			System.out.println("Updated description: " + updated.getValue(MProduct.DESCRIPTION));
+
+			// created another product
+			product = PropertyBox.builder(MProduct.PRODUCT).set(MProduct.DESCRIPTION, "Product 2")
+					.set(MProduct.SKU, "abc-456-xyz").set(MProduct.UNIT_PRICE, 19.99).build();
+
+			location = client.request().path("products").postForLocation(RequestEntity.json(product))
+					.orElseThrow(() -> new RuntimeException("Missing URI"));
+
+			System.out.println("Created URI: " + location);
+
+			// get all products as List
+			List<PropertyBox> values = client.request().path("products").propertySet(MProduct.PRODUCT)
+					.getAsList(PropertyBox.class);
+
+			System.out.println("Products: "
+					+ values.stream().map(pb -> pb.getValue(MProduct.ID) + " - " + pb.getValue(MProduct.DESCRIPTION))
+							.collect(Collectors.joining("; ")));
+
+			// delete al products
+			values.forEach(pb -> {
+				ResponseEntity<Void> res = client.request().path("products/{id}")
+						.resolve("id", pb.getValue(MProduct.ID)).delete();
+				// check response
+				if (res.getStatus() != HttpStatus.NO_CONTENT) {
+					throw new RuntimeException("Unexpected status: " + response.getStatus());
+				}
+				System.out.println("Deleted product with id: " + pb.getValue(MProduct.ID));
+			});
+
+			// get all products again
+			values = client.request().path("products").propertySet(MProduct.PRODUCT).getAsList(PropertyBox.class);
+
+			// size should be 0 now
+			System.out.println("Products count: " + values.size());
 
 		} catch (UnsuccessfulResponseException e) {
 			System.err.println(e.getMessage());

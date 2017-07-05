@@ -63,7 +63,7 @@ public class ProductEndpoint {
 		long nextId = getProductStore().nextId();
 		product.setValue(MProduct.ID, nextId);
 		getProductStore().put(product);
-		return Response.created(URI.create("/products/" + nextId)).build();
+		return Response.created(URI.create("/api/products/" + nextId)).build();
 	}
 
 	@PUT
