@@ -16,6 +16,7 @@
 package com.holonplatform.example.jaxrs.propertybox.client;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 import com.holonplatform.core.property.PropertyBox;
@@ -31,20 +32,27 @@ public class Client {
 
 		RestClient client = JaxrsRestClient.create().defaultTarget(URI.create("http://localhost:8080/api/"));
 
-		PropertyBox product = PropertyBox.builder(MProduct.PRODUCT).set(MProduct.DESCRIPTION, "Product 1")
-				.set(MProduct.SKU, "abc-123-xyz").set(MProduct.UNIT_PRICE, 9.99).build();
-
-		// Add a product
 		try {
-			Optional<URI> location = client.request().path("products")
-					//.propertySet(MProduct.PRODUCT)
+
+			PropertyBox value = client.request().path("products/{id}").resolve("id", 0).propertySet(MProduct.PRODUCT)
+					.getForEntity(PropertyBox.class).orElse(null);
+
+			List<PropertyBox> values = client.request().path("products").propertySet(MProduct.PRODUCT)
+					.getAsList(PropertyBox.class);
+
+			PropertyBox product = PropertyBox.builder(MProduct.PRODUCT).set(MProduct.DESCRIPTION, "Product 1")
+					.set(MProduct.SKU, "abc-123-xyz").set(MProduct.UNIT_PRICE, 9.99).build();
+
+			// Add a product
+
+			Optional<URI> location = client.request().path("products").propertySet(MProduct.PRODUCT)
 					.postForLocation(RequestEntity.json(product));
 			System.out.println("Created: " + location.orElse(null));
+
 		} catch (UnsuccessfulResponseException e) {
 			System.err.println(e.getMessage());
 			e.getResponse().as(String.class).ifPresent(r -> System.err.println(r));
 		}
-		
 
 	}
 

@@ -32,6 +32,11 @@ public enum ProductStore {
 	INSTANCE;
 
 	private final Map<Long, PropertyBox> DATA = new LinkedHashMap<>();
+	
+	private ProductStore() {
+		DATA.put(0L, PropertyBox.builder(MProduct.PRODUCT).set(MProduct.DESCRIPTION, "Product 0")
+					.set(MProduct.SKU, "abc-000-xyz").set(MProduct.UNIT_PRICE, 1.99).build());
+	}
 
 	public List<PropertyBox> getAll() {
 		return new ArrayList<>(DATA.values());

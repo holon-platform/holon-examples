@@ -37,6 +37,7 @@ public class Server {
 		// wait for a key press to shutdown
 		System.in.read();
 		grizzlyServer.shutdown();
+		
 	}
 
 }

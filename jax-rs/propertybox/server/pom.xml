@@ -45,12 +45,20 @@
 			<artifactId>holon-jackson-jaxrs</artifactId>
 		</dependency>
 
+		<!-- Jersey media jackson -->
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-jackson</artifactId>
+			<version>2.25.1</version>
+		</dependency>
+
 		<!-- Jersey Grizzly server -->
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-grizzly2-servlet</artifactId>
 			<version>2.25.1</version>
 		</dependency>
+
 	</dependencies>
 
 </project>

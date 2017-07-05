@@ -31,6 +31,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import com.holonplatform.core.property.PropertyBox;
+import com.holonplatform.core.property.PropertySetRef;
 import com.holonplatform.example.model.MProduct;
 
 @Path("/")
@@ -54,7 +55,7 @@ public class ProductEndpoint {
 	@POST
 	@Path("/products")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addProduct(PropertyBox product) {
+	public Response addProduct(@PropertySetRef(MProduct.class) PropertyBox product) {
 		if (product == null) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing product").build();
 		}
@@ -68,7 +69,7 @@ public class ProductEndpoint {
 	@PUT
 	@Path("/products/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateProduct(PropertyBox product) {
+	public Response updateProduct(@PropertySetRef(MProduct.class) PropertyBox product) {
 		if (product == null) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing product").build();
 		}
@@ -84,14 +85,8 @@ public class ProductEndpoint {
 	@DELETE
 	@Path("/products/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteProduct(PropertyBox product) {
-		if (product == null) {
-			return Response.status(Status.BAD_REQUEST).entity("Missing product").build();
-		}
-		if (!product.getValueIfPresent(MProduct.ID).isPresent()) {
-			return Response.status(Status.BAD_REQUEST).entity("Missing product id").build();
-		}
-		getProductStore().remove(product.getValue(MProduct.ID));
+	public Response deleteProduct(@PathParam("id") Long id) {
+		getProductStore().remove(id);
 		return Response.noContent().build();
 	}
 
