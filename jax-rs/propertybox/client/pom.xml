@@ -26,6 +26,13 @@
 
 	<dependencies>
 
+		<!-- Example model -->
+		<dependency>
+			<groupId>com.holon-platform.examples</groupId>
+			<artifactId>holon-example-model</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
 		<!-- Holon JAX-RS client -->
 		<dependency>
 			<groupId>com.holon-platform.jaxrs</groupId>
