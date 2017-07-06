@@ -21,10 +21,8 @@ import java.util.stream.Collectors;
 
 import com.holonplatform.core.property.PropertyBox;
 import com.holonplatform.example.model.MProduct;
-import com.holonplatform.http.HttpStatus;
 import com.holonplatform.http.exceptions.UnsuccessfulResponseException;
 import com.holonplatform.http.rest.RequestEntity;
-import com.holonplatform.http.rest.ResponseEntity;
 import com.holonplatform.http.rest.RestClient;
 import com.holonplatform.jaxrs.client.JaxrsRestClient;
 
@@ -55,13 +53,8 @@ public class Client {
 			// update product
 			created.setValue(MProduct.DESCRIPTION, "Updated");
 
-			ResponseEntity<Void> response = client.request().path("products/{id}")
-					.resolve("id", created.getValue(MProduct.ID)).put(RequestEntity.json(created));
-
-			// check response
-			if (response.getStatus() != HttpStatus.NO_CONTENT) {
-				throw new RuntimeException("Unexpected status: " + response.getStatus());
-			}
+			client.request().path("products/{id}").resolve("id", created.getValue(MProduct.ID))
+					.put(RequestEntity.json(created));
 
 			// read again
 			PropertyBox updated = client.request().path("products/{id}").resolve("id", created.getValue(MProduct.ID))
@@ -89,12 +82,8 @@ public class Client {
 
 			// delete al products
 			values.forEach(pb -> {
-				ResponseEntity<Void> res = client.request().path("products/{id}")
-						.resolve("id", pb.getValue(MProduct.ID)).delete();
-				// check response
-				if (res.getStatus() != HttpStatus.NO_CONTENT) {
-					throw new RuntimeException("Unexpected status: " + response.getStatus());
-				}
+				client.request().path("products/{id}").resolve("id", pb.getValue(MProduct.ID)).deleteOrFail();
+
 				System.out.println("Deleted product with id: " + pb.getValue(MProduct.ID));
 			});
 
@@ -105,7 +94,9 @@ public class Client {
 			System.out.println("Products count: " + values.size());
 
 		} catch (UnsuccessfulResponseException e) {
+			// print exception message
 			System.err.println(e.getMessage());
+			// print the response body as String, if present
 			e.getResponse().as(String.class).ifPresent(r -> System.err.println(r));
 		}
 
