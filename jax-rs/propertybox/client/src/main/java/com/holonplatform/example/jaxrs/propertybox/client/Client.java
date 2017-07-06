@@ -24,13 +24,12 @@ import com.holonplatform.example.model.MProduct;
 import com.holonplatform.http.exceptions.UnsuccessfulResponseException;
 import com.holonplatform.http.rest.RequestEntity;
 import com.holonplatform.http.rest.RestClient;
-import com.holonplatform.jaxrs.client.JaxrsRestClient;
 
 public class Client {
 
 	public static void main(String[] args) {
 
-		RestClient client = JaxrsRestClient.create().defaultTarget(URI.create("http://localhost:8080/api/"));
+		RestClient client = RestClient.forTarget("http://localhost:8080/api/");
 
 		try {
 
