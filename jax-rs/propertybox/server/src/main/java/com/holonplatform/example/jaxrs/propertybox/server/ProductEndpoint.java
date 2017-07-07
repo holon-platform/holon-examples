@@ -37,6 +37,9 @@ import com.holonplatform.example.model.MProduct;
 @Path("/")
 public class ProductEndpoint {
 
+	/*
+	 * Get a list of products PropertyBox in JSON.
+	 */
 	@GET
 	@Path("/products")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -44,6 +47,9 @@ public class ProductEndpoint {
 		return getProductStore().getAll();
 	}
 
+	/*
+	 * Get a product PropertyBox in JSON.
+	 */
 	@GET
 	@Path("/products/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -52,6 +58,9 @@ public class ProductEndpoint {
 				.orElse(Response.status(Status.NOT_FOUND).build());
 	}
 
+	/*
+	 * Create a product. The @PropertySetRef must be used to declare the request PropertyBox property set.
+	 */
 	@POST
 	@Path("/products")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -66,6 +75,9 @@ public class ProductEndpoint {
 		return Response.created(URI.create("/api/products/" + nextId)).build();
 	}
 
+	/*
+	 * Update a product. The @PropertySetRef must be used to declare the request PropertyBox property set.
+	 */
 	@PUT
 	@Path("/products/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -82,6 +94,9 @@ public class ProductEndpoint {
 		}).orElse(Response.status(Status.NOT_FOUND).build());
 	}
 
+	/*
+	 * Delete a product by id.
+	 */
 	@DELETE
 	@Path("/products/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)

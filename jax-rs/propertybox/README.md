@@ -4,6 +4,15 @@ _This is one of the [Holon Platform](https://holon-platform.com) example project
 
 This example shows how to setup __RESTful server and client__ applications using the [Holon platform JAX-RS module](https://github.com/holon-platform/holon-jaxrs), with both sides `PropertyBox` data container support using _JSON_ as data exchange format, leveraging on the [Holon platform JSON module](https://github.com/holon-platform/holon-json) _Jackson_ JAX-RS support.
 
+## Topics
+
+This example addresses the following topics:
+
+* Setup a __JAX-RS server RESTful API__ with [PropertyBox](https://holon-platform.com/docs/current/reference/holon-core.html#PropertyBox) JSON support.
+* Use the `@PropertySetRef` annotation to handle `PropertyBox` type requests
+* Setup a __JAX-RS client__ with [PropertyBox](https://holon-platform.com/docs/current/reference/holon-core.html#PropertyBox) JSON support.
+* Obtain and use [RestClient](https://holon-platform.com/docs/current/reference/holon-core.html#RestClient) to invoke API operations involving `PropertyBox` object types and handle errors.
+
 ## Example Data model
 
 This example uses the [Examples shared data model](https://github.com/holon-platform/holon-examples/tree/master/model) artifact, which is declared as dependency both for the __server__ and the __client__ module.
