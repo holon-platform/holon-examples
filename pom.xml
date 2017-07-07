@@ -61,24 +61,6 @@
 		<module>jax-rs/propertybox</module>
 	</modules>
 
-	<build>
-		<pluginManagement>
-			<plugins>
-				<!-- Release -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-release-plugin</artifactId>
-					<version>${maven-release-plugin.version}</version>
-					<configuration>
-						<tagNameFormat>@{project.version}</tagNameFormat>
-						<autoVersionSubmodules>true</autoVersionSubmodules>
-						<useReleaseProfile>false</useReleaseProfile>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
-
 	<dependencyManagement>
 		<dependencies>
 			<!-- Holon Platform BOM -->
