@@ -1,35 +1,19 @@
-# Holon platform examples: JAX-RS and PropertyBox
+# Holon platform examples: Shared data model
 
-_This is one of the [Holon Platform](https://holon-platform.com) example projects._
+This artifact represents a __commom data model definition__ to be used by the [Holon Platform](https://holon-platform.com) example projects.
 
-This example shows how to setup __RESTful server and client__ applications using the [Holon platform JAX-RS module](https://github.com/holon-platform/holon-jaxrs), with both sides `PropertyBox` data container support using _JSON_ as data exchange format, leveraging on the [Holon platform JSON module](https://github.com/holon-platform/holon-json) _Jackson_ JAX-RS support.
+Each data model _entity_ is represented by a `final` class, which name is composed by the `M` prefix and the data model _entity_ name.
 
-## Example Data model
+Each data model class provides at least:
 
+* A set of `Property` which represent the data model _entity_ attributes;
+* A default `PropertySet` which collects all the data model _entity_ properties.
 
+See the [Holon Platform reference guide](https://holon-platform.com/docs/current/reference/holon-core.html#Property) for information about the Holon Platform `Property` architecture.
 
-## Example structure
+## Example projects
 
-This example project is composed of two modules: __server__ and __client__.
-
-To build the example's __jar__s using _Maven_ you can use the following command on the project root folder:
-
-`mvn clean package`
-
-### Server module
-
-The 
-
-
-## Documentation
-
-The complete _Holon Platform reference guide_ is available [here](https://holon-platform.com/docs/current/reference).
-
-For the specific documentation about the modules and the components used in this example see:
-
-* [Holon platform JSON module reference documentation](https://holon-platform.com/docs/current/reference/holon-json.html)
-* [Holon platform JAX-RS module reference documentation](https://holon-platform.com/docs/current/reference/holon-jaxrs.html)
-* Documentation for the [PropertyBox data structure](https://holon-platform.com/docs/current/reference/holon-core.html#PropertyBox)
+See [Holon platform examples](https://github.com/holon-platform/holon-examples).
 
 ## System requirements
 
