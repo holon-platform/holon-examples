@@ -12,7 +12,7 @@ See the [Holon platform reference guide](https://holon-platform.com/docs/current
 
 Example | Description
 ------- | -----------
-link:jax-rs/propertybox[propertybox]| JAX-RS server and client RESTful API using `PropertyBox` and JSON
+[propertybox](jax-rs/propertybox)| JAX-RS server and client RESTful API using `PropertyBox` and JSON
 
 ## System requirements
 
