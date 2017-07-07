@@ -6,7 +6,7 @@ This example shows how to setup __RESTful server and client__ applications using
 
 ## Example Data model
 
-This example uses the [Examples shared data model](https://github.com/holon-platform/holon-examples/tree/master/model) as data model artifact, which is declared as dependency both for the __server__ and the __client__ module.
+This example uses the [Examples shared data model](https://github.com/holon-platform/holon-examples/tree/master/model) artifact, which is declared as dependency both for the __server__ and the __client__ module.
 
 ## Example structure
 
@@ -26,7 +26,7 @@ To start the server run the `Server` class `main` method, a _Jersey Grizzly_ ser
 
 The __server__ module is a JAX-RS client implementation using _Jersey_, leveraging on the `holon-jaxrs-client` artifact and on the `holon-jackson-jaxrs` artifact for `PropertyBox` type __JSON__ support using  _Jackson_.
 
-The main `Client` class performs a set of API operations, expecting the __server__ module running and listening to the `http://localhost:8080/api` base URI, using the default `RestClient` obtained through the static `forTarget()` method, which creates a default `RestClient` implementation relying on the available `RestClientFactory`s and setting a default base target URI.
+The main `Client` class performs a set of API operations (expecting the __server__ module running and listening to the `http://localhost:8080/api` base URI) using a default `RestClient` instance obtained through the static `forTarget()` method, which creates a default `RestClient` implementation relying on the available `RestClientFactory`s and setting a default base target URI.
 
 Since the `holon-jaxrs-client` artifact is present in classpath, the actual `RestClient` implementation will be the standard platform JAX-RS _Client_ based implementation. 
 
@@ -51,7 +51,7 @@ For the specific documentation about the modules and the components used in this
 
 * [Holon platform JSON module reference documentation](https://holon-platform.com/docs/current/reference/holon-json.html)
 * [Holon platform JAX-RS module reference documentation](https://holon-platform.com/docs/current/reference/holon-jaxrs.html)
-* Documentation about the [PropertyBox data structure](https://holon-platform.com/docs/current/reference/holon-core.html#PropertyBox)
+* Documentation about the [PropertyBox](https://holon-platform.com/docs/current/reference/holon-core.html#PropertyBox)  data structure
 * Documentation about the [RestClient](https://holon-platform.com/docs/current/reference/holon-core.html#RestClient) platform RESTful client
 
 ## System requirements
