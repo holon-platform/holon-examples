@@ -25,6 +25,9 @@ import com.holonplatform.http.exceptions.UnsuccessfulResponseException;
 import com.holonplatform.http.rest.RequestEntity;
 import com.holonplatform.http.rest.RestClient;
 
+/**
+ * Client main class
+ */
 public class Client {
 
 	public static void main(String[] args) {

@@ -50,7 +50,7 @@ public enum ProductStore {
 	public boolean remove(long id) {
 		return DATA.remove(id) != null;
 	}
-	
+
 	public long nextId() {
 		return DATA.keySet().stream().mapToLong(Long::longValue).max().orElse(0) + 1;
 	}

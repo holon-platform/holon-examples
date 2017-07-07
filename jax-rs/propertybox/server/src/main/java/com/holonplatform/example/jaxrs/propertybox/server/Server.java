@@ -22,6 +22,9 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
+/**
+ * Server main class
+ */
 public class Server {
 
 	public static void main(String[] args) throws IOException {
@@ -37,7 +40,7 @@ public class Server {
 		// wait for a key press to shutdown
 		System.in.read();
 		grizzlyServer.shutdown();
-		
+
 	}
 
 }
