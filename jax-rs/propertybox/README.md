@@ -52,6 +52,10 @@ Deleted product with id: 2
 Products count: 0
 ```
 
+### Using Gson as JSON provider
+
+To use [Gson](https://github.com/google/gson) as JSON provider instead of _Jackson_, simply replace the `holon-jackson-jaxrs` dependency with the `holon-gson-jaxrs` dependency in both server and client project `pom`.
+
 ## Documentation
 
 The complete _Holon Platform reference guide_ is available [here](https://holon-platform.com/docs/current/reference).
