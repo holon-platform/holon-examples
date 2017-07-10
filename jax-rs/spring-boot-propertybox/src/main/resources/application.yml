@@ -1,0 +1,10 @@
+spring:
+  main:
+    banner-mode: "off"
+    
+  jersey:
+    application-path: "/api"
+    
+server:
+  port: 8080
+  
