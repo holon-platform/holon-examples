@@ -25,6 +25,12 @@
 
 	<dependencies>
 
+		<!-- Jersey server starter -->
+		<dependency>
+			<groupId>com.holon-platform.jaxrs</groupId>
+			<artifactId>holon-starter-jersey</artifactId>
+		</dependency>
+		
 		<!-- Example model -->
 		<dependency>
 			<groupId>com.holon-platform.examples</groupId>
@@ -32,10 +38,16 @@
 			<version>${project.version}</version>
 		</dependency>
 
-		<!-- Jersey server starter -->
+		<!-- Test -->
+		<dependency>
+			<groupId>com.holon-platform.core</groupId>
+			<artifactId>holon-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>com.holon-platform.jaxrs</groupId>
-			<artifactId>holon-starter-jersey</artifactId>
+			<artifactId>holon-jaxrs-client</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
