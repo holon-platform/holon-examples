@@ -13,8 +13,8 @@ See the [Holon platform reference guide](https://holon-platform.com/docs/current
 Example | Description
 ------- | -----------
 [propertybox](jax-rs/propertybox)| JAX-RS server and client RESTful API using `PropertyBox` and JSON
-[spring-boot-propertybox](jax-rs/propertybox)| JAX-RS server and client RESTful API using `PropertyBox`, JSON and __Spring Boot__
-[propertybox](jax-rs/spring-boot-datastore)| JAX-RS server and client RESTful API using `PropertyBox`, JSON, __Spring Boot__ and a JDBC `Datastore`
+[spring-boot-propertybox](jax-rs/spring-boot-propertybox)| JAX-RS server and client RESTful API using `PropertyBox`, JSON and __Spring Boot__
+[spring-boot-datastore](jax-rs/spring-boot-datastore)| JAX-RS server and client RESTful API using `PropertyBox`, JSON, __Spring Boot__ and a JDBC `Datastore`
 
 ## System requirements
 
