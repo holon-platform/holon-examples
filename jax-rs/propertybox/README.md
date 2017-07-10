@@ -56,6 +56,10 @@ Products count: 0
 
 To use [Gson](https://github.com/google/gson) as JSON provider instead of _Jackson_, simply replace the `holon-jackson-jaxrs` dependency with the `holon-gson-jaxrs` dependency in both server and client project `pom`.
 
+### Using Spring Boot
+
+To learn how to use __Spring Boot__ for JAX-RS server setup, see the [JAX-RS and PropertyBox with Spring Boot example](../spring-boot-propertybox).
+
 ## Documentation
 
 The complete _Holon Platform reference guide_ is available [here](https://holon-platform.com/docs/current/reference).
