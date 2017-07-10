@@ -55,7 +55,7 @@
 		<!-- Jersey Grizzly server -->
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
-			<artifactId>jersey-container-grizzly2-servlet</artifactId>
+			<artifactId>jersey-container-grizzly2-http</artifactId>
 			<version>2.25.1</version>
 		</dependency>
 
