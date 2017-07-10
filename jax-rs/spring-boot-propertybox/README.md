@@ -1,4 +1,4 @@
-# Holon platform examples: JAX-RS and PropertyBox
+# Holon platform examples: JAX-RS and PropertyBox using Spring Boot
 
 _This is one of the [Holon Platform](https://holon-platform.com) example projects._
 
