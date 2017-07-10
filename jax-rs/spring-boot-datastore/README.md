@@ -28,9 +28,9 @@ The `schema.sql` file creates the `products` table in the _test_ H2 schema at ap
 
 The server API uses the `PropertyBox` class as data container and __JSON__ as data exchange format, leveraging on the [Holon platform JSON module](https://github.com/holon-platform/holon-json) _Jackson_ JAX-RS support.
 
-The `ProductEndpoint` class represents the API endpoint and provides operations to get a product, get all products and create/update/delete a product. It is declared as a singleton __Spring bean__ through the `@Component` annotation and it is auto-configured as JAX-RS resource by the Holon platform auto configuration facilities.
+The [ProductEndpoint](src/main/java/com/holonplatform/example/jaxrs/springboot/datastore/ProductEndpoint.java) class represents the API endpoint and provides operations to get a product, get all products and create/update/delete a product. It is declared as a singleton __Spring bean__ through the `@Component` annotation and it is auto-configured as JAX-RS resource by the Holon platform auto configuration facilities.
 
-The `ProductStore` Spring bean uses the __JDBC__ `Datastore` to access and manage the products data using the `products` database table. The JDBC `Datastore` is automatically configured and bound to the `DataSource` declared in the `application.yml` properties file by the Holon platform DataStore auto configuration classes, imported as dependency using the _Holon JDBC Datastore with HikariCP starter_ declared in the project's `pom` file:
+The [ProductStore](src/main/java/com/holonplatform/example/jaxrs/springboot/datastore/ProductStore.java) Spring bean uses the __JDBC__ `Datastore` to access and manage the products data using the `products` database table. The JDBC `Datastore` is automatically configured and bound to the `DataSource` declared in the `application.yml` properties file by the Holon platform DataStore auto configuration classes, imported as dependency using the _Holon JDBC Datastore with HikariCP starter_ declared in the project's `pom` file:
 
 ```xml
 <dependency>
@@ -39,7 +39,7 @@ The `ProductStore` Spring bean uses the __JDBC__ `Datastore` to access and manag
 </dependency>
 ```
 
-The `Client` unit test class performs a set of API operations using a default `RestClient` instance obtained through the static `forTarget()` method, which creates a default `RestClient` implementation relying on the available `RestClientFactory`s (in this example, a standard platform JAX-RS _Client_ based implementation will be created) and setting a default base target URI.
+The [Client](src/test/java/com/holonplatform/example/jaxrs/springboot/datastore/test/Client.java) unit test class performs a set of API operations using a default `RestClient` instance obtained through the static `forTarget()` method, which creates a default `RestClient` implementation relying on the available `RestClientFactory`s (in this example, a standard platform JAX-RS _Client_ based implementation will be created) and setting a default base target URI.
 
 The `Client` test class output will be:
 
