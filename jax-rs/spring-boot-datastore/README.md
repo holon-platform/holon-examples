@@ -1,10 +1,10 @@
-# Holon platform examples: JAX-RS and PropertyBox using Spring Boot
+# Holon platform examples: JAX-RS and PropertyBox using Spring Boot and a Datastore
 
 _This is one of the [Holon Platform](https://holon-platform.com) example projects._
 
-This example shows how to setup __RESTful server and client__ applications using the [Holon platform JAX-RS module](https://github.com/holon-platform/holon-jaxrs) __Spring Boot__ support, with both sides `PropertyBox` data container support using _JSON_ as data exchange format, leveraging on the [Holon platform JSON module](https://github.com/holon-platform/holon-json) _Jackson_ JAX-RS support.
+This example shows how to setup __RESTful server and client__ applications using the [Holon platform JAX-RS module](https://github.com/holon-platform/holon-jaxrs) __Spring Boot__ support, with both sides `PropertyBox` data container support using _JSON_ as data exchange format, leveraging on the [Holon platform JSON module](https://github.com/holon-platform/holon-json) _Jackson_ JAX-RS support, and a __JDBC__ `Datastore` as data store.
 
-This is the __Spring Boot__ version of the [JAX-RS and PropertyBox example](../propertybox).
+This is the `Datastore` version of the [JAX-RS and PropertyBox using Spring Boot example](../spring-boot-propertybox).
 
 ## Topics
 
@@ -14,6 +14,7 @@ This example addresses the following topics:
 * Use the `@PropertySetRef` annotation to handle `PropertyBox` type requests
 * Setup a __JAX-RS client__ with [PropertyBox](https://holon-platform.com/docs/current/reference/holon-core.html#PropertyBox) JSON support.
 * Obtain and use [RestClient](https://holon-platform.com/docs/current/reference/holon-core.html#RestClient) to invoke API operations involving `PropertyBox` object types and handle errors.
+* Use a __JDBC__ `Datastore` for data persistence.
 
 ## Example Data model
 
@@ -21,11 +22,22 @@ This example uses the [Examples shared data model](https://github.com/holon-plat
 
 ## Example structure
 
-This JAX-RS server implements a simple __RESTful__ API to provide the `MProduct` data model _entity_ management, backed by an in-memory store.
+This JAX-RS server implements a simple __RESTful__ API to provide the `MProduct` data model _entity_ management, backed by a __H2 database__ table named `products`, using a __JDBC__ `Datastore` for data management.
+
+The `schema.sql` file creates the `products` table in the _test_ H2 schema at application startup.
 
 The server API uses the `PropertyBox` class as data container and __JSON__ as data exchange format, leveraging on the [Holon platform JSON module](https://github.com/holon-platform/holon-json) _Jackson_ JAX-RS support.
 
 The `ProductEndpoint` class represents the API endpoint and provides operations to get a product, get all products and create/update/delete a product. It is declared as a singleton __Spring bean__ through the `@Component` annotation and it is auto-configured as JAX-RS resource by the Holon platform auto configuration facilities.
+
+The `ProductStore` Spring bean uses the __JDBC__ `Datastore` to access and manage the products data using the `products` database table. The JDBC `Datastore` is automatically configured and bound to the `DataSource` declared in the `application.yml` properties file by the Holon platform DataStore auto configuration classes, imported as dependency using the _Holon JDBC Datastore with HikariCP starter_ declared in the project's `pom` file:
+
+```xml
+<dependency>
+	<groupId>com.holon-platform.jdbc</groupId>
+	<artifactId>holon-starter-jdbc-datastore-hikaricp</artifactId>
+</dependency>
+```
 
 The `Client` unit test class performs a set of API operations using a default `RestClient` instance obtained through the static `forTarget()` method, which creates a default `RestClient` implementation relying on the available `RestClientFactory`s (in this example, a standard platform JAX-RS _Client_ based implementation will be created) and setting a default base target URI.
 
@@ -77,10 +89,6 @@ Starter Artifact id | Description
 `holon-starter-resteasy-client` | Spring Boot JAX-RS _client_ starter using __Resteasy__ and __Jackson__ as JSON provider
 `holon-starter-resteasy-client-gson` | Spring Boot JAX-RS _client_ starter using __Resteasy__ and __Gson__ as JSON provider
 
-### Using a `Datastore`
-
-See the [JAX-RS and PropertyBox with Spring Boot and a Datastore example](../spring-boot-datastore) to see how to setup and use a `Datastore` for data persistence.
-
 ## Documentation
 
 The complete _Holon Platform reference guide_ is available [here](https://holon-platform.com/docs/current/reference).
@@ -91,6 +99,7 @@ For the specific documentation about the modules and the components used in this
 * [Holon platform JAX-RS module reference documentation](https://holon-platform.com/docs/current/reference/holon-jaxrs.html)
 * Documentation about the [PropertyBox](https://holon-platform.com/docs/current/reference/holon-core.html#PropertyBox)  data structure
 * Documentation about the [RestClient](https://holon-platform.com/docs/current/reference/holon-core.html#RestClient) platform RESTful client
+* Documentation about the [Datastore](https://holon-platform.com/docs/current/reference/holon-core.html#Datastore)  API
 
 ## System requirements
 
