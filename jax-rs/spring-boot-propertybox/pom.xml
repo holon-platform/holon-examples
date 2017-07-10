@@ -25,11 +25,49 @@
 
 	<dependencies>
 
-		<!-- Jersey server starter -->
+		<!-- Jersey + Jackson + Tomcat server starter -->
 		<dependency>
 			<groupId>com.holon-platform.jaxrs</groupId>
 			<artifactId>holon-starter-jersey</artifactId>
 		</dependency>
+		
+		<!-- Alternative starters -->
+		
+		<!-- Jersey + Gson + Tomcat server starter -->
+		<!-- <dependency>
+			<groupId>com.holon-platform.jaxrs</groupId>
+			<artifactId>holon-starter-jersey-gson</artifactId>
+		</dependency> -->
+		<!-- Jersey + Jackson + Undertow server starter -->
+		<!-- <dependency>
+			<groupId>com.holon-platform.jaxrs</groupId>
+			<artifactId>holon-starter-jersey-undertow</artifactId>
+		</dependency> -->
+		<!-- Jersey + Gson + Undertow server starter -->
+		<!-- <dependency>
+			<groupId>com.holon-platform.jaxrs</groupId>
+			<artifactId>holon-starter-jersey-undertow-gson</artifactId>
+		</dependency> -->
+		<!-- Resteasy + Jackson + Tomcat server starter -->
+		<!-- <dependency>
+			<groupId>com.holon-platform.jaxrs</groupId>
+			<artifactId>holon-starter-resteasy</artifactId>
+		</dependency> -->
+		<!-- Resteasy + Gson + Tomcat server starter -->
+		<!-- <dependency>
+			<groupId>com.holon-platform.jaxrs</groupId>
+			<artifactId>holon-starter-resteasy-gson</artifactId>
+		</dependency> -->
+		<!-- Resteasy + Jackson + Undertow server starter -->
+		<!-- <dependency>
+			<groupId>com.holon-platform.jaxrs</groupId>
+			<artifactId>holon-starter-resteasy-undertow</artifactId>
+		</dependency> -->
+		<!-- Resteasy + Gson + Undertow server starter -->
+		<!-- <dependency>
+			<groupId>com.holon-platform.jaxrs</groupId>
+			<artifactId>holon-starter-resteasy-undertow-gson</artifactId>
+		</dependency> -->
 		
 		<!-- Example model -->
 		<dependency>

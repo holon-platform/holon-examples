@@ -37,7 +37,7 @@ import com.holonplatform.core.property.PropertySetRef;
 import com.holonplatform.example.model.MProduct;
 
 @Component
-@Path("/")
+@Path("/api")
 public class ProductEndpoint {
 
 	/*
