@@ -60,6 +60,7 @@
 		<module>model</module>
 		<module>jax-rs/propertybox</module>
 		<module>jax-rs/spring-boot-propertybox</module>
+		<module>jax-rs/spring-boot-datastore</module>
 	</modules>
 
 	<dependencyManagement>
