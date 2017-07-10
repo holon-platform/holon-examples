@@ -27,7 +27,7 @@ The server API uses the `PropertyBox` class as data container and __JSON__ as da
 
 The `ProductEndpoint` class represents the API endpoint and provides operations to get a product, get all products and create/update/delete a product. It is declared as a singleton __Spring bean__ through the `@Component` annotation and it is auto-configured as JAX-RS resource by the Holon platform auto configuration facilities.
 
-The `Client` unit test class performs a set of API operations using a default `RestClient` instance obtained through the static `forTarget()` method, which creates a default `RestClient` implementation relying on the available `RestClientFactory`s (in this example, a standard platform JAX-RS _Client_ based implementation will be created) and setting a default base target URI.
+The [Client](src/test/java/com/holonplatform/example/jaxrs/springboot/propertybox/test/Client.java) unit test class performs a set of API operations using a default `RestClient` instance obtained through the static `forTarget()` method, which creates a default `RestClient` implementation relying on the available `RestClientFactory`s (in this example, a standard platform JAX-RS _Client_ based implementation will be created) and setting a default base target URI.
 
 The `Client` test class output will be:
 
