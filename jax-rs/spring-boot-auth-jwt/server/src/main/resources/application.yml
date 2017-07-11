@@ -4,7 +4,6 @@ spring:
 
 holon:
   jwt:
-    issuer: "TestIssuer"
     sharedkey-base64: "eWGZLlCrUjtBZwxgzcLPnA"
     
 server:

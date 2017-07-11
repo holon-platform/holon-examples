@@ -33,16 +33,17 @@ import com.holonplatform.auth.Authentication;
 import com.holonplatform.auth.annotations.Authenticate;
 import com.holonplatform.auth.jwt.JwtConfiguration;
 import com.holonplatform.auth.jwt.JwtTokenBuilder;
+import com.holonplatform.http.HttpHeaders;
 import com.holonplatform.jaxrs.server.ResourceUtils;
 
-@Authenticate
+@Authenticate(schemes = HttpHeaders.SCHEME_BASIC)
 @Component
 @Path("/jwt")
 public class JwtIssuerEndpoint {
 
 	@Context
 	private Providers providers;
-	
+
 	@GET
 	@Path("/issue")
 	@Produces(MediaType.TEXT_PLAIN)

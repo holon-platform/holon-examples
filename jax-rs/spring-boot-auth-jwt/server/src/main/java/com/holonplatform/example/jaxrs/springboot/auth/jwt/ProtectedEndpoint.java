@@ -25,8 +25,9 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.stereotype.Component;
 
 import com.holonplatform.auth.annotations.Authenticate;
+import com.holonplatform.http.HttpHeaders;
 
-@Authenticate
+@Authenticate(schemes = HttpHeaders.SCHEME_BEARER)
 @Component
 @Path("/api")
 public class ProtectedEndpoint {
@@ -54,7 +55,7 @@ public class ProtectedEndpoint {
 	public String getRole2() {
 		return "role2";
 	}
-	
+
 	@RolesAllowed("ROLE3")
 	@GET
 	@Path("/role3")
