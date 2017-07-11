@@ -28,7 +28,7 @@
 		<!-- Jersey + Jackson + Tomcat server starter -->
 		<dependency>
 			<groupId>com.holon-platform.jaxrs</groupId>
-			<artifactId>holon-starter-resteasy</artifactId>
+			<artifactId>holon-starter-jersey</artifactId>
 		</dependency>
 
 		<!-- Test -->
@@ -39,9 +39,10 @@
 		</dependency>
 		<dependency>
 			<groupId>com.holon-platform.jaxrs</groupId>
-			<artifactId>holon-jaxrs-client</artifactId>
+			<artifactId>holon-starter-jersey-client</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
 
 	</dependencies>
 
