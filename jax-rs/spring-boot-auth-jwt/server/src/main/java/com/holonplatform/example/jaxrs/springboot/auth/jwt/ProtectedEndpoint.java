@@ -15,15 +15,20 @@
  */
 package com.holonplatform.example.jaxrs.springboot.auth.jwt;
 
+import java.util.stream.Collectors;
+
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.SecurityContext;
 
 import org.springframework.stereotype.Component;
 
+import com.holonplatform.auth.Authentication;
 import com.holonplatform.auth.annotations.Authenticate;
 import com.holonplatform.http.HttpHeaders;
 
@@ -34,10 +39,14 @@ public class ProtectedEndpoint {
 
 	@PermitAll
 	@GET
-	@Path("/anyrole")
+	@Path("/roles")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String getAnyRole() {
-		return "anyrole";
+	public String getAccountRoles(@Context SecurityContext securityContext) {
+		// get Authentication
+		Authentication authc = (Authentication) securityContext.getUserPrincipal();
+		// get roles
+		return authc.getPermissions().stream().map(p -> p.getPermission().orElse(null))
+				.collect(Collectors.joining(","));
 	}
 
 	@RolesAllowed("ROLE1")
