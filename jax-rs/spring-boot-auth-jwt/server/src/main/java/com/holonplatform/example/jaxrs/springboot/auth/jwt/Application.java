@@ -27,6 +27,9 @@ import com.holonplatform.auth.jwt.JwtConfiguration;
 @SpringBootApplication
 public class Application {
 
+	/*
+	 * The JwtConfiguration bean is automatically configured using the 'holon.jwt.*' configuration properties
+	 */
 	@Bean
 	public Realm realm(JwtConfiguration jwtConfiguration) {
 		return Realm.builder()
