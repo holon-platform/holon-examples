@@ -15,6 +15,7 @@ Example | Description
 [propertybox](jax-rs/propertybox)| JAX-RS server and client RESTful API using `PropertyBox` and JSON
 [spring-boot-propertybox](jax-rs/spring-boot-propertybox)| JAX-RS server and client RESTful API using `PropertyBox`, JSON and __Spring Boot__
 [spring-boot-datastore](jax-rs/spring-boot-datastore)| JAX-RS server and client RESTful API using `PropertyBox`, JSON, __Spring Boot__ and a JDBC `Datastore`
+[spring-boot-auth-basic](jax-rs/spring-boot-auth-basic)| JAX-RS server and client RESTful API with __authentication__ and __authorization__ support using the HTTP `Basic` authorization scheme
 
 ## System requirements
 
