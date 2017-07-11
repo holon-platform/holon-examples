@@ -34,7 +34,8 @@ public class Application {
 				.resolver(AuthenticationToken.httpBearerResolver())
 				// authenticator using JwtConfiguration and allowing only 'TestIssuer' issuer name
 				.authenticator(JwtAuthenticator.builder().configuration(jwtConfiguration).issuer("TestIssuer").build())
-				.build();
+				// default authorizer
+				.withDefaultAuthorizer().build();
 	}
 
 	public static void main(String[] args) {
