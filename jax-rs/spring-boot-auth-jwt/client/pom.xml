@@ -4,17 +4,16 @@
 
 	<parent>
 		<groupId>com.holon-platform.examples</groupId>
-		<artifactId>holon-examples-root</artifactId>
+		<artifactId>holon-example-jaxrs-spring-boot-auth-jwt</artifactId>
 		<version>5.0.0-SNAPSHOT</version>
-		<relativePath>../../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>holon-example-jaxrs-spring-boot-auth-jwt</artifactId>
-
-	<packaging>pom</packaging>
+	<artifactId>holon-example-jaxrs-spring-boot-auth-jwt-client</artifactId>
+	
+	<packaging>jar</packaging>
 
 	<name>${project.groupId}:${project.artifactId}</name>
-	<description>Holon Platform Example - JAX-RS using Spring Boot and JWT based authorization</description>
+	<description>Holon Platform Example - Client</description>
 
 	<url>https://holon-platform.com</url>
 	<licenses>
@@ -25,10 +24,14 @@
 		</license>
 	</licenses>
 
-	<modules>
-		<module>issuer</module>
-		<module>server</module>
-		<module>client</module>
-	</modules>
+	<dependencies>
+
+		<!-- Holon JAX-RS client -->
+		<dependency>
+			<groupId>com.holon-platform.jaxrs</groupId>
+			<artifactId>holon-jaxrs-client</artifactId>
+		</dependency>
+
+	</dependencies>
 
 </project>

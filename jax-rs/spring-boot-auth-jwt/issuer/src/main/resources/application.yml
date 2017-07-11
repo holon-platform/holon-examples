@@ -1,0 +1,19 @@
+spring:
+  main:
+    banner-mode: "off"
+    
+  datasource:
+    url: "jdbc:h2:mem:test"
+    username: "sa"
+
+holon:
+  jwt:
+    issuer: "TestIssuer"
+    sharedkey-base64: "eWGZLlCrUjtBZwxgzcLPnA"
+    
+server:
+  port: 8443
+  ssl:
+    key-store: "classpath:keystore.jks"
+    key-store-password: "secret"
+    key-password: "secret"

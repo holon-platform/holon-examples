@@ -1,0 +1,11 @@
+spring:
+  main:
+    banner-mode: "off"
+
+holon:
+  jwt:
+    issuer: "TestIssuer"
+    sharedkey-base64: "eWGZLlCrUjtBZwxgzcLPnA"
+    
+server:
+  port: 8080
