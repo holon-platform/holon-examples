@@ -63,6 +63,7 @@
 		<module>jax-rs/spring-boot-datastore</module>
 		<module>jax-rs/spring-boot-auth-basic</module>
 		<module>jax-rs/spring-boot-auth-jwt</module>
+		<module>jax-rs/swagger</module>
 	</modules>
 
 	<dependencyManagement>

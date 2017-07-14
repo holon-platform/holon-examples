@@ -26,16 +26,16 @@ public final class MProduct {
 	public static final PathProperty<Long> ID = PathProperty.create("id", Long.class); // Product ID
 
 	public static final PathProperty<String> SKU = PathProperty.create("sku", String.class) // SKU
-			.message("SKU").message("product.sku");
+			.message("SKU").messageCode("product.sku");
 
 	public static final PathProperty<String> DESCRIPTION = PathProperty.create("description", String.class) // Description
-			.message("Description").message("product.description");
+			.message("Description").messageCode("product.description");
 
 	public static final PathProperty<String> CATEGORY = PathProperty.create("category", String.class) // Category
-			.message("Category").message("product.category");
+			.message("Category").messageCode("product.category");
 
 	public static final PathProperty<Double> UNIT_PRICE = PathProperty.create("price", Double.class) // Price
-			.message("Price").message("product.price");
+			.message("Price").messageCode("product.price");
 
 	// Product property set
 	public static final PropertySet<?> PRODUCT = PropertySet.of(ID, SKU, DESCRIPTION, CATEGORY, UNIT_PRICE);

@@ -42,22 +42,22 @@ public final class MCustomer {
 	public static final PathProperty<Long> ID = PathProperty.create("id", Long.class); // Customer ID
 
 	public static final PathProperty<String> NAME = PathProperty.create("name", String.class) // Name
-			.message("Name").message("customer.name");
+			.message("Name").messageCode("customer.name");
 
 	public static final PathProperty<String> SURNAME = PathProperty.create("surname", String.class) // Surname
-			.message("Surname").message("customer.surname");
+			.message("Surname").messageCode("customer.surname");
 
 	public static final PathProperty<String> EMAIL = PathProperty.create("email", String.class) // E-mail
-			.validator(Validator.email()).message("E-mail").message("customer.email");
+			.validator(Validator.email()).messageCode("E-mail").message("customer.email");
 
 	public static final PathProperty<Status> STATUS = PathProperty.create("status", Status.class) // Status
-			.message("Status").message("customer.status");
+			.message("Status").messageCode("customer.status");
 
 	public static final VirtualProperty<String> FULL_NAME = VirtualProperty
 			.create(String.class, // Name + surname
 					propertyBox -> (propertyBox.getValueIfPresent(NAME).orElse("")
 							+ propertyBox.getValueIfPresent(SURNAME).map(v -> " " + v).orElse("")).trim())
-			.message("Name").message("customer.fullname");
+			.message("Name").messageCode("customer.fullname");
 
 	public static final VirtualProperty<Boolean> IS_ACTIVE = VirtualProperty.create(Boolean.class, // Status == ACTIVE
 			propertyBox -> propertyBox.getValueIfPresent(STATUS).map(status -> Status.ACTIVE.equals(status))
