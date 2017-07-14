@@ -48,13 +48,17 @@ public final class MOrder {
 
 	}
 
-	public static final PathProperty<Long> ID = PathProperty.create("id", Long.class); // Order ID
+	public static final PathProperty<Long> ID = PathProperty.create("id", Long.class).message("Order ID")
+			.messageCode("order.id"); // Order ID
 
-	public static final PathProperty<Long> CUSTOMER_ID = PathProperty.create("customer_id", Long.class); // Customer ID
+	public static final PathProperty<Long> CUSTOMER_ID = PathProperty.create("customer_id", Long.class)
+			.message("Customer ID").messageCode("customer.id"); // Customer ID
 
-	public static final PathProperty<LocalDateTime> DATE_TIME = PathProperty.create("date", LocalDateTime.class);
+	public static final PathProperty<LocalDateTime> DATE_TIME = PathProperty.create("date", LocalDateTime.class)
+			.message("Order date").messageCode("order.date");
 
-	public static final PathProperty<Status> STATUS = PathProperty.create("status", Status.class);
+	public static final PathProperty<Status> STATUS = PathProperty.create("status", Status.class).message("Status")
+			.messageCode("order.status");
 
 	// Order property set
 	public static final PropertySet<?> ORDER = PropertySet.of(ID, CUSTOMER_ID, DATE_TIME, STATUS);

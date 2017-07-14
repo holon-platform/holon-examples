@@ -39,7 +39,8 @@ public final class MCustomer {
 
 	}
 
-	public static final PathProperty<Long> ID = PathProperty.create("id", Long.class); // Customer ID
+	public static final PathProperty<Long> ID = PathProperty.create("id", Long.class).message("Customer ID")
+			.messageCode("customer.id"); // Customer ID
 
 	public static final PathProperty<String> NAME = PathProperty.create("name", String.class) // Name
 			.message("Name").messageCode("customer.name");
