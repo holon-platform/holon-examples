@@ -64,6 +64,7 @@
 		<module>jax-rs/spring-boot-auth-basic</module>
 		<module>jax-rs/spring-boot-auth-jwt</module>
 		<module>jax-rs/swagger</module>
+		<module>jax-rs/swagger-groups</module>
 	</modules>
 
 	<dependencyManagement>
