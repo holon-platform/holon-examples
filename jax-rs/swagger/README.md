@@ -17,7 +17,7 @@ This example uses the [Examples shared data model](https://github.com/holon-plat
 
 ## Example structure
 
-This JAX-RS server implements a simple __RESTful__ API to provide the `MProduct` data model _entity_ management, backed by an in-memory store, using _Jersey_ as servlet container.
+This JAX-RS server implements a simple __RESTful__ API to provide the `MProduct` data model _entity_ management, backed by an in-memory store, using _Jersey_ as JAX-RS implementation and _Tomcat_ as servlet container.
 
 The server API uses the `PropertyBox` class as data container and __JSON__ as data exchange format, leveraging on the [Holon platform JSON module](https://github.com/holon-platform/holon-json) _Jackson_ JAX-RS support.
 
