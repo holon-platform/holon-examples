@@ -44,18 +44,6 @@
 			<version>${project.version}</version>
 		</dependency>
 
-		<!-- Test -->
-		<dependency>
-			<groupId>com.holon-platform.core</groupId>
-			<artifactId>holon-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.holon-platform.jaxrs</groupId>
-			<artifactId>holon-jaxrs-client</artifactId>
-			<scope>test</scope>
-		</dependency>
-
 	</dependencies>
 
 </project>
