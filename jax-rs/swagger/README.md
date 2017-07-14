@@ -23,7 +23,7 @@ The server API uses the `PropertyBox` class as data container and __JSON__ as da
 
 The [ProductEndpoint](src/main/java/com/holonplatform/example/jaxrs/swagger/ProductEndpoint.java) class represents the API endpoint and provides operations to get a product, get all products and create/update/delete a product. It is declared as a singleton __Spring bean__ through the `@Component` annotation and it is auto-configured as JAX-RS resource by the Holon platform auto configuration facilities.
 
-Some Swagger annotation is used to provide API operations description (`@ApiOperation`) and response details (`@ApiResponses`).
+Some Swagger annotations are used to provide API operations description (`@ApiOperation`) and response details (`@ApiResponses`).
 
 ### The `@ApiPropertySetModel` annotation
 
