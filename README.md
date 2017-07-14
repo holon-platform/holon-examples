@@ -18,6 +18,7 @@ Example | Description
 [spring-boot-auth-basic](jax-rs/spring-boot-auth-basic)| JAX-RS server and client RESTful API with __authentication__ and __authorization__ support using the HTTP `Basic` authorization scheme
 [spring-boot-auth-jwt](jax-rs/spring-boot-auth-jwt)| JAX-RS server and client RESTful API with __JWT (JSON Web Token)__ based authentication
 [swagger](jax-rs/swagger)| JAX-RS [Swagger](https://swagger.io) integration and auto-configuration with `PropertyBox` support
+[swagger-groups](jax-rs/swagger-groups)| JAX-RS [Swagger](https://swagger.io) integration and auto-configuration using multiple API _groups_ with multiple Swagger API listing endpoints
 
 ## System requirements
 
