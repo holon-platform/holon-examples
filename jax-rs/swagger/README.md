@@ -54,6 +54,11 @@ http://localhost:8080/api/api-docs?type=yaml
 ```
 
 To change the path of the API listing endpoint, the `holon.swagger.path` property can be used.
+So, for example, setting `holon.swagger.path=docs` will result in the following Swagger API listing URL:
+
+```text
+http://localhost:8080/api/docs?type=yaml
+```
 
 See the [Swagger JAX-RS integration documentation](https://holon-platform.com/docs/current/reference/holon-jaxrs.html#Swagger) for details and other configuration options.
 
