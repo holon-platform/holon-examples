@@ -23,6 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.holonplatform.core.Validator;
 import com.holonplatform.core.datastore.DataTarget;
 import com.holonplatform.core.datastore.Datastore;
+import com.holonplatform.core.datastore.Datastore.OperationResult;
+import com.holonplatform.core.datastore.DefaultWriteOption;
 import com.holonplatform.core.exceptions.DataAccessException;
 import com.holonplatform.example.model.MProduct;
 import com.holonplatform.vaadin.components.Components;
@@ -33,7 +35,6 @@ import com.holonplatform.vaadin.navigator.annotations.VolatileView;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.Notification;
-import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 
@@ -97,15 +98,10 @@ public class Manage extends VerticalLayout implements com.vaadin.navigator.View 
 		// check valid and get PropertyBox value
 		form.getValueIfValid().ifPresent(value -> {
 
-			if (id == null) {
-				// if "insert" mode, generate next key: the current max + 1
-				value.setValue(MProduct.ID, datastore.query().target(DataTarget.named("products"))
-						.findOne(MProduct.ID.max()).map((v) -> v + 1).orElse(1L));
-			}
-
 			// save and notify
-			datastore.save(DataTarget.named("products"), value);
-			Notification.show("Saved [" + value.getValue(MProduct.ID) + "]", Type.TRAY_NOTIFICATION);
+			OperationResult result = datastore.save(DataTarget.named("products"), value,
+					DefaultWriteOption.BRING_BACK_GENERATED_IDS);
+			Notification.show("Saved [" + ((id != null) ? id : result.getInsertedKeys().get(MProduct.ID)) + "]");
 
 			// go back home
 			ViewNavigator.require().navigateToDefault();
