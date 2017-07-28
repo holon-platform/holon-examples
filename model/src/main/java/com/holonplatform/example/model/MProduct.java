@@ -23,7 +23,8 @@ import com.holonplatform.core.property.PropertySet;
  */
 public final class MProduct {
 
-	public static final PathProperty<Long> ID = PathProperty.create("id", Long.class); // Product ID
+	public static final PathProperty<Long> ID = PathProperty.create("id", Long.class).message("Product ID")
+			.messageCode("product.id"); // Product ID
 
 	public static final PathProperty<String> SKU = PathProperty.create("sku", String.class) // SKU
 			.message("SKU").messageCode("product.sku");
