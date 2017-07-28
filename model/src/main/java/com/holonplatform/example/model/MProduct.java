@@ -15,6 +15,7 @@
  */
 package com.holonplatform.example.model;
 
+import com.holonplatform.core.Validator;
 import com.holonplatform.core.property.PathProperty;
 import com.holonplatform.core.property.PropertySet;
 
@@ -36,7 +37,9 @@ public final class MProduct {
 			.message("Category").messageCode("product.category");
 
 	public static final PathProperty<Double> UNIT_PRICE = PathProperty.create("price", Double.class) // Price
-			.message("Price").messageCode("product.price");
+			.message("Price").messageCode("product.price")
+			// not negative value validator
+			.validator(Validator.notNegative());
 
 	// Product property set
 	public static final PropertySet<?> PRODUCT = PropertySet.of(ID, SKU, DESCRIPTION, CATEGORY, UNIT_PRICE);

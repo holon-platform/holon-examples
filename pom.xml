@@ -58,6 +58,7 @@
 
 	<modules>
 		<module>model</module>
+		
 		<module>jax-rs/propertybox</module>
 		<module>jax-rs/spring-boot-propertybox</module>
 		<module>jax-rs/spring-boot-datastore</module>
@@ -65,6 +66,8 @@
 		<module>jax-rs/spring-boot-auth-jwt</module>
 		<module>jax-rs/swagger</module>
 		<module>jax-rs/swagger-groups</module>
+		
+		<module>ui-vaadin7/simple-app</module>
 	</modules>
 
 	<dependencyManagement>
