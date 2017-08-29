@@ -54,9 +54,7 @@ public class Home extends VerticalLayout implements View {
 						// navigate to "manage" view
 						.onClick(e -> ViewNavigator.require().toView("manage").navigate()).build())
 				// build and add listing
-				.addAndExpandFull(listing = Components.listing.properties()
-						// use the Product property set
-						.withProperties(MProduct.PRODUCT)
+				.addAndExpandFull(listing = Components.listing.properties(MProduct.PRODUCT)
 						// setup data source using Datastore with 'products' table name target and product ID as pk
 						.dataSource(datastore, DataTarget.named("products"), MProduct.ID)
 						// disable auto refresh: will be triggered on view enter
