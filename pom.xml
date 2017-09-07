@@ -67,6 +67,8 @@
 		<module>jax-rs/swagger</module>
 		<module>jax-rs/swagger-groups</module>
 		
+		<module>ui-vaadin/simple-app</module>
+		
 		<module>ui-vaadin7/simple-app</module>
 	</modules>
 
