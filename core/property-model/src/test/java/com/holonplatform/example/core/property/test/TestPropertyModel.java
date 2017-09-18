@@ -37,14 +37,16 @@ import com.holonplatform.core.Validator.ValidationException;
 import com.holonplatform.core.i18n.LocalizationContext;
 import com.holonplatform.core.internal.utils.TestUtils;
 import com.holonplatform.core.property.PropertyBox;
+import com.holonplatform.core.property.PropertyValuePresenterRegistry;
 import com.holonplatform.example.core.property.DatasetService;
 import com.holonplatform.example.core.property.DatasetServiceImpl;
+import com.holonplatform.example.core.property.WithdrawnPropertyPresenter;
 
 public class TestPropertyModel {
 
 	@BeforeClass
 	public static void init() {
-		
+
 		// create a LocalizationContext with a MessageProvider which never returns a translation
 		LocalizationContext ctx = LocalizationContext.builder().messageProvider((locale, code) -> Optional.empty())
 				.withInitialLocale(Locale.US).build();
@@ -142,16 +144,27 @@ public class TestPropertyModel {
 
 		assertEquals("Category C1", categoryDescription);
 	}
-	
+
 	@Test
 	public void propertyPresenter() {
-		
-		// TODO
-		
-		//PropertyBox box = PropertyBox.builder(PRODUCT).set(ID, 1L).set(WITHDRAWN, true).build();
-		
+
+		// Default property presentation
 		String presentation = WITHDRAWN.present(Boolean.TRUE);
-		
+		assertEquals("true", presentation);
+
+		// Register the WithdrawnPropertyPresenter bound to the WITHDRAWN property
+		PropertyValuePresenterRegistry.get().register(p -> WITHDRAWN.equals(p), new WithdrawnPropertyPresenter());
+
+		presentation = WITHDRAWN.present(Boolean.TRUE);
+		assertEquals("The product was withdrawn", presentation);
+
+		// presentation using a PropertyBox
+		PropertyBox box = PropertyBox.builder(PRODUCT).set(ID, 1L).set(WITHDRAWN, true).build();
+
+		presentation = box.present(WITHDRAWN);
+
+		assertEquals("The product was withdrawn", presentation);
+
 	}
 
 }
