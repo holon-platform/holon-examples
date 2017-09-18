@@ -108,6 +108,7 @@ public class TestPropertyModel {
 	@Test
 	public void propertyBox() {
 
+		// Create a PropertyBox and set the property values
 		PropertyBox box = PropertyBox.create(PRODUCT);
 		box.setValue(ID, 1L);
 		box.setValue(DESCRIPTION, "The product 1");
@@ -138,8 +139,11 @@ public class TestPropertyModel {
 
 	@Test
 	public void virtualProperty() {
+		
+		// Create a PropertyBox 
 		PropertyBox box = PropertyBox.builder(PRODUCT).set(ID, 1L).set(CATEGORY, "C1").build();
 
+		// Get the CATEGORY_DESCRIPTION virtual property value using the current PropertyBox values
 		String categoryDescription = box.getValue(CATEGORY_DESCRIPTION);
 
 		assertEquals("Category C1", categoryDescription);
@@ -162,7 +166,6 @@ public class TestPropertyModel {
 		PropertyBox box = PropertyBox.builder(PRODUCT).set(ID, 1L).set(WITHDRAWN, true).build();
 
 		presentation = box.present(WITHDRAWN);
-
 		assertEquals("The product was withdrawn", presentation);
 
 	}
