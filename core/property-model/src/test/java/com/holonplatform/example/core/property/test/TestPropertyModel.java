@@ -24,6 +24,7 @@ import static com.holonplatform.example.core.property.model.MProduct.UNIT_PRICE;
 import static com.holonplatform.example.core.property.model.MProduct.WITHDRAWN;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Locale;
@@ -34,11 +35,15 @@ import org.junit.Test;
 
 import com.holonplatform.core.Context;
 import com.holonplatform.core.Validator.ValidationException;
+import com.holonplatform.core.beans.BeanPropertySet;
 import com.holonplatform.core.i18n.LocalizationContext;
 import com.holonplatform.core.internal.utils.TestUtils;
+import com.holonplatform.core.property.PathProperty;
+import com.holonplatform.core.property.Property;
 import com.holonplatform.core.property.PropertyBox;
 import com.holonplatform.core.property.PropertySet;
 import com.holonplatform.core.property.PropertyValuePresenterRegistry;
+import com.holonplatform.example.core.property.bean.TestBean;
 import com.holonplatform.example.core.property.support.DatasetService;
 import com.holonplatform.example.core.property.support.DatasetServiceImpl;
 import com.holonplatform.example.core.property.support.WithdrawnPropertyPresenter;
@@ -216,10 +221,71 @@ public class TestPropertyModel {
 		assertEquals("Category C1", presentation);
 
 	}
-	
+
 	@Test
 	public void beanProperties() {
+
+		// Obtain the PropertySet of the TestBean class
+		final BeanPropertySet<TestBean> BEAN_PROPERTIES = BeanPropertySet.create(TestBean.class);
+
+		// A BeanPropertySet is a standard PropertySet
+		PropertySet<?> set = BEAN_PROPERTIES;
+		int size = set.size();
+
+		// expect 5 properties
+		assertEquals(5, size);
+
+		// Get a bean property as a typed PathProperty
+		PathProperty<Long> ID = BEAN_PROPERTIES.getProperty("id", Long.class).orElse(null);
+
+		assertNotNull(ID);
+
+		// check all expected properties are in the set
+		assertTrue(BEAN_PROPERTIES.contains(ID));
+		assertTrue(BEAN_PROPERTIES.contains(BEAN_PROPERTIES.requireProperty("description")));
+		assertTrue(BEAN_PROPERTIES.contains(BEAN_PROPERTIES.requireProperty("category")));
+		assertTrue(BEAN_PROPERTIES.contains(BEAN_PROPERTIES.requireProperty("unitPrice")));
+		assertTrue(BEAN_PROPERTIES.contains(BEAN_PROPERTIES.requireProperty("withdrawn")));
+
+		// The @Caption annotation can be used to set property (localizable) captions
+		String caption = ID.getMessage();
+		assertEquals("Product ID", caption);
+
+		String translationMessageCode = ID.getMessageCode();
+		assertEquals("product.id", translationMessageCode);
+
+		// Read and write single bean property values
+		TestBean bean = new TestBean();
+		bean.setDescription("Bean description");
+
+		// write the ID property value
+		BEAN_PROPERTIES.write(ID, Long.valueOf(2), bean);
+		// write the ID property value using the "id" path
+		BEAN_PROPERTIES.write("id", Long.valueOf(2), bean);
+
+		// read the ID property value
+		Long idValue = BEAN_PROPERTIES.read(ID, bean);
+		assertEquals(Long.valueOf(2), idValue);
+
+		// The PropertyBox API is fully supported to get and set bean property values
+
+		// read the bean instance as a PropertyBox
+		PropertyBox box = BEAN_PROPERTIES.read(bean);
+
+		assertEquals(Long.valueOf(2), box.getValue(ID));
+		assertEquals("Bean description", box.getValue(BEAN_PROPERTIES.requireProperty("description")));
+
+		// write a PropertyBox into a TestBean instance
+		Property<Double> PRICE = BEAN_PROPERTIES.requireProperty("unitPrice", Double.class);
 		
+		PropertyBox box2 = PropertyBox.builder(BEAN_PROPERTIES).set(ID, 3L)
+				.set(PRICE, Double.valueOf(12.65)).build();
+		
+		TestBean bean2 = BEAN_PROPERTIES.write(box2, new TestBean());
+		
+		assertEquals(Long.valueOf(3), bean2.getId());
+		assertEquals(Double.valueOf(12.65), bean2.getUnitPrice());
+
 	}
 
 }
