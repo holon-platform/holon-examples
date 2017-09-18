@@ -13,16 +13,17 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.holonplatform.example.core.property;
+package com.holonplatform.example.core.property.support;
 
-public interface DatasetService {
+public class DatasetServiceImpl implements DatasetService {
 
-	/**
-	 * Get the dataset value description for given dataset <code>name</code>.
-	 * @param datasetName Dataset name to which the value belongs
-	 * @param value The value for which to obtain the description
-	 * @return The description of the value
-	 */
-	String getDescription(String datasetName, String value);
+	@Override
+	public String getDescription(String datasetName, String value) {
+		// here it should be written the "real" logic to retrieve the value description, maybe from a data source
+		if ("CATEGORY".equals(datasetName)) {
+			return "Category " + value;
+		}
+		return null;
+	}
 
 }

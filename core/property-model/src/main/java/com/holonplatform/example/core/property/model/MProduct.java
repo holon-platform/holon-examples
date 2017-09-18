@@ -13,13 +13,14 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.holonplatform.example.core.property;
+package com.holonplatform.example.core.property.model;
 
 import com.holonplatform.core.Context;
 import com.holonplatform.core.Validator;
 import com.holonplatform.core.property.PathProperty;
 import com.holonplatform.core.property.PropertySet;
 import com.holonplatform.core.property.VirtualProperty;
+import com.holonplatform.example.core.property.support.DatasetService;
 
 /**
  * Product model

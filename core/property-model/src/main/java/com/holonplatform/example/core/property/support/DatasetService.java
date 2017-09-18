@@ -13,16 +13,16 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.holonplatform.example.core.property;
+package com.holonplatform.example.core.property.support;
 
-import com.holonplatform.core.property.Property;
-import com.holonplatform.core.property.PropertyValuePresenter;
+public interface DatasetService {
 
-public class WithdrawnPropertyPresenter implements PropertyValuePresenter<Boolean> {
-
-	@Override
-	public String present(Property<Boolean> property, Boolean value) {
-		return value ? "The product was withdrawn" : "The product is available";
-	}
+	/**
+	 * Get the dataset value description for given dataset <code>name</code>.
+	 * @param datasetName Dataset name to which the value belongs
+	 * @param value The value for which to obtain the description
+	 * @return The description of the value
+	 */
+	String getDescription(String datasetName, String value);
 
 }

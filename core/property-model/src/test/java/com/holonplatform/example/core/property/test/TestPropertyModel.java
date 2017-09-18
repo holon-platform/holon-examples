@@ -15,13 +15,13 @@
  */
 package com.holonplatform.example.core.property.test;
 
-import static com.holonplatform.example.core.property.MProduct.CATEGORY;
-import static com.holonplatform.example.core.property.MProduct.CATEGORY_DESCRIPTION;
-import static com.holonplatform.example.core.property.MProduct.DESCRIPTION;
-import static com.holonplatform.example.core.property.MProduct.ID;
-import static com.holonplatform.example.core.property.MProduct.PRODUCT;
-import static com.holonplatform.example.core.property.MProduct.UNIT_PRICE;
-import static com.holonplatform.example.core.property.MProduct.WITHDRAWN;
+import static com.holonplatform.example.core.property.model.MProduct.CATEGORY;
+import static com.holonplatform.example.core.property.model.MProduct.CATEGORY_DESCRIPTION;
+import static com.holonplatform.example.core.property.model.MProduct.DESCRIPTION;
+import static com.holonplatform.example.core.property.model.MProduct.ID;
+import static com.holonplatform.example.core.property.model.MProduct.PRODUCT;
+import static com.holonplatform.example.core.property.model.MProduct.UNIT_PRICE;
+import static com.holonplatform.example.core.property.model.MProduct.WITHDRAWN;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -37,10 +37,11 @@ import com.holonplatform.core.Validator.ValidationException;
 import com.holonplatform.core.i18n.LocalizationContext;
 import com.holonplatform.core.internal.utils.TestUtils;
 import com.holonplatform.core.property.PropertyBox;
+import com.holonplatform.core.property.PropertySet;
 import com.holonplatform.core.property.PropertyValuePresenterRegistry;
-import com.holonplatform.example.core.property.DatasetService;
-import com.holonplatform.example.core.property.DatasetServiceImpl;
-import com.holonplatform.example.core.property.WithdrawnPropertyPresenter;
+import com.holonplatform.example.core.property.support.DatasetService;
+import com.holonplatform.example.core.property.support.DatasetServiceImpl;
+import com.holonplatform.example.core.property.support.WithdrawnPropertyPresenter;
 
 public class TestPropertyModel {
 
@@ -120,9 +121,20 @@ public class TestPropertyModel {
 		assertEquals("The product 1", box.getValue(DESCRIPTION));
 		assertEquals("C1", box.getValue(CATEGORY));
 		assertEquals(Double.valueOf(12.77), box.getValue(UNIT_PRICE));
+
+		// Get the WITHDRAWN property value using an Optional
 		assertFalse(box.getValueIfPresent(WITHDRAWN).orElse(Boolean.FALSE));
 
+		// Check the PropertyBox contains the ID property with a not null value
 		assertTrue(box.containsValue(ID));
+
+		// Clone the PropertyBox
+		PropertyBox cloned = box.cloneBox();
+		assertEquals(Long.valueOf(1), cloned.getValue(ID));
+
+		// Clone the PropertyBox using a different PropertySet
+		cloned = box.cloneBox(PropertySet.of(ID, DESCRIPTION));
+		assertFalse(cloned.containsValue(CATEGORY));
 
 	}
 
@@ -135,12 +147,18 @@ public class TestPropertyModel {
 		// Expect the validation succeeds
 		ID.validate(1L);
 
+		PropertyBox box = PropertyBox.create(PRODUCT);
+		box.setValue(ID, 1L);
+
+		// Validate the PropertyBox (including the ID property)
+		box.validate();
+
 	}
 
 	@Test
 	public void virtualProperty() {
-		
-		// Create a PropertyBox 
+
+		// Create a PropertyBox
 		PropertyBox box = PropertyBox.builder(PRODUCT).set(ID, 1L).set(CATEGORY, "C1").build();
 
 		// Get the CATEGORY_DESCRIPTION virtual property value using the current PropertyBox values
@@ -168,6 +186,40 @@ public class TestPropertyModel {
 		presentation = box.present(WITHDRAWN);
 		assertEquals("The product was withdrawn", presentation);
 
+	}
+
+	@Test
+	public void propertyPresenter2() {
+
+		// presentation using a PropertyBox
+		PropertyBox box = PropertyBox.builder(PRODUCT).set(ID, 1L).set(CATEGORY, "C1").build();
+
+		// present the CATEGORY property value
+		String presentation = box.present(CATEGORY);
+		assertEquals("C1", presentation);
+
+		// Register a new presenter
+		PropertyValuePresenterRegistry.get().register(
+				// Condition: the property has a "DATASET" named configuration parameter with a non null value
+				p -> p.getConfiguration().hasNotNullParameter("DATASET"),
+				// Presenter: use the DatasetService (retrieved from Context) to obtain the value description
+				(p, v) -> {
+					return Context.get().resource(DatasetService.class)
+							.orElseThrow(() -> new IllegalStateException("The DatasetService resource is missing"))
+							// get the value description using DatasetService "getDescription" method
+							.getDescription(p.getConfiguration().getParameter("DATASET", String.class).orElse(null),
+									(String) v);
+				});
+
+		// present the CATEGORY property value: the new presenter will be used
+		presentation = box.present(CATEGORY);
+		assertEquals("Category C1", presentation);
+
+	}
+	
+	@Test
+	public void beanProperties() {
+		
 	}
 
 }

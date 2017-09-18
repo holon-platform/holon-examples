@@ -13,17 +13,16 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.holonplatform.example.core.property;
+package com.holonplatform.example.core.property.support;
 
-public class DatasetServiceImpl implements DatasetService {
+import com.holonplatform.core.property.Property;
+import com.holonplatform.core.property.PropertyValuePresenter;
+
+public class WithdrawnPropertyPresenter implements PropertyValuePresenter<Boolean> {
 
 	@Override
-	public String getDescription(String datasetName, String value) {
-		// here it should be written the "real" logic to retrieve the value description, maybe from a data source
-		if ("CATEGORY".equals(datasetName)) {
-			return "Category " + value;
-		}
-		return null;
+	public String present(Property<Boolean> property, Boolean value) {
+		return value ? "The product was withdrawn" : "The product is available";
 	}
 
 }
