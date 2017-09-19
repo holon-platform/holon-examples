@@ -4,7 +4,7 @@ _This is one of the [Holon Platform](https://holon-platform.com) example project
 
 This example shows how to deal with the basic operations of the `Datastore` API, using a **JDBC** Datastore implementation and a **H2** in-memory database. 
 
-**Spring Boot** is used for automatic `DataSource` and `Datastore` configuration, activated by the `holon-starter-jdbc-datastore-hikaricp` starter. See the example [pom](https://github.com/holon-platform/holon-examples/blob/master/pom.xml).
+**Spring Boot** is used for automatic `DataSource` and `Datastore` configuration, activated by the `holon-starter-jdbc-datastore-hikaricp` starter. See the example [pom](https://github.com/holon-platform/holon-examples/blob/master/datastore/jdbc-datastore/pom.xml).
 
 ## Topics
 
@@ -15,17 +15,17 @@ This example addresses the following topics:
 
 ## Example structure
 
-The [schema.sql](https://github.com/holon-platform/holon-examples/blob/master/datastore/jbdc-datastore/src/test/resources/schema.sql) script creates the `products` table at application startup time.
+The [schema.sql](https://github.com/holon-platform/holon-examples/blob/master/datastore/jdbc-datastore/src/test/resources/schema.sql) script creates the `products` table at application startup time.
 
-The [Product](https://github.com/holon-platform/holon-examples/blob/master/datastore/jbdc-datastore/src/main/java/com/holonplatform/example/datastore/jdbc/Product.java) class represents the property model for a simple _product_ entity.
+The [Product](https://github.com/holon-platform/holon-examples/blob/master/datastore/jdbc-datastore/src/main/java/com/holonplatform/example/datastore/jdbc/Product.java) class represents the property model for a simple _product_ entity.
 
 Please note:
 
-* The `WITHDRAWN` [Product](https://github.com/holon-platform/holon-examples/blob/master/datastore/jbdc-datastore/src/main/java/com/holonplatform/example/datastore/jdbc/Product.java) property is configured with a **property value converter** to automatically convert the `integer` type of the database table column to the `Boolean` type.
+* The `WITHDRAWN` [Product](https://github.com/holon-platform/holon-examples/blob/master/datastore/jdbc-datastore/src/main/java/com/holonplatform/example/datastore/jdbc/Product.java) property is configured with a **property value converter** to automatically convert the `integer` type of the database table column to the `Boolean` type.
 
-* The `TARGET` field of the [Product](https://github.com/holon-platform/holon-examples/blob/master/datastore/jbdc-datastore/src/main/java/com/holonplatform/example/datastore/jdbc/Product.java) class is the definition of a named `DataTarget` which refers to the `products` table name to be used with `Datastore` operations.
+* The `TARGET` field of the [Product](https://github.com/holon-platform/holon-examples/blob/master/datastore/jdbc-datastore/src/main/java/com/holonplatform/example/datastore/jdbc/Product.java) class is the definition of a named `DataTarget` which refers to the `products` table name to be used with `Datastore` operations.
 
-The [TestPropertyModel](https://github.com/holon-platform/holon-examples/blob/master/core/property-model/src/test/java/com/holonplatform/example/datastore/jdbc/test/TestDatastore.java) class is a JUnit test class to show how to use the `Datastore` API to create, update delete and query the _products_, relying on the `PropertyBox` type to handle the property values.
+The [TestPropertyModel](https://github.com/holon-platform/holon-examples/blob/master/datastore/jdbc-datastore/src/test/java/com/holonplatform/example/datastore/jdbc/test/TestDatastore.java) class is a JUnit test class to show how to use the `Datastore` API to create, update delete and query the _products_, relying on the `PropertyBox` type to handle the property values.
 
 ## Documentation
 
