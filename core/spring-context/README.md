@@ -13,9 +13,19 @@ This example addresses the following topics:
 
 ## Example structure
 
-The [MProduct](https://github.com/holon-platform/holon-examples/blob/master/core/property-model/src/main/java/com/holonplatform/example/core/property/model/MProduct.java) class represents the property model for a simple _product_ entity.
+The [ExampleResource](https://github.com/holon-platform/holon-examples/blob/master/core/spring-context/src/main/java/com/holonplatform/example/core/context/ExampleResource.java) interface represents the example class to be made available as a `Context` resource.
 
-The [TestPropertyModel](https://github.com/holon-platform/holon-examples/blob/master/core/property-model/src/test/java/com/holonplatform/example/core/property/test/TestPropertyModel.java) class is a JUnit test class to show how to use the `Property` and `VirtualProperty` interfaces, the `PropertySet` and `PropertyBox` APIs and how to obtain a property model introspecting a Java bean class.
+The [Main](https://github.com/holon-platform/holon-examples/blob/master/core/spring-context/src/main/java/com/holonplatform/example/core/context/Main.java) class contains the code to setup the Spring context and use the `Context` API to obtain the `ExampleResource` context resource.
+
+## Run this example
+
+Run the `Main` Java class. The following output is expected:
+
+```text
+Message: Example resource
+Message: Example resource
+Message: Thread resource
+```
 
 ## Documentation
 
@@ -23,10 +33,8 @@ The complete _Holon Platform reference guide_ is available [here](https://holon-
 
 For the specific documentation about the components used in this example see:
 
-* [Holon platform Property model](https://holon-platform.com/docs/current/reference/holon-core.html#Property)
-* [Holon platform data validation](https://holon-platform.com/docs/current/reference/holon-core.html#Validators)
 * [Holon platform Context](https://holon-platform.com/docs/current/reference/holon-core.html#Context)
-* [Holon platform beans property model](https://holon-platform.com/docs/current/reference/holon-core.html#Beans)
+* [Holon platform Spring context support](https://holon-platform.com/docs/current/reference/holon-core.html#SpringContextScope)
 
 ## System requirements
 
