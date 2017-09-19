@@ -6,6 +6,8 @@ This example shows how to deal with the basic operations of the `Datastore` API,
 
 **Spring Boot** is used for automatic `DataSource` and `Datastore` configuration, activated by the `holon-starter-jdbc-datastore-hikaricp` starter. See the example [pom](https://github.com/holon-platform/holon-examples/blob/master/datastore/jdbc-datastore/pom.xml).
 
+NOTE: This is the **JDBC** version of the [JPA Datastore example](https://github.com/holon-platform/holon-examples/datastore/jpa-datastore).
+
 ## Topics
 
 This example addresses the following topics:
@@ -25,7 +27,7 @@ Please note:
 
 * The `TARGET` field of the [Product](https://github.com/holon-platform/holon-examples/blob/master/datastore/jdbc-datastore/src/main/java/com/holonplatform/example/datastore/jdbc/Product.java) class is the definition of a named `DataTarget` which refers to the `products` table name to be used with `Datastore` operations.
 
-The [TestPropertyModel](https://github.com/holon-platform/holon-examples/blob/master/datastore/jdbc-datastore/src/test/java/com/holonplatform/example/datastore/jdbc/test/TestDatastore.java) class is a JUnit test class to show how to use the `Datastore` API to create, update delete and query the _products_, relying on the `PropertyBox` type to handle the property values.
+The [TestDatastore](https://github.com/holon-platform/holon-examples/blob/master/datastore/jdbc-datastore/src/test/java/com/holonplatform/example/datastore/jdbc/test/TestDatastore.java) class is a JUnit test class to show how to use the `Datastore` API to create, update delete and query the _products_, relying on the `PropertyBox` type to handle the property values.
 
 ## Run this example
 
