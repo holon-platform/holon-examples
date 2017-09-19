@@ -68,13 +68,6 @@
 			<groupId>com.holon-platform.jaxrs</groupId>
 			<artifactId>holon-starter-resteasy-undertow-gson</artifactId>
 		</dependency> -->
-		
-		<!-- Example model -->
-		<dependency>
-			<groupId>com.holon-platform.examples</groupId>
-			<artifactId>holon-example-model</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 
 		<!-- Test -->
 		<dependency>

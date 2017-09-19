@@ -15,13 +15,9 @@ This example addresses the following topics:
 * Setup a __JAX-RS client__ with [PropertyBox](https://holon-platform.com/docs/current/reference/holon-core.html#PropertyBox) JSON support.
 * Obtain and use [RestClient](https://holon-platform.com/docs/current/reference/holon-core.html#RestClient) to invoke API operations involving `PropertyBox` object types and handle errors.
 
-## Example Data model
-
-This example uses the [Examples shared data model](https://github.com/holon-platform/holon-examples/tree/master/model) artifact.
-
 ## Example structure
 
-This JAX-RS server implements a simple __RESTful__ API to provide the `MProduct` data model _entity_ management, backed by an in-memory store.
+This JAX-RS server implements a simple __RESTful__ API to provide the [Product](src/main/java/com/holonplatform/example/jaxrs/springboot/propertybox/Product.java) data model _entity_ management, backed by an in-memory store.
 
 The server API uses the `PropertyBox` class as data container and __JSON__ as data exchange format, leveraging on the [Holon platform JSON module](https://github.com/holon-platform/holon-json) _Jackson_ JAX-RS support.
 

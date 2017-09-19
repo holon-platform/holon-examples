@@ -15,6 +15,8 @@
  */
 package com.holonplatform.example.jaxrs.springboot.propertybox;
 
+import static com.holonplatform.example.jaxrs.springboot.propertybox.Product.ID;
+
 import java.net.URI;
 import java.util.List;
 
@@ -34,7 +36,6 @@ import org.springframework.stereotype.Component;
 
 import com.holonplatform.core.property.PropertyBox;
 import com.holonplatform.core.property.PropertySetRef;
-import com.holonplatform.example.model.MProduct;
 
 @Component
 @Path("/api")
@@ -67,13 +68,13 @@ public class ProductEndpoint {
 	@POST
 	@Path("/products")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addProduct(@PropertySetRef(MProduct.class) PropertyBox product) {
+	public Response addProduct(@PropertySetRef(Product.class) PropertyBox product) {
 		if (product == null) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing product").build();
 		}
 		// set id
 		long nextId = getProductStore().nextId();
-		product.setValue(MProduct.ID, nextId);
+		product.setValue(ID, nextId);
 		getProductStore().put(product);
 		return Response.created(URI.create("/api/products/" + nextId)).build();
 	}
@@ -84,14 +85,14 @@ public class ProductEndpoint {
 	@PUT
 	@Path("/products/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateProduct(@PropertySetRef(MProduct.class) PropertyBox product) {
+	public Response updateProduct(@PropertySetRef(Product.class) PropertyBox product) {
 		if (product == null) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing product").build();
 		}
-		if (!product.getValueIfPresent(MProduct.ID).isPresent()) {
+		if (!product.getValueIfPresent(ID).isPresent()) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing product id").build();
 		}
-		return getProductStore().get(product.getValue(MProduct.ID)).map(p -> {
+		return getProductStore().get(product.getValue(ID)).map(p -> {
 			getProductStore().put(product);
 			return Response.noContent().build();
 		}).orElse(Response.status(Status.NOT_FOUND).build());
