@@ -63,6 +63,9 @@
 		<module>core/spring-context</module>
 		<module>core/spring-boot-context</module>
 		
+		<module>datastore/jdbc-datastore</module>
+		<module>datastore/jpa-datastore</module>
+		
 		<module>jax-rs/propertybox</module>
 		<module>jax-rs/spring-boot-propertybox</module>
 		<module>jax-rs/spring-boot-datastore</module>

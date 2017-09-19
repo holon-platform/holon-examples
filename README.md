@@ -15,6 +15,12 @@ Example | Description
 [spring-context](core/spring-context)| Core __Spring__ context support for Holon Platform `Context` resources
 [spring-boot-context](core/spring-boot-context)| Core __Spring Boot__ support for Holon Platform `Context` resources
 
+### Datastore
+Example | Description
+------- | -----------
+[jdbc-datastore](datastore/jdbc-datastore)| `Datastore` API example using the **JDBC** Datastore implementation
+[jpa-datastore](datastore/jpa-datastore)| `Datastore` API example using the **JPA** Datastore implementation
+
 ### JAX-RS
 
 Example | Description
