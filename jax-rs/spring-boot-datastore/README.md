@@ -16,13 +16,9 @@ This example addresses the following topics:
 * Obtain and use [RestClient](https://holon-platform.com/docs/current/reference/holon-core.html#RestClient) to invoke API operations involving `PropertyBox` object types and handle errors.
 * Use a __JDBC__ `Datastore` for data persistence.
 
-## Example Data model
-
-This example uses the [Examples shared data model](https://github.com/holon-platform/holon-examples/tree/master/model) artifact.
-
 ## Example structure
 
-This JAX-RS server implements a simple __RESTful__ API to provide the `MProduct` data model _entity_ management, backed by a __H2 database__ table named `products`, using a __JDBC__ `Datastore` for data management.
+This JAX-RS server implements a simple __RESTful__ API to provide the [Product](src/main/java/com/holonplatform/example/jaxrs/springboot/datastore/Product.java) data model _entity_ management, backed by a __H2 database__ table named `products`, using a __JDBC__ `Datastore` for data management.
 
 The `schema.sql` file creates the `products` table in the _test_ H2 schema at application startup.
 

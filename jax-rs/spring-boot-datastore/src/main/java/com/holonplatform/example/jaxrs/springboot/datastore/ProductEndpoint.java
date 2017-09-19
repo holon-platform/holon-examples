@@ -15,6 +15,10 @@
  */
 package com.holonplatform.example.jaxrs.springboot.datastore;
 
+import static com.holonplatform.example.jaxrs.springboot.datastore.Product.ID;
+import static com.holonplatform.example.jaxrs.springboot.datastore.Product.PRODUCT;
+import static com.holonplatform.example.jaxrs.springboot.datastore.Product.TARGET;
+
 import java.net.URI;
 import java.util.List;
 
@@ -33,17 +37,17 @@ import javax.ws.rs.core.Response.Status;
 
 import org.springframework.stereotype.Component;
 
+import com.holonplatform.core.datastore.Datastore;
 import com.holonplatform.core.property.PropertyBox;
 import com.holonplatform.core.property.PropertySetRef;
-import com.holonplatform.example.model.MProduct;
 
 @Component
 @Path("/api")
 public class ProductEndpoint {
 
 	@Inject
-	private ProductStore productStore;
-	
+	private Datastore datastore;
+
 	/*
 	 * Get a list of products PropertyBox in JSON.
 	 */
@@ -51,7 +55,7 @@ public class ProductEndpoint {
 	@Path("/products")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<PropertyBox> getProducts() {
-		return getProductStore().getAll();
+		return datastore.query().target(TARGET).list(PRODUCT);
 	}
 
 	/*
@@ -61,7 +65,7 @@ public class ProductEndpoint {
 	@Path("/products/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getProduct(@PathParam("id") Long id) {
-		return getProductStore().get(id).map(p -> Response.ok(p).build())
+		return datastore.query().target(TARGET).filter(ID.eq(id)).findOne(PRODUCT).map(p -> Response.ok(p).build())
 				.orElse(Response.status(Status.NOT_FOUND).build());
 	}
 
@@ -71,14 +75,14 @@ public class ProductEndpoint {
 	@POST
 	@Path("/products")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addProduct(@PropertySetRef(MProduct.class) PropertyBox product) {
+	public Response addProduct(@PropertySetRef(Product.class) PropertyBox product) {
 		if (product == null) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing product").build();
 		}
 		// set id
-		long nextId = getProductStore().nextId();
-		product.setValue(MProduct.ID, nextId);
-		getProductStore().put(product);
+		long nextId = datastore.query().target(TARGET).findOne(ID.max()).orElse(0L) + 1;
+		product.setValue(ID, nextId);
+		datastore.save(TARGET, product);
 		return Response.created(URI.create("/api/products/" + nextId)).build();
 	}
 
@@ -88,15 +92,15 @@ public class ProductEndpoint {
 	@PUT
 	@Path("/products/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateProduct(@PropertySetRef(MProduct.class) PropertyBox product) {
+	public Response updateProduct(@PropertySetRef(Product.class) PropertyBox product) {
 		if (product == null) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing product").build();
 		}
-		if (!product.getValueIfPresent(MProduct.ID).isPresent()) {
+		if (!product.getValueIfPresent(ID).isPresent()) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing product id").build();
 		}
-		return getProductStore().get(product.getValue(MProduct.ID)).map(p -> {
-			getProductStore().put(product);
+		return datastore.query().target(TARGET).filter(ID.eq(product.getValue(ID))).findOne(PRODUCT).map(p -> {
+			datastore.save(TARGET, product);
 			return Response.noContent().build();
 		}).orElse(Response.status(Status.NOT_FOUND).build());
 	}
@@ -108,12 +112,8 @@ public class ProductEndpoint {
 	@Path("/products/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteProduct(@PathParam("id") Long id) {
-		getProductStore().remove(id);
+		datastore.bulkDelete(TARGET).filter(ID.eq(id)).execute();
 		return Response.noContent().build();
-	}
-
-	private ProductStore getProductStore() {
-		return productStore;
 	}
 
 }
