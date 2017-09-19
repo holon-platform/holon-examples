@@ -24,20 +24,15 @@ import com.holonplatform.core.property.PropertySet;
  */
 public final class Product {
 
-	public static final PathProperty<Long> ID = PathProperty.create("id", Long.class).message("Product ID")
-			.messageCode("product.id"); // Product ID
+	public static final PathProperty<Long> ID = PathProperty.create("id", Long.class);
 
-	public static final PathProperty<String> SKU = PathProperty.create("sku", String.class) // SKU
-			.message("SKU").messageCode("product.sku");
+	public static final PathProperty<String> SKU = PathProperty.create("sku", String.class);
 
-	public static final PathProperty<String> DESCRIPTION = PathProperty.create("description", String.class) // Description
-			.message("Description").messageCode("product.description");
+	public static final PathProperty<String> DESCRIPTION = PathProperty.create("description", String.class);
 
-	public static final PathProperty<String> CATEGORY = PathProperty.create("category", String.class) // Category
-			.message("Category").messageCode("product.category");
+	public static final PathProperty<String> CATEGORY = PathProperty.create("category", String.class);
 
-	public static final PathProperty<Double> UNIT_PRICE = PathProperty.create("price", Double.class) // Price
-			.message("Price").messageCode("product.price")
+	public static final PathProperty<Double> UNIT_PRICE = PathProperty.create("price", Double.class)
 			// not negative value validator
 			.validator(Validator.notNegative());
 
