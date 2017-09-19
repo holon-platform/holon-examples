@@ -12,7 +12,8 @@ See the [Holon platform reference guide](https://holon-platform.com/docs/current
 Example | Description
 ------- | -----------
 [property-model](core/property-model)| A `Property` model example, showing how to use `PropertySet` and `PropertyBox` APIs and how to obtain a property model from a Java Bean class
-
+[spring-context](core/spring-context)| Core __Spring__ context support for Holon Platform `Context` resources
+[spring-boot-context](core/spring-boot-context)| Core __Spring Boot__ support for Holon Platform `Context` resources
 
 ### JAX-RS
 

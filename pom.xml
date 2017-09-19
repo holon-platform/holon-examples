@@ -60,6 +60,8 @@
 		<module>model</module>
 		
 		<module>core/property-model</module>
+		<module>core/spring-context</module>
+		<module>core/spring-boot-context</module>
 		
 		<module>jax-rs/propertybox</module>
 		<module>jax-rs/spring-boot-propertybox</module>
