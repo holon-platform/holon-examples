@@ -6,7 +6,7 @@ This example shows how to deal with the basic operations of the `Datastore` API,
 
 **Spring Boot** is used for automatic `DataSource`, ORM (*Hibernate* in this example) and `Datastore` configuration, activated by the `holon-starter-jpa-hibernate` starter. See the example [pom](https://github.com/holon-platform/holon-examples/blob/master/datastore/jpa-datastore/pom.xml).
 
-NOTE: This is the **JPA** version of the [JDBC Datastore example](https://github.com/holon-platform/holon-examples/datastore/jdbc-datastore).
+NOTE: This is the **JPA** version of the [JDBC Datastore example](https://github.com/holon-platform/holon-examples/tree/master/datastore/jdbc-datastore).
 
 ## Topics
 
