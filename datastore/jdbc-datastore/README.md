@@ -27,6 +27,10 @@ Please note:
 
 The [TestPropertyModel](https://github.com/holon-platform/holon-examples/blob/master/datastore/jdbc-datastore/src/test/java/com/holonplatform/example/datastore/jdbc/test/TestDatastore.java) class is a JUnit test class to show how to use the `Datastore` API to create, update delete and query the _products_, relying on the `PropertyBox` type to handle the property values.
 
+## Run this example
+
+Run the unit test class using `mvn test` or your favorite IDE command.
+
 ## Documentation
 
 The complete _Holon Platform reference guide_ is available [here](https://holon-platform.com/docs/current/reference).
