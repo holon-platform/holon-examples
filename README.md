@@ -8,6 +8,12 @@ See the [Holon platform reference guide](https://holon-platform.com/docs/current
 
 ## Available examples
 
+### Core
+Example | Description
+------- | -----------
+[property-model](core/property-model)| A `Property` model example, showing how to use `PropertySet` and `PropertyBox` APIs and how to obtain a property model from a Java Bean class
+
+
 ### JAX-RS
 
 Example | Description
