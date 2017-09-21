@@ -2,6 +2,10 @@ spring:
   main:
     banner-mode: "off" 
     
+  datasource:
+    url: "jdbc:h2:mem:test"
+    username: "sa"
+    
   jersey:
       application-path: "api"
     
