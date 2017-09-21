@@ -68,7 +68,8 @@ For the specific documentation about the modules and the components used in this
 
 * [Holon platform JAX-RS module reference documentation](https://holon-platform.com/docs/current/reference/holon-jaxrs.html)
 * [Holon platform JAX-RS Swagger integration](https://holon-platform.com/docs/current/reference/holon-jaxrs.html#Swagger)
-* Documentation about the [PropertyBox](https://holon-platform.com/docs/current/reference/holon-core.html#PropertyBox)  data structure
+* Documentation about the [Property model](https://holon-platform.com/docs/current/reference/holon-core.html#Property)
+* Documentation about the [Datastore API](https://holon-platform.com/docs/current/reference/holon-core.html#Datastore)
 
 ## System requirements
 
