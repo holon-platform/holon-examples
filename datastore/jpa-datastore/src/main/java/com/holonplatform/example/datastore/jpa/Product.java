@@ -20,7 +20,6 @@ import com.holonplatform.core.datastore.DataTarget;
 import com.holonplatform.core.property.PathProperty;
 import com.holonplatform.core.property.PropertySet;
 import com.holonplatform.core.property.PropertyValueConverter;
-import com.holonplatform.datastore.jpa.JpaTarget;
 
 /**
  * Product model
@@ -46,8 +45,8 @@ public final class Product {
 	// Product property set
 	public static final PropertySet<?> PRODUCT = PropertySet.of(ID, SKU, DESCRIPTION, CATEGORY, UNIT_PRICE, WITHDRAWN);
 
-	// Product entity DataTarget
-	public static final DataTarget<ProductEntity> TARGET = JpaTarget.of(ProductEntity.class);
+	// "products" DataTarget
+	public static final DataTarget<String> TARGET = DataTarget.named("products");
 
 	/*
 	 * Model class intended to be used only as static fields container.
