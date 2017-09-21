@@ -1,17 +1,13 @@
 spring:
   main:
     banner-mode: "off" 
-    jersey:
-      application-path: "/api"
     
-#holon:
-#  swagger:
-#    version: "v1"
-#    title: "Products API docs"
-#    resource-package: "com.holonplatform.example.jaxrs.swagger"
-#    pretty-print: true
-  
+  jersey:
+      application-path: "api"
+    
 holon:
   swagger:
+    version: "v1"
+    title: "Products API docs"
     resource-package: "com.holonplatform.example.jaxrs.swagger"
-    path: "docs"
+    pretty-print: true

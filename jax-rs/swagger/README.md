@@ -11,17 +11,15 @@ This example addresses the following topics:
 * Use the `@ApiPropertySetModel` annotation to declare a _property set_ as a named Swagger __model__ bound to `PropertyBox` type API operations requests and responses
 * Use the Holon JAX-RS Swagger integrations for __Spring Boot__ to automatically setup and configure a Swagger API listing endpoint.
 
-## Example Data model
-
-This example uses the [Examples shared data model](https://github.com/holon-platform/holon-examples/tree/master/model) artifact.
-
 ## Example structure
 
-This JAX-RS server implements a simple __RESTful__ API to provide the `MProduct` data model _entity_ management, backed by an in-memory store, using _Jersey_ as JAX-RS implementation and _Tomcat_ as servlet container.
+This JAX-RS server implements a simple __RESTful__ API to provide the `Product` data model _entity_ management, backed by an in-memory store, using _Jersey_ as JAX-RS implementation and _Tomcat_ as servlet container.
 
 The server API uses the `PropertyBox` class as data container and __JSON__ as data exchange format, leveraging on the [Holon platform JSON module](https://github.com/holon-platform/holon-json) _Jackson_ JAX-RS support.
 
 The [ProductEndpoint](src/main/java/com/holonplatform/example/jaxrs/swagger/ProductEndpoint.java) class represents the API endpoint and provides operations to get a product, get all products and create/update/delete a product. It is declared as a singleton __Spring bean__ through the `@Component` annotation and it is auto-configured as JAX-RS resource by the Holon platform auto configuration facilities.
+
+A **JDBC Datastore** is auto-configured and used for product entity data manipulation and persistence.
 
 Some Swagger annotations are used to provide API operations description (`@ApiOperation`) and response details (`@ApiResponses`).
 

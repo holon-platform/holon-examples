@@ -15,9 +15,14 @@
  */
 package com.holonplatform.example.jaxrs.swagger;
 
+import static com.holonplatform.example.jaxrs.swagger.Product.ID;
+import static com.holonplatform.example.jaxrs.swagger.Product.PRODUCT;
+import static com.holonplatform.example.jaxrs.swagger.Product.TARGET;
+
 import java.net.URI;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -32,8 +37,9 @@ import javax.ws.rs.core.Response.Status;
 
 import org.springframework.stereotype.Component;
 
+import com.holonplatform.core.datastore.Datastore;
+import com.holonplatform.core.datastore.DefaultWriteOption;
 import com.holonplatform.core.property.PropertyBox;
-import com.holonplatform.example.model.MProduct;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -45,7 +51,10 @@ import io.swagger.annotations.ApiResponses;
 @Component
 @Path("/products")
 public class ProductEndpoint {
-
+	
+	@Inject
+	private Datastore datastore;
+	
 	/*
 	 * Get a list of products PropertyBox in JSON.
 	 */
@@ -55,7 +64,7 @@ public class ProductEndpoint {
 	@Path("/")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<PropertyBox> getProducts() {
-		return getProductStore().getAll();
+		return datastore.query().target(TARGET).list(PRODUCT);
 	}
 
 	/*
@@ -68,7 +77,7 @@ public class ProductEndpoint {
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getProduct(@ApiParam("The product id") @PathParam("id") Long id) {
-		return getProductStore().get(id).map(p -> Response.ok(p).build())
+		return datastore.query().target(TARGET).filter(ID.eq(id)).findOne(PRODUCT).map(p -> Response.ok(p).build())
 				.orElse(Response.status(Status.NOT_FOUND).build());
 	}
 
@@ -84,11 +93,8 @@ public class ProductEndpoint {
 		if (product == null) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing product").build();
 		}
-		// set id
-		long nextId = getProductStore().nextId();
-		product.setValue(MProduct.ID, nextId);
-		getProductStore().put(product);
-		return Response.created(URI.create("/api/products/" + nextId)).build();
+		datastore.save(TARGET, product, DefaultWriteOption.BRING_BACK_GENERATED_IDS);
+		return Response.created(URI.create("/api/products/" + product.getValue(ID))).build();
 	}
 
 	/*
@@ -104,11 +110,11 @@ public class ProductEndpoint {
 		if (product == null) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing product").build();
 		}
-		if (!product.getValueIfPresent(MProduct.ID).isPresent()) {
+		if (!product.getValueIfPresent(ID).isPresent()) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing product id").build();
 		}
-		return getProductStore().get(product.getValue(MProduct.ID)).map(p -> {
-			getProductStore().put(product);
+		return datastore.query().target(TARGET).filter(ID.eq(product.getValue(ID))).findOne(PRODUCT).map(p -> {
+			datastore.save(TARGET, product);
 			return Response.noContent().build();
 		}).orElse(Response.status(Status.NOT_FOUND).build());
 	}
@@ -122,12 +128,8 @@ public class ProductEndpoint {
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteProduct(@ApiParam("The product id to delete") @PathParam("id") Long id) {
-		getProductStore().remove(id);
+		datastore.bulkDelete(TARGET).filter(ID.eq(id)).execute();
 		return Response.noContent().build();
-	}
-
-	private static ProductStore getProductStore() {
-		return ProductStore.INSTANCE;
 	}
 
 }

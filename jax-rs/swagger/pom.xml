@@ -37,11 +37,17 @@
 			<artifactId>holon-jaxrs-swagger</artifactId>
 		</dependency>
 
-		<!-- Example model -->
+		<!-- Holon JDBC Datastore with HikariCP starter -->
 		<dependency>
-			<groupId>com.holon-platform.examples</groupId>
-			<artifactId>holon-example-model</artifactId>
-			<version>${project.version}</version>
+			<groupId>com.holon-platform.jdbc</groupId>
+			<artifactId>holon-starter-jdbc-datastore-hikaricp</artifactId>
+		</dependency>
+
+		<!-- H2 database -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.196</version>
 		</dependency>
 
 	</dependencies>
