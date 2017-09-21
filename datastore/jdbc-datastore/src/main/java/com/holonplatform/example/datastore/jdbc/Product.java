@@ -45,7 +45,7 @@ public final class Product {
 	// Product property set
 	public static final PropertySet<?> PRODUCT = PropertySet.of(ID, SKU, DESCRIPTION, CATEGORY, UNIT_PRICE, WITHDRAWN);
 
-	// "products" table DataTarget
+	// "products" DataTarget
 	public static final DataTarget<String> TARGET = DataTarget.named("products");
 
 	/*
