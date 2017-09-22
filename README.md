@@ -33,6 +33,12 @@ Example | Description
 [swagger](jax-rs/swagger)| JAX-RS [Swagger](https://swagger.io) integration and auto-configuration with `PropertyBox` support
 [swagger-groups](jax-rs/swagger-groups)| JAX-RS [Swagger](https://swagger.io) integration and auto-configuration using multiple API _groups_ with multiple Swagger API listing endpoints
 
+### Vaadin UI
+
+Example | Description
+------- | -----------
+[simple-app](ui-vaadin/simple-app)| A simple web application using __Vaadin__ as UI engine and the `Datastore` API for data management
+
 ## System requirements
 
 The Holon Platform is built using __Java 8__, so you need a JRE/JDK version 8 or above to build and run the example projects.
