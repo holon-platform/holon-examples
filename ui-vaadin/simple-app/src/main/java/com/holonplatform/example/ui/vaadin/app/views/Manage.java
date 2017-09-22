@@ -38,6 +38,7 @@ import com.holonplatform.vaadin.navigator.annotations.OnShow;
 import com.holonplatform.vaadin.navigator.annotations.ViewParameter;
 import com.holonplatform.vaadin.navigator.annotations.VolatileView;
 import com.vaadin.spring.annotation.SpringView;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
@@ -55,6 +56,8 @@ public class Manage extends VerticalLayout implements com.vaadin.navigator.View 
 	private Datastore datastore;
 
 	private PropertyInputForm form;
+
+	private Button clearButton;
 
 	@PostConstruct
 	public void init() {
@@ -79,7 +82,7 @@ public class Manage extends VerticalLayout implements com.vaadin.navigator.View 
 						.add(Components.button().caption("Save").styleName(ValoTheme.BUTTON_PRIMARY)
 								.onClick(e -> save()).build())
 						// CLEAR action
-						.add(Components.button().caption("Clear")
+						.add(clearButton = Components.button().caption("Clear")
 								// clear the form
 								.onClick(e -> form.clear()).build())
 						.build());
@@ -94,6 +97,8 @@ public class Manage extends VerticalLayout implements com.vaadin.navigator.View 
 					// throw an exception if a product with given id was not found
 					.orElseThrow(() -> new DataAccessException("Data not found: " + id)));
 		}
+		// enable the Clear button if not in edit mode
+		clearButton.setVisible(id == null);
 	}
 
 	@Transactional

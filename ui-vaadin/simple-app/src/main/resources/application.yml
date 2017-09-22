@@ -6,3 +6,7 @@ spring:
     url: "jdbc:h2:mem:test"
     username: "sa"
     password: ""
+
+vaadin:
+  servlet:
+    production-mode: true
