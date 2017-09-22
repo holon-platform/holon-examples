@@ -15,19 +15,21 @@
  */
 package com.holonplatform.example.ui.vaadin.app.views;
 
+import static com.holonplatform.example.ui.vaadin.app.model.Product.ID;
+import static com.holonplatform.example.ui.vaadin.app.model.Product.PRODUCT;
+import static com.holonplatform.example.ui.vaadin.app.model.Product.TARGET;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.holonplatform.core.datastore.DataTarget;
 import com.holonplatform.core.datastore.Datastore;
 import com.holonplatform.core.exceptions.DataAccessException;
 import com.holonplatform.core.i18n.Caption;
-import com.holonplatform.example.ui.vaadin.app.model.MProduct;
 import com.holonplatform.vaadin.components.Components;
 import com.holonplatform.vaadin.components.PropertyViewForm;
 import com.holonplatform.vaadin.navigator.ViewNavigator;
+import com.holonplatform.vaadin.navigator.annotations.OnShow;
 import com.holonplatform.vaadin.navigator.annotations.ViewParameter;
 import com.holonplatform.vaadin.navigator.annotations.WindowView;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
@@ -54,8 +56,7 @@ public class View extends VerticalLayout implements com.vaadin.navigator.View {
 				// set margins and size full to view content
 				.margin().fullSize()
 				// add view form using Product property set
-				.addAndExpandFull(viewForm = Components.view.form().fullSize().properties(MProduct.PRODUCT).build())
-				.add(
+				.addAndExpandFull(viewForm = Components.view.form().fullSize().properties(PRODUCT).build()).add(
 						// horizontal layout as bottom toolbar
 						Components.hl().fullWidth().spacing().styleName(ValoTheme.WINDOW_BOTTOM_TOOLBAR)
 								// EDIT action
@@ -71,7 +72,7 @@ public class View extends VerticalLayout implements com.vaadin.navigator.View {
 										.onClick(e -> Components.questionDialog().message("Are you sure?")
 												.callback(answeredYes -> {
 													// if confirmed, delete the current form product PropertyBox
-													datastore.delete(DataTarget.named("products"), viewForm.getValue());
+													datastore.delete(TARGET, viewForm.getValue());
 													// navigate back
 													ViewNavigator.require().navigateBack();
 												}).open())
@@ -79,13 +80,12 @@ public class View extends VerticalLayout implements com.vaadin.navigator.View {
 								.build());
 	}
 
-	@Override
-	public void enter(ViewChangeEvent event) {
+	@OnShow
+	public void onShow() {
 		// set the view form product value
 		viewForm.setValue(
 				// load product using id parameter
-				datastore.query().target(DataTarget.named("products")).filter(MProduct.ID.eq(id))
-						.findOne(MProduct.PRODUCT)
+				datastore.query().target(TARGET).filter(ID.eq(id)).findOne(PRODUCT)
 						// throw an exception if not found
 						.orElseThrow(() -> new DataAccessException("Product not found: " + id)));
 	}

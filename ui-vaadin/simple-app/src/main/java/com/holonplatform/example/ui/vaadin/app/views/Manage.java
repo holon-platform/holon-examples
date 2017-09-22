@@ -15,24 +15,28 @@
  */
 package com.holonplatform.example.ui.vaadin.app.views;
 
+import static com.holonplatform.example.ui.vaadin.app.model.Product.CATEGORY;
+import static com.holonplatform.example.ui.vaadin.app.model.Product.DESCRIPTION;
+import static com.holonplatform.example.ui.vaadin.app.model.Product.ID;
+import static com.holonplatform.example.ui.vaadin.app.model.Product.PRODUCT;
+import static com.holonplatform.example.ui.vaadin.app.model.Product.SKU;
+import static com.holonplatform.example.ui.vaadin.app.model.Product.TARGET;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.holonplatform.core.Validator;
-import com.holonplatform.core.datastore.DataTarget;
 import com.holonplatform.core.datastore.Datastore;
-import com.holonplatform.core.datastore.Datastore.OperationResult;
 import com.holonplatform.core.datastore.DefaultWriteOption;
 import com.holonplatform.core.exceptions.DataAccessException;
-import com.holonplatform.example.ui.vaadin.app.model.MProduct;
 import com.holonplatform.vaadin.components.Components;
 import com.holonplatform.vaadin.components.PropertyInputForm;
 import com.holonplatform.vaadin.navigator.ViewNavigator;
+import com.holonplatform.vaadin.navigator.annotations.OnShow;
 import com.holonplatform.vaadin.navigator.annotations.ViewParameter;
 import com.holonplatform.vaadin.navigator.annotations.VolatileView;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
@@ -59,15 +63,15 @@ public class Manage extends VerticalLayout implements com.vaadin.navigator.View 
 				.margin().fullSize()
 				.addAndExpandFull(
 						// add a form using Product property set
-						form = Components.input.form().fullSize().properties(MProduct.PRODUCT)
+						form = Components.input.form().fullSize().properties(PRODUCT)
 								// set id as read-only
-								.readOnly(MProduct.ID)
+								.readOnly(ID)
 								// set SKU as required
-								.required(MProduct.SKU)
+								.required(SKU)
 								// set "DFT" as CATEGORY default value
-								.defaultValue(MProduct.CATEGORY, p -> "DFT")
+								.defaultValue(CATEGORY, p -> "DFT")
 								// add a validator to check DESCRIPTION with minimum 3 characters
-								.withValidator(MProduct.DESCRIPTION, Validator.min(3))
+								.withValidator(DESCRIPTION, Validator.min(3))
 								// .initializer(c -> Components.configure(c).margin().spacing())
 								.build())
 				.add(Components.hl().margin().spacing()
@@ -81,13 +85,12 @@ public class Manage extends VerticalLayout implements com.vaadin.navigator.View 
 						.build());
 	}
 
-	@Override
-	public void enter(ViewChangeEvent event) {
+	@OnShow
+	public void load() {
 		// if id parameter is not null, we are in edit mode
 		if (id != null) {
 			// load the product data
-			form.setValue(datastore.query().target(DataTarget.named("products")).filter(MProduct.ID.eq(id))
-					.findOne(MProduct.PRODUCT)
+			form.setValue(datastore.query().target(TARGET).filter(ID.eq(id)).findOne(PRODUCT)
 					// throw an exception if a product with given id was not found
 					.orElseThrow(() -> new DataAccessException("Data not found: " + id)));
 		}
@@ -99,9 +102,9 @@ public class Manage extends VerticalLayout implements com.vaadin.navigator.View 
 		form.getValueIfValid().ifPresent(value -> {
 
 			// save and notify
-			OperationResult result = datastore.save(DataTarget.named("products"), value,
-					DefaultWriteOption.BRING_BACK_GENERATED_IDS);
-			Notification.show("Saved [" + ((id != null) ? id : result.getInsertedKeys().get(MProduct.ID)) + "]");
+			datastore.save(TARGET, value, DefaultWriteOption.BRING_BACK_GENERATED_IDS);
+			// notify the saved id
+			Notification.show("Saved [" + ((id != null) ? id : value.getValue(ID)) + "]");
 
 			// go back home
 			ViewNavigator.require().navigateToDefault();
