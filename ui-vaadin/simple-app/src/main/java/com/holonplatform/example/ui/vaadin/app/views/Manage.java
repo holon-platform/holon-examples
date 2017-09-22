@@ -75,7 +75,7 @@ public class Manage extends VerticalLayout implements com.vaadin.navigator.View 
 								.defaultValue(CATEGORY, p -> "DFT")
 								// add a validator to check DESCRIPTION with minimum 3 characters
 								.withValidator(DESCRIPTION, Validator.min(3))
-								// .initializer(c -> Components.configure(c).margin().spacing())
+								// build the form
 								.build())
 				.add(Components.hl().margin().spacing()
 						// SAVE action

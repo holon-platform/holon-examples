@@ -26,25 +26,22 @@ import com.holonplatform.core.property.PropertyValueConverter;
  */
 public final class Product {
 
-	public static final PathProperty<Long> ID = PathProperty.create("id", Long.class).message("Product ID")
-			.messageCode("product.id");
+	public static final PathProperty<Long> ID = PathProperty.create("id", Long.class).message("Product ID");
 
-	public static final PathProperty<String> SKU = PathProperty.create("sku", String.class).message("SKU")
-			.messageCode("product.sku");
+	public static final PathProperty<String> SKU = PathProperty.create("sku", String.class).message("SKU");
 
 	public static final PathProperty<String> DESCRIPTION = PathProperty.create("description", String.class)
-			.message("Description").messageCode("product.description");
+			.message("Description");
 
 	public static final PathProperty<String> CATEGORY = PathProperty.create("category", String.class)
-			.message("Category").messageCode("product.category");
+			.message("Category");
 
 	public static final PathProperty<Double> UNIT_PRICE = PathProperty.create("price", Double.class).message("Price")
-			.messageCode("product.price")
 			// not negative value validator
 			.validator(Validator.notNegative());
 
 	public static final PathProperty<Boolean> WITHDRAWN = PathProperty.create("withdrawn", Boolean.class)
-			.message("Withdrawn").messageCode("product.withdrawn")
+			.message("Withdrawn")
 			// set a property value converter from Integer model type to Boolean
 			.converter(PropertyValueConverter.numericBoolean(Integer.class));
 
