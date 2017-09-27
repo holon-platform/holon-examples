@@ -8,7 +8,7 @@ This example shows how to setup __RESTful server and client__ applications using
 
 This example addresses the following topics:
 
-* Configure JAX-RS resources _authentication_ using the `@Authenticate` annotation and a [Realm](https://holon-platform.com/docs/current/reference/holon-core.html#Realm) as backend.
+* Configure JAX-RS resources _authentication_ using the `@Authenticate` annotation and a [Realm](https://docs.holon-platform.com/current/reference/holon-core.html#Realm) as backend.
 * Configure JAX-RS resources _authorization_ using `javax.annotation.security.*` annotations.
 * Setup a __JAX-RS client__ using a `RestClient` and perform invocations with the HTTP `Basic` Authorization header.
 
@@ -33,12 +33,12 @@ The client authentication credentials are provided using the `RestClient` `autho
 
 ## Documentation
 
-The complete _Holon Platform reference guide_ is available [here](https://holon-platform.com/docs/current/reference).
+The complete _Holon Platform reference guide_ is available [here](https://docs.holon-platform.com/current/reference).
 
 For the specific documentation about the modules and the components used in this example see:
 
-* [Holon platform Authentication and Authorization architecture documentation](https://holon-platform.com/docs/current/reference/holon-core#Auth.html)
-* [Holon platform JAX-RS module reference documentation](https://holon-platform.com/docs/current/reference/holon-jaxrs.html)
+* [Holon platform Authentication and Authorization architecture documentation](https://docs.holon-platform.com/current/reference/holon-core#Auth.html)
+* [Holon platform JAX-RS module reference documentation](https://docs.holon-platform.com/current/reference/holon-jaxrs.html)
 
 ## System requirements
 

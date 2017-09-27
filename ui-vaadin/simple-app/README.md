@@ -34,12 +34,12 @@ This example is configured using __Spring Boot__, so you just have to run the `A
 
 ## Documentation
 
-The complete _Holon Platform reference guide_ is available [here](https://holon-platform.com/docs/current/reference).
+The complete _Holon Platform reference guide_ is available [here](https://docs.holon-platform.com/current/reference).
 
 For the specific documentation about the modules and the components used in this example see:
 
-* Documentation about the [Datastore](https://holon-platform.com/docs/current/reference/holon-core.html#Datastore)  API
-* Documentation about the [Vaadin UI module](https://holon-platform.com/docs/current/reference/holon-vaadin.html)
+* Documentation about the [Datastore](https://docs.holon-platform.com/current/reference/holon-core.html#Datastore)  API
+* Documentation about the [Vaadin UI module](https://docs.holon-platform.com/current/reference/holon-vaadin.html)
 
 ## System requirements
 

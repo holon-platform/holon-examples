@@ -31,12 +31,12 @@ Message: Thread resource
 
 ## Documentation
 
-The complete _Holon Platform reference guide_ is available [here](https://holon-platform.com/docs/current/reference).
+The complete _Holon Platform reference guide_ is available [here](https://docs.holon-platform.com/current/reference).
 
 For the specific documentation about the components used in this example see:
 
-* [Holon platform Context](https://holon-platform.com/docs/current/reference/holon-core.html#Context)
-* [Holon platform core Spring Boot support](https://holon-platform.com/docs/current/reference/holon-core.html#SpringBoot)
+* [Holon platform Context](https://docs.holon-platform.com/current/reference/holon-core.html#Context)
+* [Holon platform core Spring Boot support](https://docs.holon-platform.com/current/reference/holon-core.html#SpringBoot)
 
 ## System requirements
 

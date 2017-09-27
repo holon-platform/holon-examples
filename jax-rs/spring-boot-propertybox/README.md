@@ -10,10 +10,10 @@ This is the __Spring Boot__ version of the [JAX-RS and PropertyBox example](../p
 
 This example addresses the following topics:
 
-* Setup a __JAX-RS server RESTful API__ with [PropertyBox](https://holon-platform.com/docs/current/reference/holon-core.html#PropertyBox) JSON support using __Spring Boot__.
+* Setup a __JAX-RS server RESTful API__ with [PropertyBox](https://docs.holon-platform.com/current/reference/holon-core.html#PropertyBox) JSON support using __Spring Boot__.
 * Use the `@PropertySetRef` annotation to handle `PropertyBox` type requests
-* Setup a __JAX-RS client__ with [PropertyBox](https://holon-platform.com/docs/current/reference/holon-core.html#PropertyBox) JSON support.
-* Obtain and use [RestClient](https://holon-platform.com/docs/current/reference/holon-core.html#RestClient) to invoke API operations involving `PropertyBox` object types and handle errors.
+* Setup a __JAX-RS client__ with [PropertyBox](https://docs.holon-platform.com/current/reference/holon-core.html#PropertyBox) JSON support.
+* Obtain and use [RestClient](https://docs.holon-platform.com/current/reference/holon-core.html#RestClient) to invoke API operations involving `PropertyBox` object types and handle errors.
 
 ## Example structure
 
@@ -79,14 +79,14 @@ See the [JAX-RS and PropertyBox with Spring Boot and a Datastore example](../spr
 
 ## Documentation
 
-The complete _Holon Platform reference guide_ is available [here](https://holon-platform.com/docs/current/reference).
+The complete _Holon Platform reference guide_ is available [here](https://docs.holon-platform.com/current/reference).
 
 For the specific documentation about the modules and the components used in this example see:
 
-* [Holon platform JSON module reference documentation](https://holon-platform.com/docs/current/reference/holon-json.html)
-* [Holon platform JAX-RS module reference documentation](https://holon-platform.com/docs/current/reference/holon-jaxrs.html)
-* Documentation about the [PropertyBox](https://holon-platform.com/docs/current/reference/holon-core.html#PropertyBox)  data structure
-* Documentation about the [RestClient](https://holon-platform.com/docs/current/reference/holon-core.html#RestClient) platform RESTful client
+* [Holon platform JSON module reference documentation](https://docs.holon-platform.com/current/reference/holon-json.html)
+* [Holon platform JAX-RS module reference documentation](https://docs.holon-platform.com/current/reference/holon-jaxrs.html)
+* Documentation about the [PropertyBox](https://docs.holon-platform.com/current/reference/holon-core.html#PropertyBox)  data structure
+* Documentation about the [RestClient](https://docs.holon-platform.com/current/reference/holon-core.html#RestClient) platform RESTful client
 
 ## System requirements
 

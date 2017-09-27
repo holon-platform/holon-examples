@@ -4,7 +4,7 @@ This repository contains a set of example projects using the [Holon Platform](ht
 
 ## Documentation
 
-See the [Holon platform reference guide](https://holon-platform.com/docs/current/reference).
+See the [Holon platform reference guide](https://docs.holon-platform.com/current/reference).
 
 ## Available examples
 

@@ -9,7 +9,7 @@ Each data model class provides at least:
 * A set of `Property` which represent the data model _entity_ attributes;
 * A default `PropertySet` which collects all the data model _entity_ properties.
 
-See the [Holon Platform reference guide](https://holon-platform.com/docs/current/reference/holon-core.html#Property) for information about the Holon Platform `Property` architecture.
+See the [Holon Platform reference guide](https://docs.holon-platform.com/current/reference/holon-core.html#Property) for information about the Holon Platform `Property` architecture.
 
 ## Example projects
 

@@ -81,13 +81,13 @@ holon:
 
 ## Documentation
 
-The complete _Holon Platform reference guide_ is available [here](https://holon-platform.com/docs/current/reference).
+The complete _Holon Platform reference guide_ is available [here](https://docs.holon-platform.com/current/reference).
 
 For the specific documentation about the modules and the components used in this example see:
 
-* [Holon platform JAX-RS module reference documentation](https://holon-platform.com/docs/current/reference/holon-jaxrs.html)
-* [Holon platform JAX-RS Swagger integration](https://holon-platform.com/docs/current/reference/holon-jaxrs.html#Swagger)
-* Documentation about the [PropertyBox](https://holon-platform.com/docs/current/reference/holon-core.html#PropertyBox)  data structure
+* [Holon platform JAX-RS module reference documentation](https://docs.holon-platform.com/current/reference/holon-jaxrs.html)
+* [Holon platform JAX-RS Swagger integration](https://docs.holon-platform.com/current/reference/holon-jaxrs.html#Swagger)
+* Documentation about the [PropertyBox](https://docs.holon-platform.com/current/reference/holon-core.html#PropertyBox)  data structure
 
 ## System requirements
 

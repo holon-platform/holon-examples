@@ -35,13 +35,13 @@ Run the unit test class using `mvn test` or your favorite IDE command.
 
 ## Documentation
 
-The complete _Holon Platform reference guide_ is available [here](https://holon-platform.com/docs/current/reference).
+The complete _Holon Platform reference guide_ is available [here](https://docs.holon-platform.com/current/reference).
 
 For the specific documentation about the components used in this example see:
 
-* [Holon platform Property model](https://holon-platform.com/docs/current/reference/holon-core.html#Property)
-* [Holon platform Datastore API](https://holon-platform.com/docs/current/reference/holon-core.html#Datastore)
-* [The JDBC Datastore](https://holon-platform.com/docs/current/reference/holon-datastore-jdbc.html)
+* [Holon platform Property model](https://docs.holon-platform.com/current/reference/holon-core.html#Property)
+* [Holon platform Datastore API](https://docs.holon-platform.com/current/reference/holon-core.html#Datastore)
+* [The JDBC Datastore](https://docs.holon-platform.com/current/reference/holon-datastore-jdbc.html)
 
 ## System requirements
 
