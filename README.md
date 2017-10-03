@@ -45,4 +45,4 @@ The Holon Platform is built using __Java 8__, so you need a JRE/JDK version 8 or
 
 ## License
 
-All the [Holon Platform](https://holon-platform.com) modules and examples are _Open Source_ software released under the [Apache 2.0 license](LICENSE.md).
+All the [Holon Platform](https://holon-platform.com) modules and examples are _Open Source_ software released under the [Apache 2.0 license](LICENSE).
