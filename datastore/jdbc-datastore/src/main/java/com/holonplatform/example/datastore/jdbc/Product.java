@@ -20,6 +20,7 @@ import com.holonplatform.core.datastore.DataTarget;
 import com.holonplatform.core.property.PathProperty;
 import com.holonplatform.core.property.PropertySet;
 import com.holonplatform.core.property.PropertyValueConverter;
+import com.holonplatform.core.property.StringProperty;
 
 /**
  * Product model
@@ -30,7 +31,7 @@ public final class Product {
 
 	public static final PathProperty<String> SKU = PathProperty.create("sku", String.class);
 
-	public static final PathProperty<String> DESCRIPTION = PathProperty.create("description", String.class);
+	public static final StringProperty DESCRIPTION = StringProperty.create("description");
 
 	public static final PathProperty<String> CATEGORY = PathProperty.create("category", String.class);
 
