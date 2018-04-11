@@ -57,7 +57,7 @@ public class JwtIssuerEndpoint {
 				.orElseThrow(() -> new InternalServerErrorException("JWT configuration not available"));
 
 		// build JWT
-		String jwt = JwtTokenBuilder.buildJwtToken(configuration, authc, UUID.randomUUID().toString());
+		String jwt = JwtTokenBuilder.get().buildJwt(configuration, authc, UUID.randomUUID().toString());
 		// ok
 		return Response.ok(jwt, MediaType.TEXT_PLAIN).build();
 
