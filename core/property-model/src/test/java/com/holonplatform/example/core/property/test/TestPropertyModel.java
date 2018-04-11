@@ -242,10 +242,10 @@ public class TestPropertyModel {
 
 		// check all expected properties are in the set
 		assertTrue(BEAN_PROPERTIES.contains(ID));
-		assertTrue(BEAN_PROPERTIES.contains(BEAN_PROPERTIES.requireProperty("description")));
-		assertTrue(BEAN_PROPERTIES.contains(BEAN_PROPERTIES.requireProperty("category")));
-		assertTrue(BEAN_PROPERTIES.contains(BEAN_PROPERTIES.requireProperty("unitPrice")));
-		assertTrue(BEAN_PROPERTIES.contains(BEAN_PROPERTIES.requireProperty("withdrawn")));
+		assertTrue(BEAN_PROPERTIES.contains(BEAN_PROPERTIES.property("description")));
+		assertTrue(BEAN_PROPERTIES.contains(BEAN_PROPERTIES.property("category")));
+		assertTrue(BEAN_PROPERTIES.contains(BEAN_PROPERTIES.property("unitPrice")));
+		assertTrue(BEAN_PROPERTIES.contains(BEAN_PROPERTIES.property("withdrawn")));
 
 		// The @Caption annotation can be used to set property (localizable) captions
 		String caption = ID.getMessage();
@@ -273,16 +273,15 @@ public class TestPropertyModel {
 		PropertyBox box = BEAN_PROPERTIES.read(bean);
 
 		assertEquals(Long.valueOf(2), box.getValue(ID));
-		assertEquals("Bean description", box.getValue(BEAN_PROPERTIES.requireProperty("description")));
+		assertEquals("Bean description", box.getValue(BEAN_PROPERTIES.property("description")));
 
 		// write a PropertyBox into a TestBean instance
-		Property<Double> PRICE = BEAN_PROPERTIES.requireProperty("unitPrice", Double.class);
-		
-		PropertyBox box2 = PropertyBox.builder(BEAN_PROPERTIES).set(ID, 3L)
-				.set(PRICE, Double.valueOf(12.65)).build();
-		
+		Property<Double> PRICE = BEAN_PROPERTIES.property("unitPrice", Double.class);
+
+		PropertyBox box2 = PropertyBox.builder(BEAN_PROPERTIES).set(ID, 3L).set(PRICE, Double.valueOf(12.65)).build();
+
 		TestBean bean2 = BEAN_PROPERTIES.write(box2, new TestBean());
-		
+
 		assertEquals(Long.valueOf(3), bean2.getId());
 		assertEquals(Double.valueOf(12.65), bean2.getUnitPrice());
 
