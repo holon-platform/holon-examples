@@ -15,13 +15,13 @@
  */
 package com.holonplatform.example.core.property.test;
 
-import static com.holonplatform.example.core.property.model.MProduct.CATEGORY;
-import static com.holonplatform.example.core.property.model.MProduct.CATEGORY_DESCRIPTION;
-import static com.holonplatform.example.core.property.model.MProduct.DESCRIPTION;
-import static com.holonplatform.example.core.property.model.MProduct.ID;
-import static com.holonplatform.example.core.property.model.MProduct.PRODUCT;
-import static com.holonplatform.example.core.property.model.MProduct.UNIT_PRICE;
-import static com.holonplatform.example.core.property.model.MProduct.WITHDRAWN;
+import static com.holonplatform.example.core.property.model.Product.CATEGORY;
+import static com.holonplatform.example.core.property.model.Product.CATEGORY_DESCRIPTION;
+import static com.holonplatform.example.core.property.model.Product.DESCRIPTION;
+import static com.holonplatform.example.core.property.model.Product.ID;
+import static com.holonplatform.example.core.property.model.Product.PRODUCT;
+import static com.holonplatform.example.core.property.model.Product.UNIT_PRICE;
+import static com.holonplatform.example.core.property.model.Product.WITHDRAWN;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -236,7 +236,7 @@ public class TestPropertyModel {
 		assertEquals(5, size);
 
 		// Get a bean property as a typed PathProperty
-		PathProperty<Long> ID = BEAN_PROPERTIES.getProperty("id", Long.class).orElse(null);
+		PathProperty<Long> ID = BEAN_PROPERTIES.property("id", Long.class);
 
 		assertNotNull(ID);
 
