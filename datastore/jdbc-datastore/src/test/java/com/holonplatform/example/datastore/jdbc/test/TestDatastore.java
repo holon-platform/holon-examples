@@ -89,51 +89,50 @@ public class TestDatastore {
 	public void testQuery() {
 
 		// get all products (as a Stream) and print the description
-		datastore.query().target(TARGET).stream(PRODUCT).map(p -> p.getValue(DESCRIPTION)).forEach(description -> {
+		datastore.query(TARGET).stream(PRODUCT).map(p -> p.getValue(DESCRIPTION)).forEach(description -> {
 			System.out.println(description);
 		});
 
 		// get a product by id
-		PropertyBox product = datastore.query().target(TARGET).filter(ID.eq(1L)).findOne(PRODUCT).orElse(null);
+		PropertyBox product = datastore.query(TARGET).filter(ID.eq(1L)).findOne(PRODUCT).orElse(null);
 		assertNotNull(product);
 
 		// get all product ids, ordered by SKU
-		List<Long> ids = datastore.query().target(TARGET).sort(SKU.asc()).stream(ID).collect(Collectors.toList());
+		List<Long> ids = datastore.query(TARGET).sort(SKU.asc()).stream(ID).collect(Collectors.toList());
 
 		assertEquals(2, ids.size());
 
 		// get only the ID and DESCRITION product property values
-		Stream<PropertyBox> productIdDescription = datastore.query().target(TARGET).stream(ID, DESCRIPTION);
+		Stream<PropertyBox> productIdDescription = datastore.query(TARGET).stream(ID, DESCRIPTION);
 
 		assertEquals(2, productIdDescription.count());
 
 		// get the products with a price greater then 11
-		List<PropertyBox> products = datastore.query().target(TARGET).filter(UNIT_PRICE.gt(11.00)).list(PRODUCT);
+		List<PropertyBox> products = datastore.query(TARGET).filter(UNIT_PRICE.gt(11.00)).list(PRODUCT);
 
 		assertEquals(1, products.size());
 		assertEquals(Long.valueOf(2), products.get(0).getValue(ID));
 
 		// get the products with a price greater then 11 and description starting with "The"
-		products = datastore.query().target(TARGET).filter(UNIT_PRICE.gt(11.00).and(DESCRIPTION.startsWith("The")))
+		products = datastore.query(TARGET).filter(UNIT_PRICE.gt(11.00).and(DESCRIPTION.startsWith("The")))
 				.list(PRODUCT);
 		assertEquals(1, products.size());
 
 		// get the max price grouping by category
-		Double maxPrice = datastore.query().target(TARGET).aggregate(CATEGORY).stream(UNIT_PRICE.max()).findFirst()
-				.orElse(null);
+		Double maxPrice = datastore.query(TARGET).aggregate(CATEGORY).stream(UNIT_PRICE.max()).findFirst().orElse(null);
 		assertEquals(Double.valueOf(12.90), maxPrice);
 	}
 
 	public void testOperations() {
 
 		// update the WITHDRAWN status for product 1
-		datastore.query().target(TARGET).filter(ID.eq(1L)).findOne(PRODUCT).ifPresent(product -> {
+		datastore.query(TARGET).filter(ID.eq(1L)).findOne(PRODUCT).ifPresent(product -> {
 			// update the product
 			product.setValue(WITHDRAWN, true);
 			datastore.update(TARGET, product);
 		});
 
-		assertTrue(datastore.query().target(TARGET).filter(ID.eq(1L)).findOne(WITHDRAWN).orElse(false));
+		assertTrue(datastore.query(TARGET).filter(ID.eq(1L)).findOne(WITHDRAWN).orElse(false));
 
 		// insert a new product
 		PropertyBox third = PropertyBox.builder(PRODUCT).set(SKU, "prod3-sku").set(DESCRIPTION, "The third product")
