@@ -18,30 +18,34 @@ package com.holonplatform.example.model;
 import java.time.LocalDate;
 
 import com.holonplatform.core.Validator;
-import com.holonplatform.core.property.PathProperty;
+import com.holonplatform.core.property.BooleanProperty;
 import com.holonplatform.core.property.PropertySet;
 import com.holonplatform.core.property.PropertyValueConverter;
+import com.holonplatform.core.property.StringProperty;
+import com.holonplatform.core.property.TemporalProperty;
 
 /**
  * Account model.
  */
 public final class MAccount {
 
-	public static final PathProperty<String> ID = PathProperty.create("id", String.class) // Account id
+	public static final StringProperty ID = StringProperty.create("id") // Account id
 			.validator(Validator.max(100)); // limit to 100 chars
 
-	public static final PathProperty<String> SECRET = PathProperty.create("secret", String.class); // Account secret
+	public static final StringProperty SECRET = StringProperty.create("secret"); // Account secret
 
-	public static final PathProperty<String> DESCRIPTION = PathProperty.create("description", String.class);
+	public static final StringProperty DESCRIPTION = StringProperty.create("description");
 
-	public static final PathProperty<LocalDate> EXPIRY_DATE = PathProperty.create("expiry", LocalDate.class);
+	public static final TemporalProperty<LocalDate> EXPIRY_DATE = TemporalProperty.localDate("expiry");
 
-	public static final PathProperty<Boolean> ENABLED = PathProperty.create("enabled", Boolean.class)
+	public static final BooleanProperty ENABLED = BooleanProperty.create("enabled")
 			.converter(PropertyValueConverter.numericBoolean(Integer.class)); // Converted to boolean from an integer
 																				// model type
 
 	// Account property set
-	public static final PropertySet<?> ACCOUNT = PropertySet.of(ID, SECRET, DESCRIPTION, EXPIRY_DATE, ENABLED);
+	public static final PropertySet<?> ACCOUNT = PropertySet.builderOf(ID, SECRET, DESCRIPTION, EXPIRY_DATE, ENABLED)
+			.identifier(ID) // Account identifier
+			.build();
 
 	/*
 	 * Model class intended to be used only as static fields container.
