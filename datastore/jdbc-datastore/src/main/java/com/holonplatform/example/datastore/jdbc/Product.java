@@ -24,7 +24,7 @@ import com.holonplatform.core.property.PropertyValueConverter;
 import com.holonplatform.core.property.StringProperty;
 
 /**
- * Product model
+ * Product property model
  */
 public interface Product {
 

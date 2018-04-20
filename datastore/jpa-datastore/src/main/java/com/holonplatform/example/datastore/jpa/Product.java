@@ -17,42 +17,38 @@ package com.holonplatform.example.datastore.jpa;
 
 import com.holonplatform.core.Validator;
 import com.holonplatform.core.datastore.DataTarget;
-import com.holonplatform.core.property.PathProperty;
+import com.holonplatform.core.property.BooleanProperty;
+import com.holonplatform.core.property.NumericProperty;
 import com.holonplatform.core.property.PropertySet;
 import com.holonplatform.core.property.PropertyValueConverter;
 import com.holonplatform.core.property.StringProperty;
 
 /**
- * Product model
+ * Product property model
  */
-public final class Product {
+public interface Product {
 
-	public static final PathProperty<Long> ID = PathProperty.create("id", Long.class);
+	public static final NumericProperty<Long> ID = NumericProperty.longType("id");
 
-	public static final PathProperty<String> SKU = PathProperty.create("sku", String.class);
+	public static final StringProperty SKU = StringProperty.create("sku");
 
 	public static final StringProperty DESCRIPTION = StringProperty.create("description");
 
-	public static final PathProperty<String> CATEGORY = PathProperty.create("category", String.class);
+	public static final StringProperty CATEGORY = StringProperty.create("category");
 
-	public static final PathProperty<Double> UNIT_PRICE = PathProperty.create("price", Double.class)
+	public static final NumericProperty<Double> UNIT_PRICE = NumericProperty.doubleType("price")
 			// not negative value validator
 			.validator(Validator.notNegative());
 
-	public static final PathProperty<Boolean> WITHDRAWN = PathProperty.create("withdrawn", Boolean.class)
+	public static final BooleanProperty WITHDRAWN = BooleanProperty.create("withdrawn")
 			// set a property value converter from Integer model type to Boolean
 			.converter(PropertyValueConverter.numericBoolean(Integer.class));
 
 	// Product property set
-	public static final PropertySet<?> PRODUCT = PropertySet.of(ID, SKU, DESCRIPTION, CATEGORY, UNIT_PRICE, WITHDRAWN);
+	public static final PropertySet<?> PRODUCT = PropertySet
+			.builderOf(ID, SKU, DESCRIPTION, CATEGORY, UNIT_PRICE, WITHDRAWN).identifier(ID).build();
 
 	// "products" DataTarget
-	public static final DataTarget<String> TARGET = DataTarget.named("products");
-
-	/*
-	 * Model class intended to be used only as static fields container.
-	 */
-	private Product() {
-	}
+	public static final DataTarget<?> TARGET = DataTarget.named("products");
 
 }
