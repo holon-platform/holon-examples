@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.holonplatform.core.property.PropertyBox;
-import com.holonplatform.example.model.MCustomer;
+import com.holonplatform.example.model.Customer;
 
 /**
  * A simple in-memory customers data store.
@@ -43,7 +43,7 @@ public enum CustomerStore {
 
 	public void put(PropertyBox value) {
 		if (value != null) {
-			value.getValueIfPresent(MCustomer.ID).ifPresent(id -> DATA.put(id, value));
+			value.getValueIfPresent(Customer.ID).ifPresent(id -> DATA.put(id, value));
 		}
 	}
 

@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.holonplatform.core.property.PropertyBox;
-import com.holonplatform.example.model.MProduct;
+import com.holonplatform.example.model.Product;
 
 /**
  * A simple in-memory products data store.
@@ -43,7 +43,7 @@ public enum ProductStore {
 
 	public void put(PropertyBox value) {
 		if (value != null) {
-			value.getValueIfPresent(MProduct.ID).ifPresent(id -> DATA.put(id, value));
+			value.getValueIfPresent(Product.ID).ifPresent(id -> DATA.put(id, value));
 		}
 	}
 

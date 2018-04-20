@@ -25,9 +25,9 @@ import com.holonplatform.core.property.StringProperty;
 import com.holonplatform.core.property.TemporalProperty;
 
 /**
- * Account model.
+ * Account property model.
  */
-public final class MAccount {
+public interface Account {
 
 	public static final StringProperty ID = StringProperty.create("id") // Account id
 			.validator(Validator.max(100)); // limit to 100 chars
@@ -46,11 +46,5 @@ public final class MAccount {
 	public static final PropertySet<?> ACCOUNT = PropertySet.builderOf(ID, SECRET, DESCRIPTION, EXPIRY_DATE, ENABLED)
 			.identifier(ID) // Account identifier
 			.build();
-
-	/*
-	 * Model class intended to be used only as static fields container.
-	 */
-	private MAccount() {
-	}
 
 }

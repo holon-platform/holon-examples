@@ -24,11 +24,11 @@ import com.holonplatform.core.property.StringProperty;
 import com.holonplatform.core.property.VirtualProperty;
 
 /**
- * Customer model.
+ * Customer property model.
  */
-public final class MCustomer {
+public interface Customer {
 
-	public static enum Status {
+	public enum Status {
 
 		@Caption(value = "Active", messageCode = "customer.status.active")
 		ACTIVE,
@@ -69,11 +69,5 @@ public final class MCustomer {
 	public static final PropertySet<?> CUSTOMER = PropertySet
 			.builderOf(ID, NAME, SURNAME, EMAIL, STATUS, FULL_NAME, IS_ACTIVE).identifier(ID) // Customer identifier
 			.build();
-
-	/*
-	 * Model class intended to be used only as static fields container.
-	 */
-	private MCustomer() {
-	}
 
 }

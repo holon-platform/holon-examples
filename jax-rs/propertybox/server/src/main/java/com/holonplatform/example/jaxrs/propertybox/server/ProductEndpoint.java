@@ -32,7 +32,7 @@ import javax.ws.rs.core.Response.Status;
 
 import com.holonplatform.core.property.PropertyBox;
 import com.holonplatform.core.property.PropertySetRef;
-import com.holonplatform.example.model.MProduct;
+import com.holonplatform.example.model.Product;
 
 @Path("/")
 public class ProductEndpoint {
@@ -64,13 +64,13 @@ public class ProductEndpoint {
 	@POST
 	@Path("/products")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addProduct(@PropertySetRef(MProduct.class) PropertyBox product) {
+	public Response addProduct(@PropertySetRef(Product.class) PropertyBox product) {
 		if (product == null) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing product").build();
 		}
 		// set id
 		long nextId = getProductStore().nextId();
-		product.setValue(MProduct.ID, nextId);
+		product.setValue(Product.ID, nextId);
 		getProductStore().put(product);
 		return Response.created(URI.create("/api/products/" + nextId)).build();
 	}
@@ -81,14 +81,14 @@ public class ProductEndpoint {
 	@PUT
 	@Path("/products/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateProduct(@PropertySetRef(MProduct.class) PropertyBox product) {
+	public Response updateProduct(@PropertySetRef(Product.class) PropertyBox product) {
 		if (product == null) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing product").build();
 		}
-		if (!product.getValueIfPresent(MProduct.ID).isPresent()) {
+		if (!product.getValueIfPresent(Product.ID).isPresent()) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing product id").build();
 		}
-		return getProductStore().get(product.getValue(MProduct.ID)).map(p -> {
+		return getProductStore().get(product.getValue(Product.ID)).map(p -> {
 			getProductStore().put(product);
 			return Response.noContent().build();
 		}).orElse(Response.status(Status.NOT_FOUND).build());

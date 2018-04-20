@@ -33,7 +33,7 @@ import javax.ws.rs.core.Response.Status;
 import org.springframework.stereotype.Component;
 
 import com.holonplatform.core.property.PropertyBox;
-import com.holonplatform.example.model.MCustomer;
+import com.holonplatform.example.model.Customer;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -86,7 +86,7 @@ public class CustomerEndpoint {
 		}
 		// set id
 		long nextId = getCustomerStore().nextId();
-		customer.setValue(MCustomer.ID, nextId);
+		customer.setValue(Customer.ID, nextId);
 		getCustomerStore().put(customer);
 		return Response.created(URI.create("/api/customers/" + nextId)).build();
 	}
@@ -104,10 +104,10 @@ public class CustomerEndpoint {
 		if (customer == null) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing customer").build();
 		}
-		if (!customer.getValueIfPresent(MCustomer.ID).isPresent()) {
+		if (!customer.getValueIfPresent(Customer.ID).isPresent()) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing customer id").build();
 		}
-		return getCustomerStore().get(customer.getValue(MCustomer.ID)).map(p -> {
+		return getCustomerStore().get(customer.getValue(Customer.ID)).map(p -> {
 			getCustomerStore().put(customer);
 			return Response.noContent().build();
 		}).orElse(Response.status(Status.NOT_FOUND).build());

@@ -21,9 +21,9 @@ import com.holonplatform.core.property.PropertySet;
 import com.holonplatform.core.property.StringProperty;
 
 /**
- * Product model
+ * Product property model
  */
-public final class MProduct {
+public interface Product {
 
 	public static final NumericProperty<Long> ID = NumericProperty.longType("id").message("Product ID")
 			.messageCode("product.id"); // Product ID
@@ -46,11 +46,5 @@ public final class MProduct {
 	public static final PropertySet<?> PRODUCT = PropertySet.builderOf(ID, SKU, DESCRIPTION, CATEGORY, UNIT_PRICE)
 			.identifier(ID) // Product identifier
 			.build();
-
-	/*
-	 * Model class intended to be used only as static fields container.
-	 */
-	private MProduct() {
-	}
 
 }
