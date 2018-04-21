@@ -11,13 +11,9 @@ This example addresses the following topics:
 * Use the `@ApiPropertySetModel` annotation to declare a _property set_ as a named Swagger __model__ bound to `PropertyBox` type API operations requests and responses
 * Configure multiple API _groups_ for Swagger API documentation relying on Holon JAX-RS Swagger __Spring Boot__ integration
 
-## Example Data model
-
-This example uses the [Examples shared data model](https://github.com/holon-platform/holon-examples/tree/master/model) artifact.
-
 ## Example structure
 
-This JAX-RS server implements a simple __RESTful__ API to provide the `MProduct` and the `MCustomer` data model _entity_ management, backed by an in-memory store, using _Resteasy_ as JAX-RS implementation and _Undertow_ as servlet container.
+This JAX-RS server implements a simple __RESTful__ API to provide the `Product` and the `Customer` data model _entities_ management, backed by an in-memory store, using _Resteasy_ as JAX-RS implementation and _Undertow_ as servlet container.
 
 The server API uses the `PropertyBox` class as data container and __JSON__ as data exchange format, leveraging on the [Holon platform JSON module](https://github.com/holon-platform/holon-json) _Jackson_ JAX-RS support.
 
@@ -29,7 +25,7 @@ The JAX-RS resource is declared as a singleton __Spring bean__ through the `@Com
 
 Some Swagger annotations are used to provide API operations description (`@ApiOperation`) and response details (`@ApiResponses`).
 
-The [ProductModel](src/main/java/com/holonplatform/example/jaxrs/swagger/products/ProductModel.java) annotation is used to declare the product `PropertyBox` _property set_ (i.e. the `PropertySet` declared in the `MProduct` model class) and to declare a Swagger _model_ definition, named `Product` and bound to the product _property set_, through the `@ApiPropertySetModel` annotation.
+The [ProductModel](src/main/java/com/holonplatform/example/jaxrs/swagger/products/ProductModel.java) annotation is used to declare the product `PropertyBox` _property set_ (i.e. the `PropertySet` declared in the `Product` model class) and to declare a Swagger _model_ definition, named `Product` and bound to the product _property set_, through the `@ApiPropertySetModel` annotation.
 
 ### Customers management API
 
@@ -39,7 +35,7 @@ The JAX-RS resource is declared as a singleton __Spring bean__ through the `@Com
 
 Some Swagger annotations are used to provide API operations description (`@ApiOperation`) and response details (`@ApiResponses`).
 
-The [CustomerModel](src/main/java/com/holonplatform/example/jaxrs/swagger/customers/CustomerModel.java) annotation is used to declare the customer `PropertyBox` _property set_ (i.e. the `PropertySet` declared in the `MCustomer` model class) and to declare a Swagger _model_ definition, named `Customer` and bound to the customer _property set_, through the `@ApiPropertySetModel` annotation.
+The [CustomerModel](src/main/java/com/holonplatform/example/jaxrs/swagger/customers/CustomerModel.java) annotation is used to declare the customer `PropertyBox` _property set_ (i.e. the `PropertySet` declared in the `Customer` model class) and to declare a Swagger _model_ definition, named `Customer` and bound to the customer _property set_, through the `@ApiPropertySetModel` annotation.
 
 ### Multiple Swagger API listing endpoints configuration
 
