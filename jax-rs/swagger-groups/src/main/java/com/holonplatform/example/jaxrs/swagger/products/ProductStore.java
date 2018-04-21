@@ -22,7 +22,6 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.holonplatform.core.property.PropertyBox;
-import com.holonplatform.example.model.Product;
 
 /**
  * A simple in-memory products data store.

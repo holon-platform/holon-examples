@@ -37,13 +37,6 @@
 			<artifactId>holon-starter-vaadin</artifactId>
 		</dependency>
 
-		<!-- Example model -->
-		<dependency>
-			<groupId>com.holon-platform.examples</groupId>
-			<artifactId>holon-example-model</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-
 		<!-- H2 -->
 		<dependency>
 			<groupId>com.h2database</groupId>

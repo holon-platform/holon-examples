@@ -37,13 +37,6 @@
 			<artifactId>holon-jaxrs-swagger</artifactId>
 		</dependency>
 
-		<!-- Example model -->
-		<dependency>
-			<groupId>com.holon-platform.examples</groupId>
-			<artifactId>holon-example-model</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-
 	</dependencies>
 
 </project>

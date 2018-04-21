@@ -33,7 +33,6 @@ import javax.ws.rs.core.Response.Status;
 import org.springframework.stereotype.Component;
 
 import com.holonplatform.core.property.PropertyBox;
-import com.holonplatform.example.model.Product;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

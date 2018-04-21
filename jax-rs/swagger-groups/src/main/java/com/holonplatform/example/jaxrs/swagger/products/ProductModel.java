@@ -21,7 +21,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import com.holonplatform.core.property.PropertySetRef;
-import com.holonplatform.example.model.Product;
 import com.holonplatform.jaxrs.swagger.annotations.ApiPropertySetModel;
 
 /*
