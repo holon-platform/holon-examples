@@ -21,7 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.holonplatform.core.datastore.DataTarget;
 import com.holonplatform.core.datastore.Datastore;
-import com.holonplatform.example.model.Product;
+import com.holonplatform.example.ui.vaadin.app.model.Product;
 import com.holonplatform.vaadin.components.Components;
 import com.holonplatform.vaadin.components.PropertyListing;
 import com.holonplatform.vaadin.navigator.ViewNavigator;

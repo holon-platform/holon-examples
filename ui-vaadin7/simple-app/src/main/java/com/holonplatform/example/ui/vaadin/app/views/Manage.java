@@ -26,7 +26,7 @@ import com.holonplatform.core.datastore.Datastore;
 import com.holonplatform.core.datastore.Datastore.OperationResult;
 import com.holonplatform.core.datastore.DefaultWriteOption;
 import com.holonplatform.core.exceptions.DataAccessException;
-import com.holonplatform.example.model.Product;
+import com.holonplatform.example.ui.vaadin.app.model.Product;
 import com.holonplatform.vaadin.components.Components;
 import com.holonplatform.vaadin.components.PropertyInputForm;
 import com.holonplatform.vaadin.navigator.ViewNavigator;
