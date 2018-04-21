@@ -17,44 +17,41 @@ package com.holonplatform.example.ui.vaadin.app.model;
 
 import com.holonplatform.core.Validator;
 import com.holonplatform.core.datastore.DataTarget;
-import com.holonplatform.core.property.PathProperty;
+import com.holonplatform.core.property.BooleanProperty;
+import com.holonplatform.core.property.NumericProperty;
 import com.holonplatform.core.property.PropertySet;
 import com.holonplatform.core.property.PropertyValueConverter;
+import com.holonplatform.core.property.StringProperty;
 
 /**
  * Product model
  */
-public final class Product {
+public interface Product {
 
-	public static final PathProperty<Long> ID = PathProperty.create("id", Long.class).message("Product ID");
+	public static final NumericProperty<Long> ID = NumericProperty.longType("id").message("Product ID");
 
-	public static final PathProperty<String> SKU = PathProperty.create("sku", String.class).message("SKU");
+	public static final StringProperty SKU = StringProperty.create("sku").message("SKU");
 
-	public static final PathProperty<String> DESCRIPTION = PathProperty.create("description", String.class)
-			.message("Description");
+	public static final StringProperty DESCRIPTION = StringProperty.create("description").message("Description");
 
-	public static final PathProperty<String> CATEGORY = PathProperty.create("category", String.class)
-			.message("Category");
+	public static final StringProperty CATEGORY = StringProperty.create("category").message("Category");
 
-	public static final PathProperty<Double> UNIT_PRICE = PathProperty.create("price", Double.class).message("Price")
+	public static final NumericProperty<Double> UNIT_PRICE = NumericProperty.doubleType("price").message("Price")
 			// not negative value validator
 			.validator(Validator.notNegative());
 
-	public static final PathProperty<Boolean> WITHDRAWN = PathProperty.create("withdrawn", Boolean.class)
+	public static final BooleanProperty WITHDRAWN = BooleanProperty.create("withdrawn")
 			.message("Withdrawn")
 			// set a property value converter from Integer model type to Boolean
 			.converter(PropertyValueConverter.numericBoolean(Integer.class));
 
 	// Product property set
-	public static final PropertySet<?> PRODUCT = PropertySet.of(ID, SKU, DESCRIPTION, CATEGORY, UNIT_PRICE, WITHDRAWN);
+	public static final PropertySet<?> PRODUCT = PropertySet
+			.builderOf(ID, SKU, DESCRIPTION, CATEGORY, UNIT_PRICE, WITHDRAWN) //
+			.identifier(ID) // Set the ID property as identifier
+			.build();
 
 	// "products" DataTarget
-	public static final DataTarget<String> TARGET = DataTarget.named("products");
-
-	/*
-	 * Model class intended to be used only as static fields container.
-	 */
-	private Product() {
-	}
+	public static final DataTarget<?> TARGET = DataTarget.named("products");
 
 }

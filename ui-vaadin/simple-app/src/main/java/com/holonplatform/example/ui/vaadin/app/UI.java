@@ -23,11 +23,12 @@ import com.vaadin.spring.annotation.SpringViewDisplay;
 /*
  * The Vaadin UI
  */
-@SuppressWarnings("serial")
 @SpringUI
-@SpringViewDisplay
+@SpringViewDisplay // The UI itself is used as view display component
 @Theme("valo")
 public class UI extends com.vaadin.ui.UI {
+
+	private static final long serialVersionUID = -3670410570648963742L;
 
 	@Override
 	protected void init(VaadinRequest request) {
