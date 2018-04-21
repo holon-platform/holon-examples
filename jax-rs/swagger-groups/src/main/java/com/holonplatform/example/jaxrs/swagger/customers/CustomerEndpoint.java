@@ -50,6 +50,8 @@ public class CustomerEndpoint {
 	 * Get a list of customers PropertyBox in JSON.
 	 */
 	@ApiOperation("Get all the customers")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "OK", response = PropertyBox.class, responseContainer = "List") })
 	@CustomerModel
 	@GET
 	@Path("/")
@@ -98,7 +100,7 @@ public class CustomerEndpoint {
 	@ApiResponses({ @ApiResponse(code = 204, message = "Customer updated"),
 			@ApiResponse(code = 404, message = "Customer not found") })
 	@PUT
-	@Path("/{id}")
+	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateCustomer(@CustomerModel PropertyBox customer) {
 		if (customer == null) {

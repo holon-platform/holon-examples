@@ -50,6 +50,8 @@ public class ProductEndpoint {
 	 * Get a list of products PropertyBox in JSON.
 	 */
 	@ApiOperation("Get all the products")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "OK", response = PropertyBox.class, responseContainer = "List") })
 	@ProductModel
 	@GET
 	@Path("/")
@@ -98,7 +100,7 @@ public class ProductEndpoint {
 	@ApiResponses({ @ApiResponse(code = 204, message = "Product updated"),
 			@ApiResponse(code = 404, message = "Product not found") })
 	@PUT
-	@Path("/{id}")
+	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateProduct(@ProductModel PropertyBox product) {
 		if (product == null) {
