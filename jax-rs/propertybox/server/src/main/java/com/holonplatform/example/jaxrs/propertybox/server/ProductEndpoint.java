@@ -32,7 +32,7 @@ import javax.ws.rs.core.Response.Status;
 
 import com.holonplatform.core.property.PropertyBox;
 import com.holonplatform.core.property.PropertySetRef;
-import com.holonplatform.example.model.Product;
+import com.holonplatform.example.jaxrs.propertybox.model.Product;
 
 @Path("/")
 public class ProductEndpoint {

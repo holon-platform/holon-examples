@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.holonplatform.core.property.PropertyBox;
-import com.holonplatform.example.model.Product;
+import com.holonplatform.example.jaxrs.propertybox.model.Product;
 import com.holonplatform.http.exceptions.UnsuccessfulResponseException;
 import com.holonplatform.http.rest.RequestEntity;
 import com.holonplatform.http.rest.RestClient;

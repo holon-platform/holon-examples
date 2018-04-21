@@ -13,17 +13,17 @@ This example addresses the following topics:
 * Setup a __JAX-RS client__ with [PropertyBox](https://docs.holon-platform.com/current/reference/holon-core.html#PropertyBox) JSON support.
 * Obtain and use [RestClient](https://docs.holon-platform.com/current/reference/holon-core.html#RestClient) to invoke API operations involving `PropertyBox` object types and handle errors.
 
-## Example Data model
-
-This example uses the [Examples shared data model](https://github.com/holon-platform/holon-examples/tree/master/model) artifact, which is declared as dependency both for the __server__ and the __client__ module.
-
 ## Example structure
 
-This example project is composed of two modules: __server__ and __client__.
+This example project is composed of 3 modules: __model__, __server__ and __client__.
+
+### Data model module
+
+The __model__ module contains a _shared_ data model for a `Product` entity, defined using the Holon Platform Property model. This module is inherited by both server and client modules.
 
 ### Server module
 
-The __server__ module is a JAX-RS server implementation using _Jersey_ and _Grizzly web server_ to provide a simple __RESTful__ API to provide the `MProduct` data model _entity_ management, backed by an in-memory store. The `holon-jaxrs-server` artifact provides support and dependencies for JAX-RS server setup.
+The __server__ module is a JAX-RS server implementation using _Jersey_ and _Grizzly web server_ to provide a simple __RESTful__ API to provide the `Product` data model _entity_ management, backed by an in-memory store. The `holon-jaxrs-server` artifact provides support and dependencies for JAX-RS server setup.
 
 The server API uses the `PropertyBox` class as data container and __JSON__ as data exchange format, leveraging on the [Holon platform JSON module](https://github.com/holon-platform/holon-json) _Jackson_ JAX-RS support. The _Jackson_ support for the `PropertyBox` type is provided by the `holon-jackson-jaxrs` artifact and it is automatically configured in the JAX-RS server.
 
