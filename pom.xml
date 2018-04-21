@@ -57,8 +57,6 @@
 	</properties>
 
 	<modules>
-		<module>model</module>
-		
 		<module>core/property-model</module>
 		<module>core/spring-context</module>
 		<module>core/spring-boot-context</module>
