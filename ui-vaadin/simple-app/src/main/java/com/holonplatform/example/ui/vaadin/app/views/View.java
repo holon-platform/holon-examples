@@ -31,11 +31,13 @@ import com.holonplatform.vaadin.navigator.annotations.OnShow;
 import com.holonplatform.vaadin.navigator.annotations.ViewParameter;
 import com.holonplatform.vaadin.navigator.annotations.WindowView;
 import com.vaadin.spring.annotation.SpringView;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 
-@WindowView(windowWidth = "500px", windowHeigth = "400px")
-@Caption("View product")
+@WindowView(windowWidth = "500px", windowHeigth = "400px") // By default, this View will be opened in a Window
+@Caption("View product") // Window caption
 @SpringView(name = "view")
 public class View extends VerticalLayout implements com.vaadin.navigator.View {
 
@@ -51,11 +53,10 @@ public class View extends VerticalLayout implements com.vaadin.navigator.View {
 
 	public View() {
 		super();
-
 		Components.configure(this)
 				// set margins and size full to view content
 				.margin().fullSize()
-				// add view form using Product property set
+				// add a PropertyViewForm using the Product property set
 				.addAndExpandFull(viewForm = Components.view.form().fullSize().properties(PRODUCT).build()).add(
 						// horizontal layout as bottom toolbar
 						Components.hl().fullWidth().spacing().styleName(ValoTheme.WINDOW_BOTTOM_TOOLBAR)
@@ -67,16 +68,7 @@ public class View extends VerticalLayout implements com.vaadin.navigator.View {
 										.build())
 								// DELETE action
 								.add(Components.button().caption("Delete").fullWidth()
-										.styleName(ValoTheme.BUTTON_DANGER)
-										// ask confirmation before delete
-										.onClick(e -> Components.questionDialog().message("Are you sure?")
-												.callback(answeredYes -> {
-													// if confirmed, delete the current form product PropertyBox
-													datastore.delete(TARGET, viewForm.getValue());
-													// navigate back
-													ViewNavigator.require().navigateBack();
-												}).open())
-										.build())
+										.styleName(ValoTheme.BUTTON_DANGER).onClick(e -> delete()).build())
 								.build());
 	}
 
@@ -84,10 +76,25 @@ public class View extends VerticalLayout implements com.vaadin.navigator.View {
 	public void onShow() {
 		// set the view form product value
 		viewForm.setValue(
-				// load product using id parameter
+				// load product using the "id" parameter
 				datastore.query().target(TARGET).filter(ID.eq(id)).findOne(PRODUCT)
 						// throw an exception if not found
 						.orElseThrow(() -> new DataAccessException("Product not found: " + id)));
+	}
+
+	private void delete() {
+		// ask confirmation before delete
+		Components.questionDialog().message("Are you sure?").callback(answeredYes -> {
+
+			// if confirmed, delete the current product PropertyBox
+			datastore.delete(TARGET, viewForm.getValue());
+			// Notify the user
+			Notification.show("Product deleted", Type.TRAY_NOTIFICATION);
+
+			// navigate back
+			ViewNavigator.require().navigateBack();
+
+		}).open();
 	}
 
 }

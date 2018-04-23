@@ -13,20 +13,22 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.holonplatform.example.model;
+package com.holonplatform.example.jaxrs.swagger.customers;
 
 import com.holonplatform.core.Validator;
 import com.holonplatform.core.i18n.Caption;
+import com.holonplatform.core.property.NumericProperty;
 import com.holonplatform.core.property.PathProperty;
 import com.holonplatform.core.property.PropertySet;
+import com.holonplatform.core.property.StringProperty;
 import com.holonplatform.core.property.VirtualProperty;
 
 /**
- * Customer model.
+ * Customer property model.
  */
-public final class MCustomer {
+public interface Customer {
 
-	public static enum Status {
+	public enum Status {
 
 		@Caption(value = "Active", messageCode = "customer.status.active")
 		ACTIVE,
@@ -39,25 +41,24 @@ public final class MCustomer {
 
 	}
 
-	public static final PathProperty<Long> ID = PathProperty.create("id", Long.class).message("Customer ID")
+	public static final NumericProperty<Long> ID = NumericProperty.longType("id").message("Customer ID")
 			.messageCode("customer.id"); // Customer ID
 
-	public static final PathProperty<String> NAME = PathProperty.create("name", String.class) // Name
+	public static final StringProperty NAME = StringProperty.create("name") // Name
 			.message("Name").messageCode("customer.name");
 
-	public static final PathProperty<String> SURNAME = PathProperty.create("surname", String.class) // Surname
+	public static final StringProperty SURNAME = StringProperty.create("surname") // Surname
 			.message("Surname").messageCode("customer.surname");
 
-	public static final PathProperty<String> EMAIL = PathProperty.create("email", String.class) // E-mail
+	public static final StringProperty EMAIL = StringProperty.create("email") // E-mail
 			.validator(Validator.email()).messageCode("E-mail").message("customer.email");
 
 	public static final PathProperty<Status> STATUS = PathProperty.create("status", Status.class) // Status
 			.message("Status").messageCode("customer.status");
 
-	public static final VirtualProperty<String> FULL_NAME = VirtualProperty
-			.create(String.class, // Name + surname
-					propertyBox -> (propertyBox.getValueIfPresent(NAME).orElse("")
-							+ propertyBox.getValueIfPresent(SURNAME).map(v -> " " + v).orElse("")).trim())
+	public static final VirtualProperty<String> FULL_NAME = VirtualProperty.create(String.class, // Name + surname
+			propertyBox -> (propertyBox.getValueIfPresent(NAME).orElse("")
+					+ propertyBox.getValueIfPresent(SURNAME).map(v -> " " + v).orElse("")).trim())
 			.message("Name").messageCode("customer.fullname");
 
 	public static final VirtualProperty<Boolean> IS_ACTIVE = VirtualProperty.create(Boolean.class, // Status == ACTIVE
@@ -65,13 +66,8 @@ public final class MCustomer {
 					.orElse(Boolean.FALSE));
 
 	// Customer property set
-	public static final PropertySet<?> CUSTOMER = PropertySet.of(ID, NAME, SURNAME, EMAIL, STATUS, FULL_NAME,
-			IS_ACTIVE);
-
-	/*
-	 * Model class intended to be used only as static fields container.
-	 */
-	private MCustomer() {
-	}
+	public static final PropertySet<?> CUSTOMER = PropertySet
+			.builderOf(ID, NAME, SURNAME, EMAIL, STATUS, FULL_NAME, IS_ACTIVE).identifier(ID) // Customer identifier
+			.build();
 
 }

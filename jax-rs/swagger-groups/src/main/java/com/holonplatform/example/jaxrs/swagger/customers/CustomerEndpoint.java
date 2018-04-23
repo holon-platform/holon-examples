@@ -33,7 +33,6 @@ import javax.ws.rs.core.Response.Status;
 import org.springframework.stereotype.Component;
 
 import com.holonplatform.core.property.PropertyBox;
-import com.holonplatform.example.model.MCustomer;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -50,6 +49,8 @@ public class CustomerEndpoint {
 	 * Get a list of customers PropertyBox in JSON.
 	 */
 	@ApiOperation("Get all the customers")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "OK", response = PropertyBox.class, responseContainer = "List") })
 	@CustomerModel
 	@GET
 	@Path("/")
@@ -86,7 +87,7 @@ public class CustomerEndpoint {
 		}
 		// set id
 		long nextId = getCustomerStore().nextId();
-		customer.setValue(MCustomer.ID, nextId);
+		customer.setValue(Customer.ID, nextId);
 		getCustomerStore().put(customer);
 		return Response.created(URI.create("/api/customers/" + nextId)).build();
 	}
@@ -98,16 +99,16 @@ public class CustomerEndpoint {
 	@ApiResponses({ @ApiResponse(code = 204, message = "Customer updated"),
 			@ApiResponse(code = 404, message = "Customer not found") })
 	@PUT
-	@Path("/{id}")
+	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateCustomer(@CustomerModel PropertyBox customer) {
 		if (customer == null) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing customer").build();
 		}
-		if (!customer.getValueIfPresent(MCustomer.ID).isPresent()) {
+		if (!customer.getValueIfPresent(Customer.ID).isPresent()) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing customer id").build();
 		}
-		return getCustomerStore().get(customer.getValue(MCustomer.ID)).map(p -> {
+		return getCustomerStore().get(customer.getValue(Customer.ID)).map(p -> {
 			getCustomerStore().put(customer);
 			return Response.noContent().build();
 		}).orElse(Response.status(Status.NOT_FOUND).build());

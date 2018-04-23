@@ -18,7 +18,7 @@ This example addresses the following topics:
 
 ## Example structure
 
-The [MProduct](https://github.com/holon-platform/holon-examples/blob/master/core/property-model/src/main/java/com/holonplatform/example/core/property/model/MProduct.java) class represents the property model for a simple _product_ entity.
+The [Product](https://github.com/holon-platform/holon-examples/blob/master/core/property-model/src/main/java/com/holonplatform/example/core/property/model/Product.java) class represents the property model for a simple _product_ entity.
 
 The [TestPropertyModel](https://github.com/holon-platform/holon-examples/blob/master/core/property-model/src/test/java/com/holonplatform/example/core/property/test/TestPropertyModel.java) class is a JUnit test class to show how to use the `Property` and `VirtualProperty` interfaces, the `PropertySet` and `PropertyBox` APIs and how to obtain a property model introspecting a Java bean class.
 

@@ -1,19 +1,20 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
 		<groupId>com.holon-platform.examples</groupId>
-		<artifactId>holon-examples-root</artifactId>
-		<version>5.0.0</version>
+		<artifactId>holon-example-jaxrs-propertybox</artifactId>
+		<version>5.1.0</version>
 	</parent>
 
-	<artifactId>holon-example-model</artifactId>
+	<artifactId>holon-example-jaxrs-propertybox-model</artifactId>
 
 	<packaging>jar</packaging>
 
 	<name>${project.groupId}:${project.artifactId}</name>
-	<description>Holon Platform Examples - Shared data model</description>
+	<description>Holon Platform Example - JAX-RS: Client and Server PropertyBox handling (Model module)</description>
 
 	<url>https://holon-platform.com</url>
 	<licenses>
@@ -25,13 +26,13 @@
 	</licenses>
 
 	<dependencies>
-
+	
 		<!-- Holon Core -->
 		<dependency>
 			<groupId>com.holon-platform.core</groupId>
 			<artifactId>holon-core</artifactId>
 		</dependency>
-
+		
 	</dependencies>
 
 </project>

@@ -13,41 +13,38 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.holonplatform.example.model;
+package com.holonplatform.example.jaxrs.swagger.products;
 
 import com.holonplatform.core.Validator;
-import com.holonplatform.core.property.PathProperty;
+import com.holonplatform.core.property.NumericProperty;
 import com.holonplatform.core.property.PropertySet;
+import com.holonplatform.core.property.StringProperty;
 
 /**
- * Product model
+ * Product property model
  */
-public final class MProduct {
+public interface Product {
 
-	public static final PathProperty<Long> ID = PathProperty.create("id", Long.class).message("Product ID")
+	public static final NumericProperty<Long> ID = NumericProperty.longType("id").message("Product ID")
 			.messageCode("product.id"); // Product ID
 
-	public static final PathProperty<String> SKU = PathProperty.create("sku", String.class) // SKU
+	public static final StringProperty SKU = StringProperty.create("sku") // SKU
 			.message("SKU").messageCode("product.sku");
 
-	public static final PathProperty<String> DESCRIPTION = PathProperty.create("description", String.class) // Description
+	public static final StringProperty DESCRIPTION = StringProperty.create("description") // Description
 			.message("Description").messageCode("product.description");
 
-	public static final PathProperty<String> CATEGORY = PathProperty.create("category", String.class) // Category
+	public static final StringProperty CATEGORY = StringProperty.create("category") // Category
 			.message("Category").messageCode("product.category");
 
-	public static final PathProperty<Double> UNIT_PRICE = PathProperty.create("price", Double.class) // Price
+	public static final NumericProperty<Double> UNIT_PRICE = NumericProperty.doubleType("price") // Price
 			.message("Price").messageCode("product.price")
 			// not negative value validator
 			.validator(Validator.notNegative());
 
 	// Product property set
-	public static final PropertySet<?> PRODUCT = PropertySet.of(ID, SKU, DESCRIPTION, CATEGORY, UNIT_PRICE);
-
-	/*
-	 * Model class intended to be used only as static fields container.
-	 */
-	private MProduct() {
-	}
+	public static final PropertySet<?> PRODUCT = PropertySet.builderOf(ID, SKU, DESCRIPTION, CATEGORY, UNIT_PRICE)
+			.identifier(ID) // Product identifier
+			.build();
 
 }

@@ -21,7 +21,7 @@ import com.holonplatform.core.datastore.DataTarget;
 import com.holonplatform.core.datastore.Datastore;
 import com.holonplatform.core.exceptions.DataAccessException;
 import com.holonplatform.core.i18n.Caption;
-import com.holonplatform.example.model.MProduct;
+import com.holonplatform.example.ui.vaadin.app.model.Product;
 import com.holonplatform.vaadin.components.Components;
 import com.holonplatform.vaadin.components.PropertyViewForm;
 import com.holonplatform.vaadin.navigator.ViewNavigator;
@@ -54,7 +54,7 @@ public class View extends VerticalLayout implements com.vaadin.navigator.View {
 				// set margins and size full to view content
 				.margin().fullSize()
 				// add view form using Product property set
-				.addAndExpandFull(viewForm = Components.view.form().fullSize().properties(MProduct.PRODUCT).build())
+				.addAndExpandFull(viewForm = Components.view.form().fullSize().properties(Product.PRODUCT).build())
 				.add(
 						// horizontal layout as bottom toolbar
 						Components.hl().fullWidth().spacing().styleName(ValoTheme.WINDOW_BOTTOM_TOOLBAR)
@@ -84,8 +84,8 @@ public class View extends VerticalLayout implements com.vaadin.navigator.View {
 		// set the view form product value
 		viewForm.setValue(
 				// load product using id parameter
-				datastore.query().target(DataTarget.named("products")).filter(MProduct.ID.eq(id))
-						.findOne(MProduct.PRODUCT)
+				datastore.query().target(DataTarget.named("products")).filter(Product.ID.eq(id))
+						.findOne(Product.PRODUCT)
 						// throw an exception if not found
 						.orElseThrow(() -> new DataAccessException("Product not found: " + id)));
 	}

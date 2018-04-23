@@ -29,7 +29,7 @@ The `@ApiPropertySetModel` annotation is used to create a Swagger __model__ defi
 
 The `@PropertySetRef` annotation is used to declare the `PropertySet` which is bound to a `PropertyBox` request or response object type.
 
-To improve code organization, consistency and readability, the [ProductModel](src/main/java/com/holonplatform/example/jaxrs/swagger/ProductModel.java) annotation is defined, which is in turn annotated with `@ApiPropertySetModel` (using the __Product__ model name) and `@PropertySetRef` (declaring the `MProduct` class as the source of the product `PropertySet`).
+To improve code organization, consistency and readability, the [ProductModel](src/main/java/com/holonplatform/example/jaxrs/swagger/ProductModel.java) annotation is defined, which is in turn annotated with `@ApiPropertySetModel` (using the __Product__ model name) and `@PropertySetRef` (declaring the `Product` class as the source of the product `PropertySet`).
 
 The `ProductModel` annotation is used in API operations to qualify a `PropertySet` type request body or response type.
 

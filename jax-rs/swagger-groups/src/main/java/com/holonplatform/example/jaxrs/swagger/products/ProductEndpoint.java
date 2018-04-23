@@ -33,7 +33,6 @@ import javax.ws.rs.core.Response.Status;
 import org.springframework.stereotype.Component;
 
 import com.holonplatform.core.property.PropertyBox;
-import com.holonplatform.example.model.MProduct;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -50,6 +49,8 @@ public class ProductEndpoint {
 	 * Get a list of products PropertyBox in JSON.
 	 */
 	@ApiOperation("Get all the products")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "OK", response = PropertyBox.class, responseContainer = "List") })
 	@ProductModel
 	@GET
 	@Path("/")
@@ -86,7 +87,7 @@ public class ProductEndpoint {
 		}
 		// set id
 		long nextId = getProductStore().nextId();
-		product.setValue(MProduct.ID, nextId);
+		product.setValue(Product.ID, nextId);
 		getProductStore().put(product);
 		return Response.created(URI.create("/api/products/" + nextId)).build();
 	}
@@ -98,16 +99,16 @@ public class ProductEndpoint {
 	@ApiResponses({ @ApiResponse(code = 204, message = "Product updated"),
 			@ApiResponse(code = 404, message = "Product not found") })
 	@PUT
-	@Path("/{id}")
+	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateProduct(@ProductModel PropertyBox product) {
 		if (product == null) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing product").build();
 		}
-		if (!product.getValueIfPresent(MProduct.ID).isPresent()) {
+		if (!product.getValueIfPresent(Product.ID).isPresent()) {
 			return Response.status(Status.BAD_REQUEST).entity("Missing product id").build();
 		}
-		return getProductStore().get(product.getValue(MProduct.ID)).map(p -> {
+		return getProductStore().get(product.getValue(Product.ID)).map(p -> {
 			getProductStore().put(product);
 			return Response.noContent().build();
 		}).orElse(Response.status(Status.NOT_FOUND).build());

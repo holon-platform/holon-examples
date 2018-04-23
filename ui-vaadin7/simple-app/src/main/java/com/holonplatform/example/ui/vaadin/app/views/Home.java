@@ -21,7 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.holonplatform.core.datastore.DataTarget;
 import com.holonplatform.core.datastore.Datastore;
-import com.holonplatform.example.model.MProduct;
+import com.holonplatform.example.ui.vaadin.app.model.Product;
 import com.holonplatform.vaadin.components.Components;
 import com.holonplatform.vaadin.components.PropertyListing;
 import com.holonplatform.vaadin.navigator.ViewNavigator;
@@ -54,14 +54,14 @@ public class Home extends VerticalLayout implements View {
 						// navigate to "manage" view
 						.onClick(e -> ViewNavigator.require().toView("manage").navigate()).build())
 				// build and add listing
-				.addAndExpandFull(listing = Components.listing.properties(MProduct.PRODUCT)
+				.addAndExpandFull(listing = Components.listing.properties(Product.PRODUCT)
 						// setup data source using Datastore with 'products' table name target and product ID as pk
-						.dataSource(datastore, DataTarget.named("products"), MProduct.ID)
+						.dataSource(datastore, DataTarget.named("products"), Product.ID)
 						// disable auto refresh: will be triggered on view enter
 						.autoRefresh(false)
 						// when user clicks on a row, open the 'view' named View providing product id parameter
 						.withItemClickListener((i, p, e) -> ViewNavigator.require().toView("view")
-								.withParameter("id", i.getValue(MProduct.ID)).navigate())
+								.withParameter("id", i.getValue(Product.ID)).navigate())
 						// set full size and build
 						.fullSize().build());
 	}

@@ -51,14 +51,16 @@ import io.swagger.annotations.ApiResponses;
 @Component
 @Path("/products")
 public class ProductEndpoint {
-	
+
 	@Inject
 	private Datastore datastore;
-	
+
 	/*
 	 * Get a list of products PropertyBox in JSON.
 	 */
 	@ApiOperation("Get all the products")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "OK", response = PropertyBox.class, responseContainer = "List") })
 	@ProductModel
 	@GET
 	@Path("/")
@@ -101,10 +103,11 @@ public class ProductEndpoint {
 	 * Update a product. The @PropertySetRef must be used to declare the request PropertyBox property set.
 	 */
 	@ApiOperation("Update a product")
+	// @ApiParam(name = "id", value = "The product id to update")
 	@ApiResponses({ @ApiResponse(code = 204, message = "Product updated"),
 			@ApiResponse(code = 404, message = "Product not found") })
 	@PUT
-	@Path("/{id}")
+	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateProduct(@ProductModel PropertyBox product) {
 		if (product == null) {

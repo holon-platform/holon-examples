@@ -26,7 +26,7 @@ import com.holonplatform.core.datastore.Datastore;
 import com.holonplatform.core.datastore.Datastore.OperationResult;
 import com.holonplatform.core.datastore.DefaultWriteOption;
 import com.holonplatform.core.exceptions.DataAccessException;
-import com.holonplatform.example.model.MProduct;
+import com.holonplatform.example.ui.vaadin.app.model.Product;
 import com.holonplatform.vaadin.components.Components;
 import com.holonplatform.vaadin.components.PropertyInputForm;
 import com.holonplatform.vaadin.navigator.ViewNavigator;
@@ -59,15 +59,15 @@ public class Manage extends VerticalLayout implements com.vaadin.navigator.View 
 				.margin().fullSize()
 				.addAndExpandFull(
 						// add a form using Product property set
-						form = Components.input.form().fullSize().properties(MProduct.PRODUCT)
+						form = Components.input.form().fullSize().properties(Product.PRODUCT)
 								// set id as read-only
-								.readOnly(MProduct.ID)
+								.readOnly(Product.ID)
 								// set SKU as required
-								.required(MProduct.SKU)
+								.required(Product.SKU)
 								// set "DFT" as CATEGORY default value
-								.defaultValue(MProduct.CATEGORY, p -> "DFT")
+								.defaultValue(Product.CATEGORY, p -> "DFT")
 								// add a validator to check DESCRIPTION with minimum 3 characters
-								.withValidator(MProduct.DESCRIPTION, Validator.min(3))
+								.withValidator(Product.DESCRIPTION, Validator.min(3))
 								// .initializer(c -> Components.configure(c).margin().spacing())
 								.build())
 				.add(Components.hl().margin().spacing()
@@ -86,8 +86,8 @@ public class Manage extends VerticalLayout implements com.vaadin.navigator.View 
 		// if id parameter is not null, we are in edit mode
 		if (id != null) {
 			// load the product data
-			form.setValue(datastore.query().target(DataTarget.named("products")).filter(MProduct.ID.eq(id))
-					.findOne(MProduct.PRODUCT)
+			form.setValue(datastore.query().target(DataTarget.named("products")).filter(Product.ID.eq(id))
+					.findOne(Product.PRODUCT)
 					// throw an exception if a product with given id was not found
 					.orElseThrow(() -> new DataAccessException("Data not found: " + id)));
 		}
@@ -101,7 +101,7 @@ public class Manage extends VerticalLayout implements com.vaadin.navigator.View 
 			// save and notify
 			OperationResult result = datastore.save(DataTarget.named("products"), value,
 					DefaultWriteOption.BRING_BACK_GENERATED_IDS);
-			Notification.show("Saved [" + ((id != null) ? id : result.getInsertedKeys().get(MProduct.ID)) + "]");
+			Notification.show("Saved [" + ((id != null) ? id : result.getInsertedKeys().get(Product.ID)) + "]");
 
 			// go back home
 			ViewNavigator.require().navigateToDefault();

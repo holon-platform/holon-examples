@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.holonplatform.example.jaxrs.springboot.propertybox;
+package com.holonplatform.example.jaxrs.propertybox.model;
 
 import com.holonplatform.core.Validator;
 import com.holonplatform.core.property.NumericProperty;
@@ -25,19 +25,26 @@ import com.holonplatform.core.property.StringProperty;
  */
 public interface Product {
 
-	public static final NumericProperty<Long> ID = NumericProperty.longType("id");
+	public static final NumericProperty<Long> ID = NumericProperty.longType("id").message("Product ID")
+			.messageCode("product.id"); // Product ID
 
-	public static final StringProperty SKU = StringProperty.create("sku");
+	public static final StringProperty SKU = StringProperty.create("sku") // SKU
+			.message("SKU").messageCode("product.sku");
 
-	public static final StringProperty DESCRIPTION = StringProperty.create("description");
+	public static final StringProperty DESCRIPTION = StringProperty.create("description") // Description
+			.message("Description").messageCode("product.description");
 
-	public static final StringProperty CATEGORY = StringProperty.create("category");
+	public static final StringProperty CATEGORY = StringProperty.create("category") // Category
+			.message("Category").messageCode("product.category");
 
-	public static final NumericProperty<Double> UNIT_PRICE = NumericProperty.doubleType("price")
+	public static final NumericProperty<Double> UNIT_PRICE = NumericProperty.doubleType("price") // Price
+			.message("Price").messageCode("product.price")
 			// not negative value validator
 			.validator(Validator.notNegative());
 
 	// Product property set
-	public static final PropertySet<?> PRODUCT = PropertySet.of(ID, SKU, DESCRIPTION, CATEGORY, UNIT_PRICE);
+	public static final PropertySet<?> PRODUCT = PropertySet.builderOf(ID, SKU, DESCRIPTION, CATEGORY, UNIT_PRICE)
+			.identifier(ID) // Product identifier
+			.build();
 
 }

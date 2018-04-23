@@ -35,8 +35,8 @@ import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 
-@DefaultView
-@UIScope
+@DefaultView // Declare this view as the navigator default view
+@UIScope // "stateful" view
 @SpringView(name = "home")
 public class Home extends VerticalLayout implements View {
 
@@ -51,19 +51,18 @@ public class Home extends VerticalLayout implements View {
 	public void init() {
 		Components.configure(this)
 				// set full to view content
-				.fullSize().spacing()
-				.add(Components.button().caption("Add new").styleName(ValoTheme.BUTTON_PRIMARY)
-						// navigate to "manage" view
+				.fullSize().spacing().add(Components.button().caption("Add new").styleName(ValoTheme.BUTTON_PRIMARY)
+						// on click, navigate to "manage" view
 						.onClick(e -> ViewNavigator.require().toView("manage").navigate()).build())
 				// build and add listing
 				.addAndExpandFull(listing = Components.listing.properties(PRODUCT)
-						// setup data source using Datastore with 'products' table name target and product ID as pk
-						.dataSource(datastore, TARGET, ID)
+						// setup listing data source using the Datastore with "products" as data target
+						.dataSource(datastore, TARGET)
 						// froze the ID column
 						.frozenColumns(1)
 						// set the ID column width and style
 						.width(ID, 120).style(ID, "id-column")
-						// when user clicks on a row, open the 'view' named View providing product id parameter
+						// when user clicks on a row, open the "view" View, providing the product "id" parameter
 						.withItemClickListener((i, p, e) -> ViewNavigator.require().toView("view")
 								.withParameter("id", i.getValue(ID)).navigate())
 						// set full size and build
@@ -72,7 +71,7 @@ public class Home extends VerticalLayout implements View {
 
 	@OnShow
 	public void onShow() {
-		// refresh listing at view display
+		// refresh the listing at view display
 		listing.refresh();
 	}
 

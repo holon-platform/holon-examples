@@ -21,7 +21,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import com.holonplatform.core.property.PropertySetRef;
-import com.holonplatform.example.model.MCustomer;
 import com.holonplatform.jaxrs.swagger.annotations.ApiPropertySetModel;
 
 /*
@@ -31,7 +30,7 @@ import com.holonplatform.jaxrs.swagger.annotations.ApiPropertySetModel;
  */
 @Target({ ElementType.PARAMETER, ElementType.TYPE_USE })
 @Retention(RetentionPolicy.RUNTIME)
-@PropertySetRef(MCustomer.class)
+@PropertySetRef(Customer.class)
 @ApiPropertySetModel("Customer")
 public @interface CustomerModel {
 
