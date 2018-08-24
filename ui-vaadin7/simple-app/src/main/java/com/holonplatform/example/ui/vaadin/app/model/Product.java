@@ -19,6 +19,7 @@ import com.holonplatform.core.Validator;
 import com.holonplatform.core.datastore.DataTarget;
 import com.holonplatform.core.property.BooleanProperty;
 import com.holonplatform.core.property.NumericProperty;
+import com.holonplatform.core.property.Property;
 import com.holonplatform.core.property.PropertySet;
 import com.holonplatform.core.property.PropertyValueConverter;
 import com.holonplatform.core.property.StringProperty;
@@ -46,7 +47,7 @@ public interface Product {
 			.converter(PropertyValueConverter.numericBoolean(Integer.class));
 
 	// Product property set
-	public static final PropertySet<?> PRODUCT = PropertySet
+	public static final PropertySet<Property<?>> PRODUCT = PropertySet
 			.builderOf(ID, SKU, DESCRIPTION, CATEGORY, UNIT_PRICE, WITHDRAWN) //
 			.identifier(ID) // Set the ID property as identifier
 			.build();
