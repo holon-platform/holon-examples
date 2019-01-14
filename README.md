@@ -1,12 +1,14 @@
-# Holon Platform samples
+# Holon Platform Examples
 
 This repository contains a set of example projects using the [Holon Platform](https://holon-platform.com) modules, organized by argument.
 
 ## Holon Platform version
 
-The examples in the _master_ branch refers to the Holon Platform version __5.1.x__.
+The examples in the _master_ branch refers to the Holon Platform version __5.2.x__.
 
-For the __5.0.x__ version examples, see the [5.0.x repository branch](https://github.com/holon-platform/holon-examples/tree/5.0.x).
+- For the __5.0.x__ version examples, see the [5.0.x repository branch](https://github.com/holon-platform/holon-examples/tree/5.0.x).
+
+- For the __5.1.x__ version examples, see the [5.0.x repository branch](https://github.com/holon-platform/holon-examples/tree/5.1.x).
 
 ## Documentation
 
