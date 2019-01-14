@@ -8,7 +8,7 @@ This examples refers to the Holon Platform version __5.0.x__. For the examples w
 
 ## Documentation
 
-See the [Holon platform reference guide](https://docs.holon-platform.com/5.0.6/reference).
+See the [Holon platform 5.0.x reference guide](https://docs.holon-platform.com/5.0.6/reference).
 
 ## Available examples
 
