@@ -78,6 +78,7 @@
 		<module>jax-rs/swagger-groups</module>
 		<module>jax-rs/swagger-v2</module>
 
+		<module>ui-vaadin-flow/simple-app</module>
 		<module>ui-vaadin/simple-app</module>
 		<module>ui-vaadin7/simple-app</module>
 	</modules>
