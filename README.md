@@ -28,6 +28,7 @@ Example | Description
 ------- | -----------
 [jdbc-datastore](datastore/jdbc-datastore)| `Datastore` API example using the **JDBC** Datastore implementation
 [jpa-datastore](datastore/jpa-datastore)| `Datastore` API example using the **JPA** Datastore implementation
+[mongo-datastore](datastore/mongo-datastore)| `Datastore` API example using the **MongoDB** Datastore implementation
 
 ### JAX-RS
 

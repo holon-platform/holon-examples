@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.holon-platform.examples</groupId>
+		<artifactId>holon-examples-root</artifactId>
+		<version>5.2.0</version>
+		<relativePath>../../pom.xml</relativePath>
+	</parent>
+
+	<artifactId>holon-example-datastore-mongo</artifactId>
+
+	<name>${project.groupId}:${project.artifactId}</name>
+	<description>Holon Platform Example - MongoDB Datastore</description>
+
+	<url>https://holon-platform.com</url>
+	<licenses>
+		<license>
+			<name>Apache License Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<dependencies>
+
+		<!-- Holon JDBC Datastore with HikariCP starter -->
+		<dependency>
+			<groupId>com.holon-platform.mongo</groupId>
+			<artifactId>holon-starter-mongo-datastore</artifactId>
+		</dependency>
+
+		<!-- Test -->
+		<dependency>
+			<groupId>com.holon-platform.core</groupId>
+			<artifactId>holon-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>de.flapdoodle.embed</groupId>
+			<artifactId>de.flapdoodle.embed.mongo</artifactId>
+			<version>2.1.1</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+</project>
