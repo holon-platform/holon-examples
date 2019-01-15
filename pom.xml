@@ -1,10 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.holon-platform.examples</groupId>
 	<artifactId>holon-examples-root</artifactId>
-	<version>5.1.0</version>
+	<version>5.2.0</version>
 
 	<packaging>pom</packaging>
 
@@ -53,17 +54,20 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 
-		<holon.platform.version>5.1.4</holon.platform.version>
+		<holon.platform.version>5.2.0</holon.platform.version>
+
+		<junit.jupiter.version>5.3.1</junit.jupiter.version>
+		<logback.version>1.2.3</logback.version>
 	</properties>
 
 	<modules>
 		<module>core/property-model</module>
 		<module>core/spring-context</module>
 		<module>core/spring-boot-context</module>
-		
+
 		<module>datastore/jdbc-datastore</module>
 		<module>datastore/jpa-datastore</module>
-		
+
 		<module>jax-rs/propertybox</module>
 		<module>jax-rs/spring-boot-propertybox</module>
 		<module>jax-rs/spring-boot-datastore</module>
@@ -71,9 +75,9 @@
 		<module>jax-rs/spring-boot-auth-jwt</module>
 		<module>jax-rs/swagger</module>
 		<module>jax-rs/swagger-groups</module>
-		
+
 		<module>ui-vaadin/simple-app</module>
-		
+
 		<module>ui-vaadin7/simple-app</module>
 	</modules>
 
@@ -89,5 +93,24 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<dependencies>
+		<!-- JUnit 5 -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- Logback -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+	</dependencies>
 
 </project>

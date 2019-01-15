@@ -15,19 +15,17 @@
  */
 package com.holonplatform.example.jaxrs.springboot.auth.basic.test;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.context.embedded.LocalServerPort;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.web.server.LocalServerPort;
 
 import com.holonplatform.http.HttpStatus;
 import com.holonplatform.http.rest.ResponseEntity;
 import com.holonplatform.http.rest.RestClient;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class Client {
 
@@ -41,28 +39,28 @@ public class Client {
 
 		// this should not be authorized
 		ResponseEntity<String> response = client.request().path("anyrole").get(String.class);
-		Assert.assertEquals(HttpStatus.UNAUTHORIZED, response.getStatus());
+		assertEquals(HttpStatus.UNAUTHORIZED, response.getStatus());
 		response.close();
 
 		// authenticate as act1
 		response = client.request().path("anyrole").authorizationBasic("act1", "act1pwd").get(String.class);
 		// now should be OK
-		Assert.assertEquals(HttpStatus.OK, response.getStatus());
+		assertEquals(HttpStatus.OK, response.getStatus());
 		response.close();
 
 		// act1 has the ROLE1
 		response = client.request().path("role1").authorizationBasic("act1", "act1pwd").get(String.class);
-		Assert.assertEquals(HttpStatus.OK, response.getStatus());
+		assertEquals(HttpStatus.OK, response.getStatus());
 		response.close();
 
 		// act1 has NOT the ROLE2
 		response = client.request().path("role2").authorizationBasic("act1", "act1pwd").get(String.class);
-		Assert.assertEquals(HttpStatus.FORBIDDEN, response.getStatus());
+		assertEquals(HttpStatus.FORBIDDEN, response.getStatus());
 		response.close();
 
 		// authenticate as act2, which has the ROLE2
 		response = client.request().path("role2").authorizationBasic("act2", "act2pwd").get(String.class);
-		Assert.assertEquals(HttpStatus.OK, response.getStatus());
+		assertEquals(HttpStatus.OK, response.getStatus());
 		response.close();
 
 	}

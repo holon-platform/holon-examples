@@ -63,7 +63,7 @@ public class Home extends VerticalLayout implements View {
 						// set the ID column width and style
 						.width(ID, 120).style(ID, "id-column")
 						// when user clicks on a row, open the "view" View, providing the product "id" parameter
-						.withItemClickListener((i, p, e) -> ViewNavigator.require().toView("view")
+						.withItemClickListener((i, p, r, e) -> ViewNavigator.require().toView("view")
 								.withParameter("id", i.getValue(ID)).navigate())
 						// set full size and build
 						.fullSize().build());

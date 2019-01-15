@@ -32,22 +32,22 @@ public interface Product {
 	public static final NumericProperty<Long> ID = NumericProperty.longType("id").message("Product ID")
 			.messageCode("product.id") // Product ID
 			// not null value validator
-			.validator(Validator.notNull());
+			.withValidator(Validator.notNull());
 
 	public static final StringProperty DESCRIPTION = StringProperty.create("description") // Description
 			.message("Description").messageCode("product.description")
 			// max 500 characters value validator
-			.validator(Validator.max(500));
+			.withValidator(Validator.max(500));
 
 	public static final StringProperty CATEGORY = StringProperty.create("category") // Category
 			.message("Category").messageCode("product.category")
 			// add a configuration property named "DATASET" with value "CATEGORY"
-			.configuration("DATASET", "CATEGORY");
+			.withConfiguration("DATASET", "CATEGORY");
 
 	public static final NumericProperty<Double> UNIT_PRICE = NumericProperty.doubleType("price") // Price
 			.message("Price").messageCode("product.price")
 			// not negative value validator
-			.validator(Validator.notNegative());
+			.withValidator(Validator.notNegative());
 
 	public static final BooleanProperty WITHDRAWN = BooleanProperty.create("withdrawn") // Withdrawn
 			.message("Withdrawn").messageCode("product.withdrawn");

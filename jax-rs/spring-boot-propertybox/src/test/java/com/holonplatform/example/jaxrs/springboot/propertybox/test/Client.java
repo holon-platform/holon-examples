@@ -25,18 +25,15 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.context.embedded.LocalServerPort;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.web.server.LocalServerPort;
 
 import com.holonplatform.core.property.PropertyBox;
 import com.holonplatform.http.rest.RequestEntity;
 import com.holonplatform.http.rest.RestClient;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class Client {
 

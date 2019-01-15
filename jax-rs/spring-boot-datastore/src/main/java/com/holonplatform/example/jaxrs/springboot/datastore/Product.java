@@ -36,7 +36,7 @@ public interface Product {
 
 	public static final NumericProperty<Double> UNIT_PRICE = NumericProperty.doubleType("price")
 			// not negative value validator
-			.validator(Validator.notNegative());
+			.withValidator(Validator.notNegative());
 
 	// Product property set
 	public static final PropertySet<?> PRODUCT = PropertySet.of(ID, SKU, DESCRIPTION, CATEGORY, UNIT_PRICE);

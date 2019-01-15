@@ -69,7 +69,7 @@ public class AccountService implements AccountProvider {
 				// configuration
 				.enabled(true).locked(act.getValue(ACCOUNT_LOCKED))
 				// add details
-				.detail("name", act.getValue(ACCOUNT_NAME))
+				.withDetail("name", act.getValue(ACCOUNT_NAME))
 				// load permissions
 				.permissionStrings(datastore.query().target(DataTarget.named("account_roles"))
 						.filter(ROLE_ACCOUNT_ID.eq(act.getValue(ACCOUNT_ID))).list(ROLE_ID))

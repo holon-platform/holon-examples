@@ -17,30 +17,30 @@ package com.holonplatform.example.core.property.bean;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 
 import com.holonplatform.core.beans.Config;
-import com.holonplatform.core.beans.NotNegative;
 import com.holonplatform.core.i18n.Caption;
 
 public class TestBean {
 
 	@NotNull
-	@Caption(value="Product ID", messageCode="product.id")
+	@Caption(value = "Product ID", messageCode = "product.id")
 	private Long id;
 
 	@Max(500)
-	@Caption(value="Description", messageCode="product.description")
+	@Caption(value = "Description", messageCode = "product.description")
 	private String description;
 
-	@Config(key="DATASET", value="CATEGORY")
-	@Caption(value="Category", messageCode="product.category")
+	@Config(key = "DATASET", value = "CATEGORY")
+	@Caption(value = "Category", messageCode = "product.category")
 	private String category;
 
-	@NotNegative
-	@Caption(value="Price", messageCode="product.price")
+	@PositiveOrZero
+	@Caption(value = "Price", messageCode = "product.price")
 	private Double unitPrice;
 
-	@Caption(value="Withdrawn", messageCode="product.withdrawn")
+	@Caption(value = "Withdrawn", messageCode = "product.withdrawn")
 	private boolean withdrawn;
 
 	public TestBean() {

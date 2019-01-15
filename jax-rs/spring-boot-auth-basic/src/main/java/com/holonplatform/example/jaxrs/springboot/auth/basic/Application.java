@@ -34,9 +34,9 @@ public class Application {
 	public Realm realm() {
 		return Realm.builder()
 				// Basic HTTP authorization schema resolver
-				.resolver(AuthenticationToken.httpBasicResolver())
+				.withResolver(AuthenticationToken.httpBasicResolver())
 				// authenticator using the accountProvider() service
-				.authenticator(Account.authenticator(accountProvider()))
+				.withAuthenticator(Account.authenticator(accountProvider()))
 				// default authorizer
 				.withDefaultAuthorizer().build();
 	}
@@ -52,7 +52,7 @@ public class Application {
 						// configuration
 						.enabled(true)
 						// add details
-						.detail("name", "Account 1")
+						.withDetail("name", "Account 1")
 						// permission roles
 						.permissionStrings("ROLE1").build());
 			}
@@ -64,7 +64,7 @@ public class Application {
 						// configuration
 						.enabled(true)
 						// add details
-						.detail("name", "Account 2")
+						.withDetail("name", "Account 2")
 						// permission roles
 						.permissionStrings("ROLE2").build());
 			}

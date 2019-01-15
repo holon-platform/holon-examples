@@ -38,7 +38,7 @@ public interface Product {
 
 	public static final NumericProperty<Double> UNIT_PRICE = NumericProperty.doubleType("price").message("Price")
 			// not negative value validator
-			.validator(Validator.notNegative());
+			.withValidator(Validator.notNegative());
 
 	public static final BooleanProperty WITHDRAWN = BooleanProperty.create("withdrawn")
 			.message("Withdrawn")

@@ -34,9 +34,10 @@ public class Application {
 	public Realm realm(JwtConfiguration jwtConfiguration) {
 		return Realm.builder()
 				// HTTP Bearer authorization schema resolver
-				.resolver(AuthenticationToken.httpBearerResolver())
+				.withResolver(AuthenticationToken.httpBearerResolver())
 				// authenticator using JwtConfiguration and allowing only 'TestIssuer' issuer name
-				.authenticator(JwtAuthenticator.builder().configuration(jwtConfiguration).issuer("TestIssuer").build())
+				.withAuthenticator(
+						JwtAuthenticator.builder().configuration(jwtConfiguration).issuer("TestIssuer").build())
 				// default authorizer
 				.withDefaultAuthorizer().build();
 	}

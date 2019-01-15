@@ -30,9 +30,9 @@ public class Application {
 	public Realm realm(AccountService accountProvider) {
 		return Realm.builder()
 				// Basic HTTP authorization schema resolver
-				.resolver(AuthenticationToken.httpBasicResolver())
+				.withResolver(AuthenticationToken.httpBasicResolver())
 				// authenticator using AccountService
-				.authenticator(Account.authenticator(accountProvider))
+				.withAuthenticator(Account.authenticator(accountProvider))
 				// default authorizer
 				.withDefaultAuthorizer().build();
 	}

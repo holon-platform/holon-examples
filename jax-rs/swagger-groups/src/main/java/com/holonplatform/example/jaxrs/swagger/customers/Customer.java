@@ -51,7 +51,7 @@ public interface Customer {
 			.message("Surname").messageCode("customer.surname");
 
 	public static final StringProperty EMAIL = StringProperty.create("email") // E-mail
-			.validator(Validator.email()).messageCode("E-mail").message("customer.email");
+			.withValidator(Validator.email()).messageCode("E-mail").message("customer.email");
 
 	public static final PathProperty<Status> STATUS = PathProperty.create("status", Status.class) // Status
 			.message("Status").messageCode("customer.status");

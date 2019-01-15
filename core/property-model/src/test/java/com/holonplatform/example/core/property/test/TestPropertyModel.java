@@ -22,22 +22,22 @@ import static com.holonplatform.example.core.property.model.Product.ID;
 import static com.holonplatform.example.core.property.model.Product.PRODUCT;
 import static com.holonplatform.example.core.property.model.Product.UNIT_PRICE;
 import static com.holonplatform.example.core.property.model.Product.WITHDRAWN;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Locale;
 import java.util.Optional;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import com.holonplatform.core.Context;
 import com.holonplatform.core.Validator.ValidationException;
 import com.holonplatform.core.beans.BeanPropertySet;
 import com.holonplatform.core.i18n.LocalizationContext;
-import com.holonplatform.core.internal.utils.TestUtils;
 import com.holonplatform.core.property.PathProperty;
 import com.holonplatform.core.property.Property;
 import com.holonplatform.core.property.PropertyBox;
@@ -50,11 +50,11 @@ import com.holonplatform.example.core.property.support.WithdrawnPropertyPresente
 
 public class TestPropertyModel {
 
-	@BeforeClass
+	@BeforeAll
 	public static void init() {
 
 		// create a LocalizationContext with a MessageProvider which never returns a translation
-		LocalizationContext ctx = LocalizationContext.builder().messageProvider((locale, code) -> Optional.empty())
+		LocalizationContext ctx = LocalizationContext.builder().withMessageProvider((locale, code) -> Optional.empty())
 				.withInitialLocale(Locale.US).build();
 		// register it as a ClassLoader-scoped resource
 		Context.get().classLoaderScope().ifPresent(scope -> scope.put(LocalizationContext.CONTEXT_KEY, ctx));
@@ -147,7 +147,7 @@ public class TestPropertyModel {
 	public void propertyValidation() {
 
 		// Expect the validation fails for a NULL value
-		TestUtils.expectedException(ValidationException.class, () -> ID.validate(null));
+		assertThrows(ValidationException.class, () -> ID.validate(null));
 
 		// Expect the validation succeeds
 		ID.validate(1L);

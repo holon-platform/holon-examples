@@ -23,19 +23,17 @@ import static com.holonplatform.example.datastore.jdbc.Product.SKU;
 import static com.holonplatform.example.datastore.jdbc.Product.TARGET;
 import static com.holonplatform.example.datastore.jdbc.Product.UNIT_PRICE;
 import static com.holonplatform.example.datastore.jdbc.Product.WITHDRAWN;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.holonplatform.core.datastore.Datastore;
 import com.holonplatform.core.datastore.Datastore.OperationResult;
@@ -43,7 +41,6 @@ import com.holonplatform.core.datastore.DefaultWriteOption;
 import com.holonplatform.core.property.PropertyBox;
 
 @SpringBootTest
-@RunWith(SpringRunner.class)
 public class TestDatastore {
 
 	@Autowired

@@ -15,10 +15,17 @@
  */
 package com.holonplatform.example.datastore.jpa.test;
 
-import static com.holonplatform.example.datastore.jpa.Product.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static com.holonplatform.example.datastore.jpa.Product.CATEGORY;
+import static com.holonplatform.example.datastore.jpa.Product.DESCRIPTION;
+import static com.holonplatform.example.datastore.jpa.Product.ID;
+import static com.holonplatform.example.datastore.jpa.Product.PRODUCT;
+import static com.holonplatform.example.datastore.jpa.Product.SKU;
+import static com.holonplatform.example.datastore.jpa.Product.TARGET;
+import static com.holonplatform.example.datastore.jpa.Product.UNIT_PRICE;
+import static com.holonplatform.example.datastore.jpa.Product.WITHDRAWN;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,11 +33,9 @@ import java.util.stream.Stream;
 
 import javax.transaction.Transactional;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.holonplatform.core.datastore.Datastore;
 import com.holonplatform.core.datastore.Datastore.OperationResult;
@@ -38,7 +43,6 @@ import com.holonplatform.core.datastore.DefaultWriteOption;
 import com.holonplatform.core.property.PropertyBox;
 
 @SpringBootTest
-@RunWith(SpringRunner.class)
 @Transactional
 public class TestDatastore {
 
