@@ -46,8 +46,8 @@ Example | Description
 
 Example | Description
 ------- | -----------
-[simple-app](ui-vaadin/simple-app)| A simple web application using __Vaadin 8__ as UI platform and the `Datastore` API for data management
-[simple-app](ui-vaadin7/simple-app)| A simple web application using __Vaadin 7__ as UI platform and the `Datastore` API for data management
+[Vaadin 8 simple-app](ui-vaadin/simple-app)| A simple web application using __Vaadin 8__ as UI platform and the `Datastore` API for data management
+[Vaadin 7 simple-app](ui-vaadin7/simple-app)| A simple web application using __Vaadin 7__ as UI platform and the `Datastore` API for data management
 
 ## System requirements
 
