@@ -3,13 +3,9 @@ spring:
     banner-mode: "off"
     
 holon:
-  resteasy:
-    application-path: "/api"
-
   swagger:
     version: "v1"
     title: "Swagger API groups"
-    pretty-print: true
     
     api-groups:
       - group-id: "products"

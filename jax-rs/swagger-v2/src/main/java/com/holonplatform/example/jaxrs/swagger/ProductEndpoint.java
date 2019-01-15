@@ -41,14 +41,13 @@ import com.holonplatform.core.datastore.Datastore;
 import com.holonplatform.core.datastore.DefaultWriteOption;
 import com.holonplatform.core.property.PropertyBox;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
+@Api("Product management")
 @Component
 @Path("/products")
 public class ProductEndpoint {
@@ -59,8 +58,9 @@ public class ProductEndpoint {
 	/*
 	 * Get a list of products PropertyBox in JSON.
 	 */
-	@Operation(summary = "Get all the products")
-	@ApiResponses(@ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = MediaType.APPLICATION_JSON, array = @ArraySchema(schema = @Schema(implementation = PropertyBox.class)))))
+	@ApiOperation("Get all the products")
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "OK", response = PropertyBox.class, responseContainer = "List") })
 	@ProductModel
 	@GET
 	@Path("/")
@@ -72,13 +72,13 @@ public class ProductEndpoint {
 	/*
 	 * Get a product PropertyBox in JSON.
 	 */
-	@Operation(summary = "Get a product by id")
-	@ApiResponses(@ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = PropertyBox.class))))
+	@ApiOperation("Get a product by id")
+	@ApiResponses({ @ApiResponse(code = 200, message = "OK", response = PropertyBox.class) })
 	@ProductModel
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getProduct(@Parameter(name = "The product id") @PathParam("id") Long id) {
+	public Response getProduct(@ApiParam("The product id") @PathParam("id") Long id) {
 		return datastore.query().target(TARGET).filter(ID.eq(id)).findOne(PRODUCT).map(p -> Response.ok(p).build())
 				.orElse(Response.status(Status.NOT_FOUND).build());
 	}
@@ -86,8 +86,8 @@ public class ProductEndpoint {
 	/*
 	 * Create a product. The @PropertySetRef must be used to declare the request PropertyBox property set.
 	 */
-	@Operation(summary = "Create a product")
-	@ApiResponses(@ApiResponse(responseCode = "201", description = "Product created"))
+	@ApiOperation("Create a product")
+	@ApiResponses({ @ApiResponse(code = 201, message = "Product created") })
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -102,9 +102,10 @@ public class ProductEndpoint {
 	/*
 	 * Update a product. The @PropertySetRef must be used to declare the request PropertyBox property set.
 	 */
-	@Operation(summary = "Update a product")
-	@ApiResponses({ @ApiResponse(responseCode = "204", description = "Product updated"),
-			@ApiResponse(responseCode = "404", description = "Product not found") })
+	@ApiOperation("Update a product")
+	// @ApiParam(name = "id", value = "The product id to update")
+	@ApiResponses({ @ApiResponse(code = 204, message = "Product updated"),
+			@ApiResponse(code = 404, message = "Product not found") })
 	@PUT
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -124,12 +125,12 @@ public class ProductEndpoint {
 	/*
 	 * Delete a product by id.
 	 */
-	@Operation(summary = "Delete a product")
-	@ApiResponses(@ApiResponse(responseCode = "204", description = "Product deleted"))
+	@ApiOperation("Delete a product")
+	@ApiResponses({ @ApiResponse(code = 204, message = "Product deleted") })
 	@DELETE
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteProduct(@Parameter(name = "The product id to delete") @PathParam("id") Long id) {
+	public Response deleteProduct(@ApiParam("The product id to delete") @PathParam("id") Long id) {
 		datastore.bulkDelete(TARGET).filter(ID.eq(id)).execute();
 		return Response.noContent().build();
 	}

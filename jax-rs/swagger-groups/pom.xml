@@ -28,13 +28,13 @@
 		<!-- Jersey + Jackson + Tomcat server starter -->
 		<dependency>
 			<groupId>com.holon-platform.jaxrs</groupId>
-			<artifactId>holon-starter-resteasy-undertow</artifactId>
+			<artifactId>holon-starter-jersey-undertow</artifactId>
 		</dependency>
 
 		<!-- Swagger support -->
 		<dependency>
 			<groupId>com.holon-platform.jaxrs</groupId>
-			<artifactId>holon-jaxrs-swagger</artifactId>
+			<artifactId>holon-jaxrs-swagger-v3</artifactId>
 		</dependency>
 
 	</dependencies>

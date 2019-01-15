@@ -6,7 +6,11 @@ spring:
     url: "jdbc:h2:mem:test"
     username: "sa"
     
+  jersey:
+      application-path: "api"
+    
 holon:
   swagger:
     version: "v1"
     title: "Products API docs"
+    pretty-print: true

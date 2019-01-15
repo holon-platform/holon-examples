@@ -34,13 +34,13 @@ import org.springframework.stereotype.Component;
 
 import com.holonplatform.core.property.PropertyBox;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Api("Product management")
+@Tag(name = "Product management")
 @Component
 @Path("/products")
 public class ProductEndpoint {
@@ -48,9 +48,7 @@ public class ProductEndpoint {
 	/*
 	 * Get a list of products PropertyBox in JSON.
 	 */
-	@ApiOperation("Get all the products")
-	@ApiResponses({
-			@ApiResponse(code = 200, message = "OK", response = PropertyBox.class, responseContainer = "List") })
+	@Operation(summary = "Get all the products")
 	@ProductModel
 	@GET
 	@Path("/")
@@ -62,13 +60,12 @@ public class ProductEndpoint {
 	/*
 	 * Get a product PropertyBox in JSON.
 	 */
-	@ApiOperation("Get a product by id")
-	@ApiResponses({ @ApiResponse(code = 200, message = "OK", response = PropertyBox.class) })
+	@Operation(summary = "Get a product by id")
 	@ProductModel
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getProduct(@ApiParam("The product id") @PathParam("id") Long id) {
+	public Response getProduct(@Parameter(name = "The product id") @PathParam("id") Long id) {
 		return getProductStore().get(id).map(p -> Response.ok(p).build())
 				.orElse(Response.status(Status.NOT_FOUND).build());
 	}
@@ -76,8 +73,8 @@ public class ProductEndpoint {
 	/*
 	 * Create a product. The @PropertySetRef must be used to declare the request PropertyBox property set.
 	 */
-	@ApiOperation("Create a product")
-	@ApiResponses({ @ApiResponse(code = 201, message = "Product created") })
+	@Operation(summary = "Create a product")
+	@ApiResponses(@ApiResponse(responseCode = "201", description = "Product created"))
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -95,9 +92,9 @@ public class ProductEndpoint {
 	/*
 	 * Update a product. The @PropertySetRef must be used to declare the request PropertyBox property set.
 	 */
-	@ApiOperation("Update a product")
-	@ApiResponses({ @ApiResponse(code = 204, message = "Product updated"),
-			@ApiResponse(code = 404, message = "Product not found") })
+	@Operation(summary = "Update a product")
+	@ApiResponses({ @ApiResponse(responseCode = "204", description = "Product updated"),
+			@ApiResponse(responseCode = "404", description = "Product not found") })
 	@PUT
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -117,12 +114,12 @@ public class ProductEndpoint {
 	/*
 	 * Delete a product by id.
 	 */
-	@ApiOperation("Delete a product")
-	@ApiResponses({ @ApiResponse(code = 204, message = "Product deleted") })
+	@Operation(summary = "Delete a product")
+	@ApiResponses(@ApiResponse(responseCode = "204", description = "Product deleted"))
 	@DELETE
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteProduct(@ApiParam("The product id to delete") @PathParam("id") Long id) {
+	public Response deleteProduct(@Parameter(name = "The product id to delete") @PathParam("id") Long id) {
 		getProductStore().remove(id);
 		return Response.noContent().build();
 	}

@@ -38,14 +38,16 @@ Example | Description
 [spring-boot-datastore](jax-rs/spring-boot-datastore)| JAX-RS server and client RESTful API using `PropertyBox`, JSON, __Spring Boot__ and a JDBC `Datastore`
 [spring-boot-auth-basic](jax-rs/spring-boot-auth-basic)| JAX-RS server and client RESTful API with __authentication__ and __authorization__ support using the HTTP `Basic` authorization scheme
 [spring-boot-auth-jwt](jax-rs/spring-boot-auth-jwt)| JAX-RS server and client RESTful API with __JWT (JSON Web Token)__ based authentication
-[swagger](jax-rs/swagger)| JAX-RS [Swagger](https://swagger.io) integration and auto-configuration with `PropertyBox` support
-[swagger-groups](jax-rs/swagger-groups)| JAX-RS [Swagger](https://swagger.io) integration and auto-configuration using multiple API _groups_ with multiple Swagger API listing endpoints
+[swagger](jax-rs/swagger)| JAX-RS [Swagger/OpenAPI](https://swagger.io) __version 3__ integration and auto-configuration with `PropertyBox` support
+[swagger-groups](jax-rs/swagger-groups)| JAX-RS [Swagger/OpenAPI](https://swagger.io) __version 3__ integration and auto-configuration using multiple API _groups_ and multiple Swagger API listing endpoints
+[swagger-v2](jax-rs/swagger-v2)| JAX-RS [Swagger](https://swagger.io) __version 2__ integration and auto-configuration with `PropertyBox` support
 
 ### Vaadin UI
 
 Example | Description
 ------- | -----------
-[simple-app](ui-vaadin/simple-app)| A simple web application using __Vaadin__ as UI engine and the `Datastore` API for data management
+[simple-app](ui-vaadin/simple-app)| A simple web application using __Vaadin 8__ as UI platform and the `Datastore` API for data management
+[simple-app](ui-vaadin7/simple-app)| A simple web application using __Vaadin 7__ as UI platform and the `Datastore` API for data management
 
 ## System requirements
 

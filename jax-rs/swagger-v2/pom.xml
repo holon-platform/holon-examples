@@ -9,10 +9,10 @@
 		<relativePath>../../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>holon-example-jaxrs-swagger</artifactId>
+	<artifactId>holon-example-jaxrs-swagger-v2</artifactId>
 
 	<name>${project.groupId}:${project.artifactId}</name>
-	<description>Holon Platform Example - JAX-RS Swagger V3 integration</description>
+	<description>Holon Platform Example - JAX-RS Swagger V2 integration</description>
 
 	<url>https://holon-platform.com</url>
 	<licenses>
@@ -31,10 +31,10 @@
 			<artifactId>holon-starter-jersey</artifactId>
 		</dependency>
 
-		<!-- Swagger support -->
+		<!-- Swagger V2 integration -->
 		<dependency>
 			<groupId>com.holon-platform.jaxrs</groupId>
-			<artifactId>holon-jaxrs-swagger-v3</artifactId>
+			<artifactId>holon-jaxrs-swagger-v2</artifactId>
 		</dependency>
 
 		<!-- Holon JDBC Datastore with HikariCP starter -->

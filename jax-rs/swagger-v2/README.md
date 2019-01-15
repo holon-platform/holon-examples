@@ -1,8 +1,8 @@
-# Holon platform examples: Swagger V3 API documentation with JAX-RS
+# Holon platform examples: Swagger V2 API documentation with JAX-RS
 
 _This is one of the [Holon Platform](https://holon-platform.com) example projects._
 
-This example shows how to setup a [Swagger/OpenAPI](https://swagger.io) __version 3__ API documentation endpoint using the [Holon platform JAX-RS module](https://github.com/holon-platform/holon-jaxrs), with `PropertyBox` data type support.
+This example shows how to setup a [Swagger](https://swagger.io) specification __version 2__ API documentation endpoint using the [Holon platform JAX-RS module](https://github.com/holon-platform/holon-jaxrs), with `PropertyBox` data type support.
 
 ## Topics
 
@@ -21,7 +21,7 @@ The [ProductEndpoint](src/main/java/com/holonplatform/example/jaxrs/swagger/Prod
 
 A **JDBC Datastore** is auto-configured and used for product entity data manipulation and persistence.
 
-Some Swagger annotations are used to provide API operations description (`@Operation`) and response details (`@ApiResponses`).
+Some Swagger annotations are used to provide API operations description (`@ApiOperation`) and response details (`@ApiResponses`).
 
 ### The `@ApiPropertySetModel` annotation
 
@@ -35,27 +35,27 @@ The `ProductModel` annotation is used in API operations to qualify a `PropertySe
 
 This way, a `Product` _model_ definition will be declared in the Swagger API definitions and used as a reference for each `PropertySet` type request or response element.
 
-### Swagger V3 API listing endpoint configuration
+### Swagger V2 API listing endpoint configuration
 
-The `holon-jaxrs-swagger-v3` artifact of the [Holon platform JAX-RS module](https://github.com/holon-platform/holon-jaxrs), declared as dependency in project's `pom`, provides __Spring Boot__ integration to auto-configure the Swagger API listing endpoint, using the `holon.swagger.*` configuration properties (see [application.yml](src/main/resources/application.yml)).
+The `holon-jaxrs-swagger-v2` artifact of the [Holon platform JAX-RS module](https://github.com/holon-platform/holon-jaxrs), declared as dependency in project's `pom`, provides __Spring Boot__ integration to auto-configure the Swagger API listing endpoint, using the `holon.swagger.*` configuration properties (see [application.yml](src/main/resources/application.yml)).
 
 This way, a JAX-RS __Swagger API listing endpoint__ to generate and provide the Swagger API documentation is automatically configured and listing at the `api-docs` path by default:
 
 ```text
-http://localhost:8080/api-docs
+http://localhost:8080/api/api-docs
 ```
 
-The endpoint provides the Swagger definitions in __JSON__ by default, but the `type` parameter can be used to specify the response format: `json` or `yaml`.
+The endpoint provides the Swagger definitions in __JSON__ format by default, but the `type` parameter can be used to specify the response format: `json` or `yaml`.
 
 ```text
-http://localhost:8080/api-docs?type=yaml
+http://localhost:8080/api/api-docs?type=yaml
 ```
 
 To change the path of the API listing endpoint, the `holon.swagger.path` property can be used.
 So, for example, setting `holon.swagger.path=docs` will result in the following Swagger API listing URL:
 
 ```text
-http://localhost:8080/docs?type=yaml
+http://localhost:8080/api/docs?type=yaml
 ```
 
 See the [Swagger JAX-RS integration documentation](https://docs.holon-platform.com/current/reference/holon-jaxrs.html#Swagger) for details and other configuration options.

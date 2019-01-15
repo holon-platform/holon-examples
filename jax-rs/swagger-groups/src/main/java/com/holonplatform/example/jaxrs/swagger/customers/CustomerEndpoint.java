@@ -34,13 +34,13 @@ import org.springframework.stereotype.Component;
 
 import com.holonplatform.core.property.PropertyBox;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Api("Customer management")
+@Tag(name = "Customer management")
 @Component
 @Path("/customers")
 public class CustomerEndpoint {
@@ -48,9 +48,7 @@ public class CustomerEndpoint {
 	/*
 	 * Get a list of customers PropertyBox in JSON.
 	 */
-	@ApiOperation("Get all the customers")
-	@ApiResponses({
-			@ApiResponse(code = 200, message = "OK", response = PropertyBox.class, responseContainer = "List") })
+	@Operation(summary = "Get all the customers")
 	@CustomerModel
 	@GET
 	@Path("/")
@@ -62,13 +60,12 @@ public class CustomerEndpoint {
 	/*
 	 * Get a customer PropertyBox in JSON.
 	 */
-	@ApiOperation("Get a customer by id")
-	@ApiResponses({ @ApiResponse(code = 200, message = "OK", response = PropertyBox.class) })
+	@Operation(summary = "Get a customer by id")
 	@CustomerModel
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getCustomer(@ApiParam("The customer id") @PathParam("id") Long id) {
+	public Response getCustomer(@Parameter(name = "The customer id") @PathParam("id") Long id) {
 		return getCustomerStore().get(id).map(p -> Response.ok(p).build())
 				.orElse(Response.status(Status.NOT_FOUND).build());
 	}
@@ -76,8 +73,8 @@ public class CustomerEndpoint {
 	/*
 	 * Create a customer. The @PropertySetRef must be used to declare the request PropertyBox property set.
 	 */
-	@ApiOperation("Create a customer")
-	@ApiResponses({ @ApiResponse(code = 201, message = "Customer created") })
+	@Operation(summary = "Create a customer")
+	@ApiResponses(@ApiResponse(responseCode = "201", description = "Customer created"))
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -95,9 +92,9 @@ public class CustomerEndpoint {
 	/*
 	 * Update a customer. The @PropertySetRef must be used to declare the request PropertyBox property set.
 	 */
-	@ApiOperation("Update a customer")
-	@ApiResponses({ @ApiResponse(code = 204, message = "Customer updated"),
-			@ApiResponse(code = 404, message = "Customer not found") })
+	@Operation(summary = "Update a customer")
+	@ApiResponses({ @ApiResponse(responseCode = "204", description = "Customer updated"),
+			@ApiResponse(responseCode = "404", description = "Customer not found") })
 	@PUT
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -117,12 +114,12 @@ public class CustomerEndpoint {
 	/*
 	 * Delete a customer by id.
 	 */
-	@ApiOperation("Delete a customer")
-	@ApiResponses({ @ApiResponse(code = 204, message = "Customer deleted") })
+	@Operation(summary = "Delete a customer")
+	@ApiResponses(@ApiResponse(responseCode = "204", description = "Customer deleted"))
 	@DELETE
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteCustomer(@ApiParam("The customer id to delete") @PathParam("id") Long id) {
+	public Response deleteCustomer(@Parameter(name = "The customer id to delete") @PathParam("id") Long id) {
 		getCustomerStore().remove(id);
 		return Response.noContent().build();
 	}
