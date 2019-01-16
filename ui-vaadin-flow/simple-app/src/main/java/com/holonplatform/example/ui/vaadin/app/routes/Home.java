@@ -55,8 +55,8 @@ public class Home extends VerticalLayout {
 				.addAndExpand(listing = Components.listing.properties(PRODUCT).fullWidth()
 						// setup listing data source using the Datastore with "products" as data target
 						.dataSource(datastore, TARGET)
-						// froze the ID column
-						.frozenColumns(1)
+						// froze the Actions and ID columns
+						.frozenColumns(2)
 						// when user clicks on a row, route to Manage, providing the product "id" parameter
 						.withItemClickListener(event -> {
 							Navigator.get().navigation(Manage.class)
