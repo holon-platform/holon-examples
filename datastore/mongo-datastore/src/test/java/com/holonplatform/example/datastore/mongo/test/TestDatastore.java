@@ -96,11 +96,13 @@ public class TestDatastore {
 		String productId = result.getInsertedKey(ID).orElse(null);
 		assertNotNull(productId);
 
+		// get a product by id
+		product = datastore.query(TARGET).filter(ID.eq(productId)).findOne(PRODUCT).orElse(null);
+		assertNotNull(product);
+
 		// Create another product
-		PropertyBox product2 = product.cloneBox();
-		product2.setValue(SKU, "prod2-sku");
-		product2.setValue(UNIT_PRICE, 12.90);
-		product2.setValue(DESCRIPTION, "The second product");
+		PropertyBox product2 = PropertyBox.builder(PRODUCT).set(SKU, "prod2-sku").set(DESCRIPTION, "The second product")
+				.set(CATEGORY, "C1").set(UNIT_PRICE, 12.90).build();
 
 		// store the product using the BRING_BACK_GENERATED_IDS option
 		datastore.save(TARGET, product2, DefaultWriteOption.BRING_BACK_GENERATED_IDS);

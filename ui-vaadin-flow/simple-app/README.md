@@ -21,8 +21,8 @@ A __JDBC__ `Datastore` backed by a __H2 database__ is used for product data pers
 
 This application is composed by three _routes_:
 
-* [Home](src/main/java/com/holonplatform/example/ui/vaadin/app/routes/Home.java): the home view, listing all the available products and allowing to edit the product data by clicking on a row
-* [Manage](src/main/java/com/holonplatform/example/ui/vaadin/app/routes/Manage.java): manages the product data, providing an input form to create or update a product
+* [Home](src/main/java/com/holonplatform/example/ui/vaadin/app/routes/Home.java): the home view, listing all the available products and allowing to: edit the product data by clicking on a row, delete a product using a component column.
+* [Manage](src/main/java/com/holonplatform/example/ui/vaadin/app/routes/Manage.java): manages the product data, providing an input form to create or update a product.
 
 ## Run this example
 

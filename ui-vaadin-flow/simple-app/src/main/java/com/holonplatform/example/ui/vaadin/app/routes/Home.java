@@ -45,39 +45,40 @@ public class Home extends VerticalLayout {
 
 	@PostConstruct
 	public void init() {
-		setSizeFull();
-		// add new button
-		add(Components.button().text("Add new")
-				// on click, navigate to "manage" view
-				.onClick(e -> Navigator.get().navigateTo("manage")).build());
-		// build and add listing
-		listing = Components.listing.properties(PRODUCT).fullWidth()
-				// setup listing data source using the Datastore with "products" as data target
-				.dataSource(datastore, TARGET)
-				// froze the ID column
-				.frozenColumns(1)
-				// when user clicks on a row, route to Manage, providing the product "id" parameter
-				.withItemClickListener(event -> {
-					Navigator.get().navigation(Manage.class).withQueryParameter("id", event.getItem().getValue(ID))
-							.navigate();
-				})
-				// add a delete column as first with a "Delete" Button 
-				//.withComponentColumn(item -> Components.button().text("Delete").icon(VaadinIcon.TRASH)
-					//	.onClick(event -> delete(item.getValue(ID))).build())
-				//.header("Actions").displayAsFirst().add()
-				// build
-				.build();
-		add(listing.getComponent());
-		setFlexGrow(1, listing.getComponent());
+		// configure the layout
+		Components.configure(this).fullSize()
+				// add new button
+				.add(Components.button().text("Add new")
+						// on click, navigate to "manage" view
+						.onClick(e -> Navigator.get().navigateTo("manage")).build())
+				// build and add listing, setting the flex grow ratio to 1
+				.addAndExpand(listing = Components.listing.properties(PRODUCT).fullWidth()
+						// setup listing data source using the Datastore with "products" as data target
+						.dataSource(datastore, TARGET)
+						// froze the ID column
+						.frozenColumns(1)
+						// when user clicks on a row, route to Manage, providing the product "id" parameter
+						.withItemClickListener(event -> {
+							Navigator.get().navigation(Manage.class)
+									.withQueryParameter("id", event.getItem().getValue(ID)).navigate();
+						})
+						// add a Actions column as first with a "Delete" Button
+						.withComponentColumn(item -> Components.button().text("Delete").icon(VaadinIcon.TRASH)
+								.onClick(event -> delete(item.getValue(ID))).build())
+						.header("Actions").displayAsFirst().add()
+						// build
+						.build(), 1);
 	}
 
 	private void delete(Long productId) {
 		// ask confirmation
 		Components.dialog.question(answeredYes -> {
-			// if confirmed, delete the product
-			datastore.bulkDelete(TARGET).filter(ID.eq(productId)).execute();
-			// refresh list
-			listing.refresh();
+			if (answeredYes) {
+				// if confirmed, delete the product
+				datastore.bulkDelete(TARGET).filter(ID.eq(productId)).execute();
+				// refresh list
+				listing.refresh();
+			}
 		}).text("Are you sure?").open();
 	}
 
