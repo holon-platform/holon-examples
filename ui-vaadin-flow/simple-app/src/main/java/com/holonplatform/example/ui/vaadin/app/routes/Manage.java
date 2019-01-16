@@ -61,20 +61,18 @@ public class Manage extends VerticalLayout {
 	@PostConstruct
 	public void init() {
 		Components.configure(this)
-				// set margins and size full to view content
-				.add(
-						// add a PropertyInputForm using the Product property set
-						form = Components.input.form(PRODUCT)
-								// set ID as read-only
-								.readOnly(ID)
-								// set SKU as required
-								.required(SKU)
-								// set "DFT" as CATEGORY default value
-								.defaultValue(CATEGORY, () -> "DFT")
-								// add a validator to check that DESCRIPTION has minimum 3 characters
-								.withValidator(DESCRIPTION, Validator.min(3))
-								// build the form
-								.build())
+				// add a PropertyInputForm using the Product property set
+				.add(form = Components.input.form(PRODUCT)
+						// set ID as read-only
+						.readOnly(ID)
+						// set SKU as required
+						.required(SKU)
+						// set "DFT" as CATEGORY default value
+						.defaultValue(CATEGORY, () -> "DFT")
+						// add a validator to check that DESCRIPTION has minimum 3 characters
+						.withValidator(DESCRIPTION, Validator.min(3))
+						// build the form
+						.build())
 				.add(Components.hl().margin().spacing()
 						// SAVE action
 						.add(Components.button().text("Save").withThemeVariants(ButtonVariant.LUMO_PRIMARY)
