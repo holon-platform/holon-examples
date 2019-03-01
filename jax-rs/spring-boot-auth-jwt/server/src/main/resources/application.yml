@@ -4,7 +4,7 @@ spring:
 
 holon:
   jwt:
-    sharedkey-base64: "eWGZLlCrUjtBZwxgzcLPnA"
+    sharedkey-base64: "X7Cukx67arP4UQSjPBC8zEkpht8hc4FZZwiIJIz2Fr0="
     
 server:
   port: 8080
