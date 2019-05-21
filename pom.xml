@@ -54,13 +54,13 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 
-		<holon.platform.version>5.2.6</holon.platform.version>
+		<holon.platform.version>5.2.9</holon.platform.version>
 
-		<junit.jupiter.version>5.4.1</junit.jupiter.version>
+		<junit.jupiter.version>5.4.2</junit.jupiter.version>
 		<logback.version>1.2.3</logback.version>
 
-		<maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
-		<maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
+		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 	</properties>
 
 	<modules>
