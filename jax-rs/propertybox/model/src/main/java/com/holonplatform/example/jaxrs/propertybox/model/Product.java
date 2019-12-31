@@ -44,7 +44,7 @@ public interface Product {
 
 	// Product property set
 	public static final PropertySet<?> PRODUCT = PropertySet.builderOf(ID, SKU, DESCRIPTION, CATEGORY, UNIT_PRICE)
-			.identifier(ID) // Product identifier
+			.withIdentifier(ID) // Product identifier
 			.build();
 
 }

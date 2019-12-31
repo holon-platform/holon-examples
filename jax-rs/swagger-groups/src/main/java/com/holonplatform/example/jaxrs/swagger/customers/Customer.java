@@ -67,7 +67,7 @@ public interface Customer {
 
 	// Customer property set
 	public static final PropertySet<?> CUSTOMER = PropertySet
-			.builderOf(ID, NAME, SURNAME, EMAIL, STATUS, FULL_NAME, IS_ACTIVE).identifier(ID) // Customer identifier
+			.builderOf(ID, NAME, SURNAME, EMAIL, STATUS, FULL_NAME, IS_ACTIVE).withIdentifier(ID) // Customer identifier
 			.build();
 
 }

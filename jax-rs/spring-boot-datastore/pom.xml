@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -30,51 +31,37 @@
 			<groupId>com.holon-platform.jaxrs</groupId>
 			<artifactId>holon-starter-jersey</artifactId>
 		</dependency>
-		
+
 		<!-- Alternative starters -->
-		
+
 		<!-- Jersey + Gson + Tomcat server starter -->
-		<!-- <dependency>
-			<groupId>com.holon-platform.jaxrs</groupId>
-			<artifactId>holon-starter-jersey-gson</artifactId>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.holon-platform.jaxrs</groupId> <artifactId>holon-starter-jersey-gson</artifactId> 
+			</dependency> -->
 		<!-- Jersey + Jackson + Undertow server starter -->
-		<!-- <dependency>
-			<groupId>com.holon-platform.jaxrs</groupId>
-			<artifactId>holon-starter-jersey-undertow</artifactId>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.holon-platform.jaxrs</groupId> <artifactId>holon-starter-jersey-undertow</artifactId> 
+			</dependency> -->
 		<!-- Jersey + Gson + Undertow server starter -->
-		<!-- <dependency>
-			<groupId>com.holon-platform.jaxrs</groupId>
-			<artifactId>holon-starter-jersey-undertow-gson</artifactId>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.holon-platform.jaxrs</groupId> <artifactId>holon-starter-jersey-undertow-gson</artifactId> 
+			</dependency> -->
 		<!-- Resteasy + Jackson + Tomcat server starter -->
-		<!-- <dependency>
-			<groupId>com.holon-platform.jaxrs</groupId>
-			<artifactId>holon-starter-resteasy</artifactId>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.holon-platform.jaxrs</groupId> <artifactId>holon-starter-resteasy</artifactId> 
+			</dependency> -->
 		<!-- Resteasy + Gson + Tomcat server starter -->
-		<!-- <dependency>
-			<groupId>com.holon-platform.jaxrs</groupId>
-			<artifactId>holon-starter-resteasy-gson</artifactId>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.holon-platform.jaxrs</groupId> <artifactId>holon-starter-resteasy-gson</artifactId> 
+			</dependency> -->
 		<!-- Resteasy + Jackson + Undertow server starter -->
-		<!-- <dependency>
-			<groupId>com.holon-platform.jaxrs</groupId>
-			<artifactId>holon-starter-resteasy-undertow</artifactId>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.holon-platform.jaxrs</groupId> <artifactId>holon-starter-resteasy-undertow</artifactId> 
+			</dependency> -->
 		<!-- Resteasy + Gson + Undertow server starter -->
-		<!-- <dependency>
-			<groupId>com.holon-platform.jaxrs</groupId>
-			<artifactId>holon-starter-resteasy-undertow-gson</artifactId>
-		</dependency> -->
-		
+		<!-- <dependency> <groupId>com.holon-platform.jaxrs</groupId> <artifactId>holon-starter-resteasy-undertow-gson</artifactId> 
+			</dependency> -->
+
 		<!-- Holon JDBC Datastore with HikariCP starter -->
 		<dependency>
 			<groupId>com.holon-platform.jdbc</groupId>
 			<artifactId>holon-starter-jdbc-datastore-hikaricp</artifactId>
 		</dependency>
-		
+
 		<!-- H2 database -->
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -87,6 +74,12 @@
 			<groupId>com.holon-platform.core</groupId>
 			<artifactId>holon-starter-test</artifactId>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.holon-platform.jaxrs</groupId>

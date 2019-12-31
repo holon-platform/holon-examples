@@ -48,7 +48,7 @@ public interface Product {
 	// Product property set
 	public static final PropertySet<?> PRODUCT = PropertySet
 			.builderOf(ID, SKU, DESCRIPTION, CATEGORY, UNIT_PRICE, WITHDRAWN) //
-			.identifier(ID) // Set the ID property as identifier
+			.withIdentifier(ID) // Set the ID property as identifier
 			.build();
 
 	// "products" DataTarget

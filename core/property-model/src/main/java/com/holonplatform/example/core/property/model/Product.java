@@ -65,6 +65,6 @@ public interface Product {
 
 	// Product property set with the ID property as identifier property
 	public static final PropertySet<?> PRODUCT = PropertySet
-			.builderOf(ID, DESCRIPTION, CATEGORY, CATEGORY_DESCRIPTION, UNIT_PRICE, WITHDRAWN).identifier(ID).build();
+			.builderOf(ID, DESCRIPTION, CATEGORY, CATEGORY_DESCRIPTION, UNIT_PRICE, WITHDRAWN).withIdentifier(ID).build();
 
 }
